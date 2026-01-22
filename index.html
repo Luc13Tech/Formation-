@@ -1110,7 +1110,7 @@
             // Validation de l'acompte
             const acompte = document.getElementById('acompte').value;
             if (acompte !== 'oui') {
-                alert('ATTENTION : Vous devez accepter et comprendre la condition de l\'acompte de 2.000 F pour pouvoir vous inscrire.');
+                alert('ATTENTION : Vous devez accepter et comprendre la condition de l\'acompte de 4.000 F pour pouvoir vous inscrire.');
                 return;
             }
             
@@ -1137,10 +1137,10 @@
                            `*🎖️ OBJECTIFS PROFESSIONNELS*%0A` +
                            `${formData.objectifs}%0A%0A` +
                            `*💰 ACCOMPTE*%0A` +
-                           `Je confirme avoir compris la nécessité de l'acompte de 2.000 F : ${formData.acompte === 'oui' ? 'OUI ✅' : 'NON ❌'}%0A%0A` +
+                           `Je confirme avoir compris la nécessité de l'acompte de 4.000 F : ${formData.acompte === 'oui' ? 'OUI ✅' : 'NON ❌'}%0A%0A` +
                            `*⚠️ URGENCE*%0A` +
-                           `_Inscription effectuée via le site web - Date limite : 30/01/2026_%0A` +
-                           `_Merci de me recontacter pour finaliser l'inscription et effectuer l'acompte de 2.000 F_`;
+                           `_Inscription effectuée via le site web - Date limite : 03/02/2026_%0A` +
+                           `_Merci de me recontacter pour finaliser l'inscription et effectuer l'acompte de 4.000 F_`;
             
             // Afficher le modal de confirmation
             const modal = document.getElementById('confirmationModal');
@@ -1224,7 +1224,7 @@
         
         // Alertes pour la date limite
         window.addEventListener('load', function() {
-            const deadline = new Date('January 30, 2026 00:00:00').getTime();
+            const deadline = new Date('Febriary 03, 2026 00:00:00').getTime();
             const now = new Date().getTime();
             const daysLeft = Math.floor((deadline - now) / (1000 * 60 * 60 * 24));
             
