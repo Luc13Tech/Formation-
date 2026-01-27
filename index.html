@@ -5,12 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Luckily Formations | Développement Web & Marketing Digital</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
         :root {
             --primary: #0066cc;
             --secondary: #00ccff;
             --accent: #2ecc71;
+            --accent2: #9b59b6;
             --warning: #f39c12;
+            --danger: #e74c3c;
             --dark: #2c3e50;
             --light: #f8f9fa;
             --shadow: 0 10px 30px rgba(0,0,0,0.1);
@@ -27,17 +30,20 @@
             background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
             color: var(--dark);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         /* Header & Navigation */
         header {
-            background: white;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
             box-shadow: var(--shadow);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
             animation: slideDown 0.8s ease;
+            border-bottom: 3px solid var(--primary);
         }
 
         @keyframes slideDown {
@@ -62,10 +68,17 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
 
         .logo i {
             color: var(--secondary);
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         .nav-links {
@@ -77,8 +90,9 @@
             text-decoration: none;
             color: var(--dark);
             font-weight: 600;
-            transition: color 0.3s;
+            transition: all 0.3s;
             position: relative;
+            padding: 5px 0;
         }
 
         .nav-links a:hover {
@@ -90,10 +104,11 @@
             position: absolute;
             width: 0;
             height: 3px;
-            background: var(--secondary);
-            bottom: -5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            bottom: 0;
             left: 0;
             transition: width 0.3s;
+            border-radius: 2px;
         }
 
         .nav-links a:hover::after {
@@ -103,17 +118,18 @@
         .countdown {
             background: linear-gradient(135deg, var(--warning), #e67e22);
             color: white;
-            padding: 5px 15px;
+            padding: 8px 18px;
             border-radius: 20px;
             font-size: 14px;
             font-weight: 600;
             animation: pulse 2s infinite;
+            box-shadow: 0 4px 15px rgba(243, 156, 18, 0.3);
         }
 
         @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+            0% { transform: scale(1); box-shadow: 0 4px 15px rgba(243, 156, 18, 0.3); }
+            50% { transform: scale(1.05); box-shadow: 0 6px 20px rgba(243, 156, 18, 0.4); }
+            100% { transform: scale(1); box-shadow: 0 4px 15px rgba(243, 156, 18, 0.3); }
         }
 
         .cta-button {
@@ -123,26 +139,50 @@
             border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: all 0.3s;
             display: inline-block;
+            box-shadow: 0 4px 15px rgba(0, 102, 204, 0.2);
+            position: relative;
+            overflow: hidden;
         }
 
         .cta-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 102, 204, 0.2);
+            box-shadow: 0 10px 25px rgba(0, 102, 204, 0.3);
+        }
+
+        .cta-button::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(45deg);
+            transition: all 0.5s;
+        }
+
+        .cta-button:hover::after {
+            left: 150%;
         }
 
         /* Hero Section */
         .hero {
             padding: 180px 20px 100px;
             text-align: center;
-            background: linear-gradient(135deg, rgba(0, 102, 204, 0.9) 0%, rgba(0, 204, 255, 0.8) 100%), url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background: linear-gradient(135deg, rgba(0, 102, 204, 0.9) 0%, rgba(0, 204, 255, 0.8) 100%), url('https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
             background-size: cover;
             background-position: center;
+            background-attachment: fixed;
             color: white;
             margin-top: 80px;
             position: relative;
             overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .hero::before {
@@ -154,6 +194,7 @@
             border-radius: 50%;
             top: -150px;
             right: -150px;
+            animation: float 20s infinite linear;
         }
 
         .hero::after {
@@ -165,34 +206,33 @@
             border-radius: 50%;
             bottom: -100px;
             left: -100px;
+            animation: float 15s infinite linear reverse;
+        }
+
+        @keyframes float {
+            0% { transform: rotate(0deg) translate(0, 0); }
+            100% { transform: rotate(360deg) translate(20px, 20px); }
         }
 
         .hero h1 {
-            font-size: 48px;
+            font-size: 56px;
             margin-bottom: 20px;
-            animation: fadeInUp 1s ease;
             position: relative;
             z-index: 1;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+            background: linear-gradient(45deg, white, var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInUp 1s ease;
         }
 
         .hero p {
             font-size: 22px;
             max-width: 800px;
             margin: 0 auto 30px;
-            animation: fadeInUp 1s ease 0.2s both;
             position: relative;
             z-index: 1;
-        }
-
-        .deadline-alert {
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            padding: 20px;
-            border-radius: 15px;
-            margin: 30px auto;
-            max-width: 600px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            animation: fadeInUp 1s ease 0.4s both;
+            animation: fadeInUp 1s ease 0.2s both;
         }
 
         @keyframes fadeInUp {
@@ -200,36 +240,99 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        .deadline-alert {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 40px auto;
+            max-width: 700px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            animation: fadeInUp 1s ease 0.4s both;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .deadline-alert::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .floating-notice {
+            background: linear-gradient(135deg, var(--accent2), #8e44ad);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 30px auto;
+            max-width: 600px;
+            animation: bounce 2s infinite;
+            border: 2px solid white;
+            box-shadow: 0 10px 30px rgba(155, 89, 182, 0.3);
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
         /* Formations Section */
         .formations-section {
             padding: 100px 20px;
             max-width: 1200px;
             margin: 0 auto;
+            position: relative;
         }
 
         .section-title {
             text-align: center;
-            font-size: 36px;
-            margin-bottom: 60px;
+            font-size: 42px;
+            margin-bottom: 80px;
             color: var(--dark);
             position: relative;
+            padding-bottom: 20px;
         }
 
         .section-title::after {
             content: '';
-            width: 80px;
+            width: 100px;
             height: 5px;
             background: linear-gradient(to right, var(--primary), var(--secondary));
             position: absolute;
-            bottom: -15px;
+            bottom: 0;
             left: 50%;
             transform: translateX(-50%);
             border-radius: 5px;
         }
 
+        .section-title::before {
+            content: '✨';
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 24px;
+            animation: spin 3s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: translateX(-50%) rotate(0deg); }
+            100% { transform: translateX(-50%) rotate(360deg); }
+        }
+
         .formations-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(550px, 1fr));
             gap: 40px;
             margin-bottom: 80px;
         }
@@ -245,19 +348,39 @@
             border-radius: 20px;
             overflow: hidden;
             box-shadow: var(--shadow);
-            transition: transform 0.4s, box-shadow 0.4s;
+            transition: all 0.4s;
             animation: fadeInUp 0.8s ease;
             position: relative;
+            transform-style: preserve-3d;
+            perspective: 1000px;
         }
 
         .formation-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            transform: translateY(-15px) rotateX(5deg);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
         }
 
         .formation-header {
-            padding: 30px;
+            padding: 35px;
             color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .formation-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
         }
 
         .formation-1 .formation-header {
@@ -269,33 +392,49 @@
         }
 
         .formation-title {
-            font-size: 28px;
+            font-size: 30px;
             margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
         }
 
         .formation-price {
-            font-size: 32px;
-            font-weight: 700;
-            margin: 15px 0;
+            font-size: 36px;
+            font-weight: 800;
+            margin: 20px 0;
             color: white;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
         }
 
         .formation-body {
-            padding: 30px;
+            padding: 35px;
         }
 
         .benefits {
-            background: #e8f4fc;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-            border-left: 4px solid var(--primary);
+            background: linear-gradient(135deg, #e8f4fc, #d4e8ff);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+            border-left: 5px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .benefits::before {
+            content: '💎';
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            opacity: 0.3;
         }
 
         .benefits h4 {
             color: var(--primary);
-            margin-bottom: 10px;
-            font-size: 18px;
+            margin-bottom: 15px;
+            font-size: 20px;
         }
 
         .benefits ul {
@@ -304,9 +443,14 @@
         }
 
         .benefits li {
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             position: relative;
-            padding-left: 25px;
+            padding-left: 30px;
+            transition: transform 0.3s;
+        }
+
+        .benefits li:hover {
+            transform: translateX(5px);
         }
 
         .benefits li:before {
@@ -315,113 +459,259 @@
             left: 0;
             color: var(--accent);
             font-weight: bold;
+            font-size: 18px;
         }
 
         .phase {
             background: var(--light);
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-            border-left: 4px solid var(--accent);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+            border-left: 5px solid var(--accent);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .phase:hover {
+            transform: translateX(10px);
         }
 
         .phase-title {
-            font-size: 20px;
+            font-size: 22px;
             color: var(--dark);
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         .badge {
-            background: var(--accent);
+            background: linear-gradient(135deg, var(--accent), #27ae60);
             color: white;
-            padding: 5px 15px;
+            padding: 8px 20px;
             border-radius: 20px;
             font-size: 14px;
             font-weight: 600;
+            box-shadow: 0 4px 10px rgba(46, 204, 113, 0.3);
         }
 
-        .online-badge {
-            background: var(--primary);
+        .physical-badge {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
         }
 
         .details-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin: 15px 0;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
         }
 
         .detail-item {
             display: flex;
             align-items: flex-start;
-            gap: 10px;
+            gap: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .detail-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
         .detail-icon {
             color: var(--primary);
-            font-size: 20px;
-            margin-top: 2px;
+            font-size: 24px;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .location-highlight {
+            background: linear-gradient(135deg, #fff8e1, #ffecb3);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            border: 2px dashed var(--warning);
+            text-align: center;
+            font-weight: bold;
+            animation: highlight 2s infinite alternate;
+        }
+
+        @keyframes highlight {
+            from { border-color: var(--warning); }
+            to { border-color: var(--accent); }
         }
 
         .conditions {
-            background: #fff8e1;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-            border: 2px dashed var(--warning);
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+            border: 2px solid var(--warning);
+            position: relative;
         }
 
         .conditions h4 {
             color: var(--warning);
-            margin-bottom: 10px;
-            font-size: 18px;
+            margin-bottom: 15px;
+            font-size: 20px;
         }
 
         .conditions ul {
-            padding-left: 20px;
+            padding-left: 25px;
         }
 
         .conditions li {
-            margin-bottom: 8px;
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 10px;
         }
 
-        /* Motivation Section */
-        .motivation-section {
+        .conditions li:before {
+            content: '▶';
+            position: absolute;
+            left: -15px;
+            color: var(--warning);
+        }
+
+        .payment-info {
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+            border: 2px solid var(--accent);
+            text-align: center;
+            animation: pulse-border 2s infinite;
+        }
+
+        @keyframes pulse-border {
+            0%, 100% { border-color: var(--accent); }
+            50% { border-color: #27ae60; }
+        }
+
+        .registration-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .step {
+            background: white;
+            padding: 25px 15px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .step:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 30px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        /* Anglais Section */
+        .english-section {
+            background: linear-gradient(135deg, var(--accent2), #8e44ad);
             padding: 80px 20px;
-            background: linear-gradient(135deg, var(--dark), #34495e);
             color: white;
             text-align: center;
+            position: relative;
+            overflow: hidden;
         }
 
-        .motivation-content {
-            max-width: 800px;
-            margin: 0 auto;
+        .english-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=20');
+            background-size: cover;
+            opacity: 0.1;
         }
 
-        .motivation-content h2 {
-            font-size: 36px;
-            margin-bottom: 30px;
-            color: var(--secondary);
-        }
-
-        .opportunity-card {
-            background: rgba(255, 255, 255, 0.1);
+        .english-card {
+            background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(10px);
-            padding: 30px;
-            border-radius: 15px;
-            margin: 30px 0;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            margin: 0 auto;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 0.8s ease;
         }
 
-        /* Formulaire d'inscription */
-        .inscription-section {
-            padding: 80px 20px;
+        /* Tabs pour les formulaires */
+        .form-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 15px 30px;
             background: var(--light);
+            border: 2px solid #e0e0e0;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
+        .tab-btn.active {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-color: var(--primary);
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 102, 204, 0.2);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Formulaire */
         .form-container {
             max-width: 800px;
             margin: 0 auto;
@@ -432,222 +722,19 @@
             animation: fadeInUp 0.8s ease;
         }
 
-        .form-title {
-            text-align: center;
-            font-size: 32px;
-            margin-bottom: 40px;
-            color: var(--dark);
-        }
-
-        .payment-notice {
-            background: #e8f5e9;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-            text-align: center;
-            border-left: 4px solid var(--accent);
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: var(--dark);
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            font-size: 16px;
-            transition: border-color 0.3s;
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
-
-        .select-formation {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
-        }
-
-        .formation-option {
-            position: relative;
-        }
-
-        .formation-option input {
-            position: absolute;
-            opacity: 0;
-        }
-
-        .formation-option label {
-            display: block;
-            padding: 20px;
-            background: var(--light);
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .formation-option input:checked + label {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            border-color: var(--primary);
-            transform: scale(1.05);
-        }
-
-        .submit-btn {
-            background: linear-gradient(135deg, var(--accent), #27ae60);
-            color: white;
-            border: none;
-            padding: 18px 40px;
-            font-size: 18px;
-            font-weight: 600;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
-            display: block;
-            width: 100%;
-            margin-top: 30px;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(46, 204, 113, 0.3);
-        }
-
-        .submit-btn i {
-            margin-right: 10px;
-        }
-
-        /* Contact Section */
-        .contact-section {
-            padding: 80px 20px;
-            text-align: center;
-            background: linear-gradient(135deg, var(--dark), #34495e);
-            color: white;
-        }
-
-        .contact-info {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .whatsapp-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 15px;
-            background: #25D366;
-            color: white;
-            padding: 20px 40px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-size: 24px;
-            font-weight: 600;
-            margin: 30px 0;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .whatsapp-link:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(37, 211, 102, 0.3);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--dark);
-            color: white;
-            padding: 50px 20px;
-            text-align: center;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-section h3 {
-            margin-bottom: 20px;
-            color: var(--secondary);
-        }
-
-        .copyright {
-            padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            color: rgba(255,255,255,0.7);
-        }
-
-        /* Modal de confirmation */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .modal-content {
-            background: white;
-            padding: 50px;
-            border-radius: 20px;
-            text-align: center;
-            max-width: 500px;
-            animation: scaleIn 0.5s ease;
-        }
-
-        @keyframes scaleIn {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-
-        .modal-icon {
-            font-size: 80px;
-            color: var(--accent);
-            margin-bottom: 20px;
-        }
-
-        /* Animation pour les cartes */
-        .formation-card:nth-child(1) { animation-delay: 0.1s; }
-        .formation-card:nth-child(2) { animation-delay: 0.2s; }
-
         /* Responsive */
         @media (max-width: 768px) {
             .nav-container {
                 flex-direction: column;
                 height: auto;
-                padding: 20px;
+                padding: 15px;
             }
             
             .nav-links {
-                margin: 20px 0;
+                margin: 15px 0;
                 flex-wrap: wrap;
                 justify-content: center;
+                gap: 15px;
             }
             
             .hero h1 {
@@ -663,7 +750,7 @@
             }
             
             .form-container {
-                padding: 30px 20px;
+                padding: 25px 15px;
             }
             
             .details-grid {
@@ -673,6 +760,12 @@
             .countdown {
                 margin-top: 10px;
                 font-size: 12px;
+                padding: 6px 12px;
+            }
+            
+            .section-title {
+                font-size: 32px;
+                margin-bottom: 50px;
             }
         }
     </style>
@@ -682,12 +775,12 @@
     <header>
         <div class="nav-container">
             <div class="logo">
-                <i class="fas fa-rocket"></i>
-                Luckily
+                <i class="fas fa-graduation-cap"></i>
+                Luckily Academy
             </div>
             <nav class="nav-links">
                 <a href="#formations">Formations</a>
-                <a href="#motivation">Opportunité</a>
+                <a href="#anglais">Cours d'Anglais</a>
                 <a href="#inscription">Inscription</a>
                 <a href="#contact">Contact</a>
             </nav>
@@ -699,80 +792,108 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <h1>VOTRE FUTUR NUMÉRIQUE COMMENCE ICI !</h1>
-        <p>Formez-vous aux métiers les plus demandés du 21ème siècle</p>
+        <h1>TRANSFORMEZ VOTRE CARRIÈRE AVEC NOS FORMATIONS PRÉSENTIELLES !</h1>
+        <p>Formations pratiques en présentiel avec des experts du secteur</p>
         
         <div class="deadline-alert">
-            <h3><i class="fas fa-exclamation-triangle"></i> ATTENTION : DERNIÈRE CHANCE !</h3>
-            <p>Les inscriptions ferment définitivement le <strong>03 Février 2026 à 00h00</strong></p>
-            <p>Ne ratez pas cette opportunité unique de transformer votre carrière</p>
+            <h3><i class="fas fa-exclamation-triangle"></i> URGENT : DERNIÈRES INSCRIPTIONS !</h3>
+            <p>Date limite : <strong>Vendredi 06 Février 2026</strong></p>
+            <p>Places limitées - Inscrivez-vous maintenant pour garantir votre place !</p>
         </div>
         
-        <a href="#inscription" class="cta-button">Réserver ma place maintenant <i class="fas fa-arrow-right"></i></a>
+        <div class="floating-notice">
+            <h4><i class="fas fa-map-marker-alt"></i> FORMATIONS EN PRÉSENTIEL</h4>
+            <p>Lieu : <strong>Centre de Formation Luckily Academy</strong></p>
+            <p>Adresse : <em>(À préciser lors de la confirmation d'inscription)</em></p>
+        </div>
+        
+        <a href="#inscription" class="cta-button animate__animated animate__pulse animate__infinite">
+            <i class="fas fa-user-plus"></i> S'INSCRIRE MAINTENANT
+        </a>
     </section>
 
     <!-- Formations Section -->
     <section id="formations" class="formations-section">
-        <h2 class="section-title">Nos Formations Expertes</h2>
+        <h2 class="section-title animate__animated animate__fadeIn">NOS FORMATIONS PRÉSENTIELLES</h2>
         
         <div class="formations-grid">
             <!-- Formation 1 -->
             <div class="formation-card formation-1">
                 <div class="formation-header">
                     <h3 class="formation-title">Négociation Commerciale & Web Marketing</h3>
-                    <div class="formation-price">10.000 F</div>
-                    <p>Devenez un expert en vente et marketing digital</p>
+                    <div class="formation-price">10.000 F CFA</div>
+                    <p>Formation intensive en présentiel</p>
                 </div>
                 <div class="formation-body">
+                    <div class="location-highlight">
+                        <i class="fas fa-map-marker-alt"></i> 
+                        <strong>FORMATION EN PRÉSENTIEL</strong> - Centre Luckily Academy
+                    </div>
+                    
                     <div class="benefits">
-                        <h4>📈 AVANTAGES DE CETTE FORMATION</h4>
+                        <h4>🚀 AVANTAGES EXCLUSIFS</h4>
                         <ul>
-                            <li>Maîtrisez les techniques de vente modernes</li>
-                            <li>Apprenez à générer des leads qualifiés</li>
-                            <li>Développez des stratégies marketing efficaces</li>
-                            <li>Augmentez vos taux de conversion</li>
-                            <li>Obtenez des compétences directement applicables</li>
+                            <li>Formation 100% pratique avec études de cas réels</li>
+                            <li>Interactions directes avec le formateur expert</li>
+                            <li>Mise en situation professionnelle</li>
+                            <li>Réseautage avec d'autres professionnels</li>
+                            <li>Support personnalisé pendant la formation</li>
                         </ul>
                     </div>
                     
-                    <div class="details-grid">
-                        <div class="detail-item">
-                            <span class="detail-icon">📅</span>
-                            <div>
-                                <strong>Dates :</strong><br>
-                                10/02/2026 - 17/02/2026
+                    <div class="phase">
+                        <h4 class="phase-title">📅 PROGRAMME DE FORMATION</h4>
+                        <div class="details-grid">
+                            <div class="detail-item">
+                                <span class="detail-icon">📅</span>
+                                <div>
+                                    <strong>Dates :</strong><br>
+                                    Samedi 07/02/2026<br>
+                                    au<br>
+                                    Dimanche 15/02/2026
+                                </div>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-icon">⏰</span>
+                                <div>
+                                    <strong>Horaires :</strong><br>
+                                    Samedi & Dimanche<br>
+                                    9h - 12h
+                                </div>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-icon">📍</span>
+                                <div>
+                                    <strong>Lieu :</strong><br>
+                                    <strong>Présentiel</strong><br>
+                                    Centre Luckily
+                                </div>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-icon">⏱️</span>
+                                <div>
+                                    <strong>Durée :</strong><br>
+                                    4 Week-ends<br>
+                                    24h de formation
+                                </div>
                             </div>
                         </div>
-                        <div class="detail-item">
-                            <span class="detail-icon">⏰</span>
-                            <div>
-                                <strong>Horaires :</strong><br>
-                                21h - 23h (tous les soirs)
-                            </div>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-icon">📍</span>
-                            <div>
-                                <strong>Lieu :</strong><br>
-                                En ligne via WhatsApp
-                            </div>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-icon">📱</span>
-                            <div>
-                                <strong>Contact :</strong><br>
-                                +229 01 59 60 95 81
-                            </div>
-                        </div>
+                    </div>
+                    
+                    <div class="payment-info">
+                        <h4>💰 FRAIS DE FORMATION : 10.000 F CFA</h4>
+                        <p><strong>Frais d'inscription :</strong> 4.000 F (obligatoire le 1er jour)</p>
+                        <p>Possibilité de payer le solde ou une partie le 1er jour</p>
                     </div>
                     
                     <div class="conditions">
                         <h4>📋 CONDITIONS D'INSCRIPTION</h4>
                         <ul>
-                            <li>Paiement d'acompte de 4.000 F avant le début</li>
-                            <li>Test final obligatoire pour l'attestation</li>
-                            <li>Assiduité requise (minimum 80% de présence)</li>
-                            <li>Inscription avant le 03/02/2026 à 00h00</li>
+                            <li>Remplir le formulaire d'inscription ci-dessous</li>
+                            <li>Paiement des frais d'inscription (4.000 F) le 1er jour</li>
+                            <li>Test final pour l'obtention de l'attestation</li>
+                            <li>Assiduité minimum de 80%</li>
+                            <li>Inscription avant le 06/02/2026</li>
                         </ul>
                     </div>
                 </div>
@@ -782,255 +903,337 @@
             <div class="formation-card formation-2">
                 <div class="formation-header">
                     <h3 class="formation-title">Développement Web & Analyse des Données</h3>
-                    <div class="formation-price">À partir de 30.000 F</div>
-                    <p>Créez des sites web avec ou sans code !</p>
+                    <div class="formation-price">À partir de 30.000 F CFA</div>
+                    <p>Devenez développeur web en présentiel</p>
                 </div>
                 <div class="formation-body">
+                    <div class="location-highlight">
+                        <i class="fas fa-map-marker-alt"></i> 
+                        <strong>TOUTES LES PHASES EN PRÉSENTIEL</strong> - Centre Luckily Academy
+                    </div>
+                    
                     <div class="benefits">
-                        <h4>🚀 AVANTAGES EXCLUSIFS</h4>
+                        <h4>🌟 POURQUOI CETTE FORMATION ?</h4>
                         <ul>
-                            <li><strong>Sans code</strong> : Créez des sites professionnels sans écrire une ligne de code</li>
-                            <li><strong>Avec code</strong> : Maîtrisez le développement frontend et backend</li>
-                            <li>Sites <strong>responsives</strong> et <strong>dynamiques</strong></li>
-                            <li>Formation pratique axée sur les besoins clients</li>
-                            <li>Double compétence : No-code ET Code</li>
+                            <li><strong>Sans code</strong> : Créez des sites professionnels sans programmer</li>
+                            <li><strong>Avec code</strong> : Maîtrisez le développement full-stack</li>
+                            <li>Formation pratique sur machines</li>
+                            <li>Accompagnement individuel</li>
+                            <li>Projets réels pour votre portfolio</li>
                         </ul>
                     </div>
                     
                     <div class="phase">
-                        <h4 class="phase-title">PHASE 1 : DÉVELOPPEMENT SANS CODE <span class="badge online-badge">100% EN LIGNE</span></h4>
-                        <p><em>Créez des sites web performants SANS connaître la programmation !</em></p>
+                        <h4 class="phase-title">PHASE 1 : DÉVELOPPEMENT SANS CODE <span class="badge physical-badge">PRÉSENTIEL</span></h4>
+                        <p><em>Apprenez à créer des sites web sans écrire une ligne de code</em></p>
                         <div class="details-grid">
                             <div class="detail-item">
                                 <span class="detail-icon">📅</span>
                                 <div>
                                     <strong>Dates :</strong><br>
-                                    18/02/2026 - 25/02/2026
+                                    Samedi 21/02/2026<br>
+                                    au<br>
+                                    Dimanche 01/03/2026
                                 </div>
                             </div>
                             <div class="detail-item">
                                 <span class="detail-icon">⏰</span>
                                 <div>
                                     <strong>Horaires :</strong><br>
-                                    21h - 23h (tous les soirs)
+                                    Samedi & Dimanche<br>
+                                    9h - 13h
                                 </div>
                             </div>
                             <div class="detail-item">
                                 <span class="detail-icon">📍</span>
                                 <div>
                                     <strong>Lieu :</strong><br>
-                                    <strong>FORMATION EN LIGNE</strong>
+                                    <strong>Présentiel</strong><br>
+                                    Centre Luckily
                                 </div>
                             </div>
                         </div>
-                        <div class="formation-price" style="color: var(--primary); font-size: 24px; background: var(--light); padding: 10px; border-radius: 10px; display: inline-block;">
-                            30.000 F
+                        <div class="payment-info">
+                            <h4>💰 FRAIS DE FORMATION : 30.000 F CFA</h4>
                         </div>
                     </div>
                     
                     <div class="phase">
-                        <h4 class="phase-title">PHASE 2 : DÉVELOPPEMENT AVEC CODE <span class="badge">PRÉSENTIEL</span></h4>
-                        <p><em>Devenez développeur full-stack et démarrez votre carrière</em></p>
+                        <h4 class="phase-title">PHASE 2 : DÉVELOPPEMENT AVEC CODE <span class="badge physical-badge">PRÉSENTIEL</span></h4>
+                        <p><em>Devenez développeur full-stack professionnel</em></p>
                         <div class="details-grid">
                             <div class="detail-item">
                                 <span class="detail-icon">📅</span>
                                 <div>
                                     <strong>Dates :</strong><br>
-                                    20/02/2026 - 20/05/2026
+                                    Samedi 07/03/2026<br>
+                                    au<br>
+                                    Dimanche 29/03/2026
                                 </div>
                             </div>
                             <div class="detail-item">
                                 <span class="detail-icon">⏰</span>
                                 <div>
                                     <strong>Horaires :</strong><br>
-                                    9h - 13h (tous les week-ends)
+                                    Samedi & Dimanche<br>
+                                    9h - 13h
                                 </div>
                             </div>
                             <div class="detail-item">
                                 <span class="detail-icon">📍</span>
                                 <div>
                                     <strong>Lieu :</strong><br>
-                                    Présentiel (lieu à annoncer)
+                                    <strong>Présentiel</strong><br>
+                                    Centre Luckily
                                 </div>
                             </div>
                         </div>
-                        <div class="formation-price" style="color: var(--primary); font-size: 24px; background: var(--light); padding: 10px; border-radius: 10px; display: inline-block;">
-                            80.000 F
+                        <div class="payment-info">
+                            <h4>💰 FRAIS DE FORMATION : 80.000 F CFA</h4>
                         </div>
                     </div>
                     
                     <div class="conditions">
-                        <h4>📋 CONDITIONS D'OBTENTION DU CERTIFICAT</h4>
+                        <h4>📋 PROCÉDURE D'INSCRIPTION</h4>
                         <ul>
-                            <li>Paiement d'acompte de 4.000 F avant le début</li>
-                            <li>Test final avec note minimum de 70% pour l'attestation</li>
-                            <li>Projet pratique à réaliser et présenter</li>
-                            <li>Assiduité minimum de 85%</li>
-                            <li>Inscription avant le 03/02/2026 à 00h00</li>
+                            <li>Remplir le formulaire d'inscription</li>
+                            <li>Frais d'inscription : 4.000 F (le 1er jour)</li>
+                            <li>Paiement du solde échelonné possible</li>
+                            <li>Test final pour certification</li>
+                            <li>Inscription avant le 06/02/2026</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Motivation Section -->
-    <section id="motivation" class="motivation-section">
-        <div class="motivation-content">
-            <h2>UNE OPPORTUNITÉ UNIQUE DE TRANSFORMER VOTRE CARRIÈRE !</h2>
-            
-            <div class="opportunity-card">
-                <h3><i class="fas fa-crown"></i> POURQUOI CETTE FORMATION EST UNE CHANCE EXCEPTIONNELLE ?</h3>
-                <p>Dans un monde où le numérique domine, ces compétences sont parmi les PLUS DEMANDÉES sur le marché.</p>
-                
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 30px;">
-                    <div>
-                        <i class="fas fa-bolt" style="font-size: 40px; color: var(--secondary); margin-bottom: 10px;"></i>
-                        <h4>Apprentissage Rapide</h4>
-                        <p>Formation intensive et pratique</p>
-                    </div>
-                    <div>
-                        <i class="fas fa-chart-line" style="font-size: 40px; color: var(--secondary); margin-bottom: 10px;"></i>
-                        <h4>Marché Porteur</h4>
-                        <p>Compétences très recherchées</p>
-                    </div>
-                    <div>
-                        <i class="fas fa-certificate" style="font-size: 40px; color: var(--secondary); margin-bottom: 10px;"></i>
-                        <h4>Certification Valorisante</h4>
-                        <p>Attestation reconnue</p>
-                    </div>
-                </div>
+        
+        <div class="registration-steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h4>Inscription</h4>
+                <p>Remplissez le formulaire en ligne</p>
             </div>
-            
-            <p style="font-size: 20px; margin-top: 30px;">
-                <strong>Ne laissez pas cette chance vous échapper !</strong><br>
-                Les places sont limitées et les inscriptions ferment bientôt.
-            </p>
-            
-            <a href="#inscription" class="cta-button" style="margin-top: 30px;">
-                <i class="fas fa-gem"></i> Saisir cette opportunité maintenant
-            </a>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h4>Confirmation</h4>
+                <p>Recevez la confirmation par WhatsApp</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h4>1er Jour</h4>
+                <p>Paiement des 4.000 F d'inscription</p>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <h4>Formation</h4>
+                <p>Commencez votre formation en présentiel</p>
+            </div>
         </div>
     </section>
 
-    <!-- Formulaire d'Inscription -->
-    <section id="inscription" class="inscription-section">
-        <div class="form-container">
-            <h2 class="form-title">INSCRIPTION URGENTE - DERNIÈRES PLACES !</h2>
+    <!-- Cours d'Anglais -->
+    <section id="anglais" class="english-section">
+        <div class="english-card">
+            <h2 class="section-title" style="color: white; border: none;">🎓 COURS D'ANGLAIS</h2>
+            <p style="font-size: 20px; margin: 20px 0;">Améliorez votre anglais pour booster votre carrière</p>
             
-            <div class="payment-notice">
-                <h4><i class="fas fa-money-bill-wave"></i> IMPORTANT : PAIEMENT D'ACOMPTE</h4>
-                <p>Un acompte de <strong>4.000 F</strong> est requis pour valider votre inscription et réserver votre place.</p>
-                <p style="color: var(--warning); font-weight: bold;">Sans cet acompte, votre inscription ne sera pas validée !</p>
+            <div class="benefits" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3);">
+                <h4>📚 PROGRAMME COMPLET</h4>
+                <ul>
+                    <li><strong>Speaking</strong> - Expression orale</li>
+                    <li><strong>Listening</strong> - Compréhension orale</li>
+                    <li><strong>Reading</strong> - Compréhension écrite</li>
+                    <li><strong>Writing</strong> - Expression écrite</li>
+                    <li><strong>Grammar</strong> - Grammaire appliquée</li>
+                    <li><strong>Business English</strong> - Anglais professionnel</li>
+                </ul>
             </div>
             
-            <form id="inscriptionForm">
-                <div class="form-group">
-                    <label for="nom">Nom Complet *</label>
-                    <input type="text" id="nom" class="form-control" required placeholder="Votre nom complet">
+            <p style="margin: 25px 0; font-size: 18px;">
+                <i class="fas fa-info-circle"></i> Pour plus d'informations sur les cours d'anglais (horaires, tarifs, programme détaillé), inscrivez-vous via le formulaire dédié.
+            </p>
+            
+            <button onclick="showEnglishForm()" class="cta-button" style="background: white; color: var(--accent2);">
+                <i class="fas fa-language"></i> S'INSCRIRE AUX COURS D'ANGLAIS
+            </button>
+        </div>
+    </section>
+
+    <!-- Section Inscription -->
+    <section id="inscription" class="inscription-section">
+        <div class="form-tabs">
+            <button class="tab-btn active" onclick="showTab('formation')">
+                <i class="fas fa-laptop-code"></i> Inscription Formation
+            </button>
+            <button class="tab-btn" onclick="showTab('english')">
+                <i class="fas fa-language"></i> Inscription Anglais
+            </button>
+        </div>
+        
+        <!-- Formulaire Formation -->
+        <div id="formationForm" class="tab-content active">
+            <div class="form-container">
+                <h2 class="form-title">FORMULAIRE D'INSCRIPTION - FORMATIONS</h2>
+                
+                <div class="payment-info">
+                    <h4><i class="fas fa-money-bill-wave"></i> IMPORTANT : FRAIS D'INSCRIPTION</h4>
+                    <p>Un montant de <strong>4.000 F CFA</strong> est requis le premier jour de la formation pour valider votre inscription.</p>
+                    <p><strong>Possibilité de payer une partie ou la totalité des frais de formation le même jour.</strong></p>
                 </div>
                 
-                <div class="form-group">
-                    <label for="email">Adresse Email *</label>
-                    <input type="email" id="email" class="form-control" required placeholder="votre@email.com">
-                </div>
-                
-                <div class="form-group">
-                    <label for="telephone">Numéro WhatsApp *</label>
-                    <input type="tel" id="telephone" class="form-control" required placeholder="Votre numéro WhatsApp pour contact">
-                </div>
-                
-                <div class="form-group">
-                    <label for="niveau">Niveau d'Étude/Expérience</label>
-                    <select id="niveau" class="form-control">
-                        <option value="">Sélectionnez votre niveau</option>
-                        <option value="debutant">Débutant (aucune expérience)</option>
-                        <option value="intermediaire">Intermédiaire (quelques connaissances)</option>
-                        <option value="avance">Avancé (expérience significative)</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label>CHOISISSEZ VOTRE FORMATION *</label>
-                    <div class="select-formation">
-                        <div class="formation-option">
-                            <input type="radio" id="formation1" name="formation" value="Négociation Commerciale & Web Marketing - 10.000 F" required>
-                            <label for="formation1">
-                                <strong>Négociation & Marketing</strong><br>
-                                10.000 F<br>
-                                <small>En ligne via WhatsApp</small>
-                            </label>
-                        </div>
-                        <div class="formation-option">
-                            <input type="radio" id="formation2-phase1" name="formation" value="Développement Web - Phase 1 (Sans Code) - 15.000 F" required>
-                            <label for="formation2-phase1">
-                                <strong>Dev Web Phase 1</strong><br>
-                                30.000 F<br>
-                                <small>100% en ligne - Sans code</small>
-                            </label>
-                        </div>
-                        <div class="formation-option">
-                            <input type="radio" id="formation2-phase2" name="formation" value="Développement Web - Phase 2 (Avec Code) - 50.000 F" required>
-                            <label for="formation2-phase2">
-                                <strong>Dev Web Phase 2</strong><br>
-                                80.000 F<br>
-                                <small>Présentiel - Avec code</small>
-                            </label>
-                        </div>
-                        <div class="formation-option">
-                            <input type="radio" id="formation2-complete" name="formation" value="Développement Web - Complet (Phases 1+2) - 65.000 F" required>
-                            <label for="formation2-complete">
-                                <strong>Dev Web Complet</strong><br>
-                                100.000 F<br>
-                                <small>Formation complète</small>
-                            </label>
-                        </div>
+                <form id="mainInscriptionForm">
+                    <div class="form-group">
+                        <label for="nom">Nom Complet *</label>
+                        <input type="text" id="nom" class="form-control" required placeholder="Votre nom et prénom">
                     </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Adresse Email *</label>
+                        <input type="email" id="email" class="form-control" required placeholder="votre@email.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="telephone">Numéro WhatsApp *</label>
+                        <input type="tel" id="telephone" class="form-control" required placeholder="Votre numéro WhatsApp">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="formation">Choisissez votre formation *</label>
+                        <select id="formation" class="form-control" required>
+                            <option value="">Sélectionnez une formation</option>
+                            <option value="Négociation Commerciale & Web Marketing - 10.000 F">Négociation Commerciale & Web Marketing (10.000 F)</option>
+                            <option value="Développement Web - Phase 1 (Sans Code) - 30.000 F">Développement Web - Phase 1 (Sans Code) - 15.000 F</option>
+                            <option value="Développement Web - Phase 2 (Avec Code) - 80.000 F">Développement Web - Phase 2 (Avec Code) - 50.000 F</option>
+                            <option value="Développement Web - Complet (Phases 1+2) - 100.000 F">Développement Web - Complet (Phases 1+2) - 65.000 F</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="niveau">Niveau d'Étude/Expérience *</label>
+                        <select id="niveau" class="form-control" required>
+                            <option value="">Sélectionnez votre niveau</option>
+                            <option value="debutant">Débutant</option>
+                            <option value="intermediaire">Intermédiaire</option>
+                            <option value="avance">Avancé</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="objectifs">Vos objectifs professionnels *</label>
+                        <textarea id="objectifs" class="form-control" rows="3" required placeholder="Décrivez vos objectifs et attentes..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="fraisCompris">Avez-vous compris les conditions de paiement ? *</label>
+                        <select id="fraisCompris" class="form-control" required>
+                            <option value="">Sélectionnez une réponse</option>
+                            <option value="oui">OUI, je comprends : 4.000 F d'inscription le 1er jour + solde de la formation</option>
+                            <option value="non">Non, j'ai besoin d'explications</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">
+                        <i class="fab fa-whatsapp"></i> SOUMETTRE MON INSCRIPTION
+                    </button>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Formulaire Anglais -->
+        <div id="englishForm" class="tab-content">
+            <div class="form-container">
+                <h2 class="form-title">FORMULAIRE D'INSCRIPTION - COURS D'ANGLAIS</h2>
+                
+                <div class="benefits">
+                    <h4><i class="fas fa-info-circle"></i> À PROPOS DES COURS D'ANGLAIS</h4>
+                    <p>Programme complet couvrant tous les aspects de la langue anglaise : Speaking, Listening, Reading, Writing, Grammar et Business English.</p>
+                    <p>Horaires flexibles adaptés à votre disponibilité.</p>
                 </div>
                 
-                <div class="form-group">
-                    <label for="objectifs">Vos objectifs professionnels *</label>
-                    <textarea id="objectifs" class="form-control" rows="3" required placeholder="Pourquoi souhaitez-vous suivre cette formation ? Quels sont vos objectifs professionnels ?"></textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label for="acompte">Avez-vous compris la nécessité de l'acompte de 4.000 F ? *</label>
-                    <select id="acompte" class="form-control" required>
-                        <option value="">Sélectionnez une réponse</option>
-                        <option value="oui">OUI, je comprends et je suis prêt à payer l'acompte</option>
-                        <option value="non">Non, je ne comprends pas cette condition</option>
-                    </select>
-                </div>
-                
-                <button type="submit" class="submit-btn">
-                    <i class="fab fa-whatsapp"></i> VALIDER MON INSCRIPTION SUR WHATSAPP
-                </button>
-                
-                <p style="text-align: center; margin-top: 20px; color: var(--dark); font-size: 14px;">
-                    <i class="fas fa-exclamation-circle"></i> Après validation, vous serez redirigé vers WhatsApp pour finaliser votre inscription et effectuer l'acompte.
-                </p>
-            </form>
+                <form id="englishInscriptionForm">
+                    <div class="form-group">
+                        <label for="englishNom">Nom Complet *</label>
+                        <input type="text" id="englishNom" class="form-control" required placeholder="Votre nom et prénom">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="englishEmail">Adresse Email *</label>
+                        <input type="email" id="englishEmail" class="form-control" required placeholder="votre@email.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="englishPhone">Numéro WhatsApp *</label>
+                        <input type="tel" id="englishPhone" class="form-control" required placeholder="Votre numéro WhatsApp">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="englishLevel">Niveau actuel en Anglais *</label>
+                        <select id="englishLevel" class="form-control" required>
+                            <option value="">Sélectionnez votre niveau</option>
+                            <option value="debutant">Débutant (A1-A2)</option>
+                            <option value="intermediaire">Intermédiaire (B1-B2)</option>
+                            <option value="avance">Avancé (C1-C2)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="englishFocus">Centres d'intérêt prioritaires *</label>
+                        <select id="englishFocus" class="form-control" required multiple style="height: 120px;">
+                            <option value="speaking">Speaking - Expression orale</option>
+                            <option value="listening">Listening - Compréhension orale</option>
+                            <option value="reading">Reading - Compréhension écrite</option>
+                            <option value="writing">Writing - Expression écrite</option>
+                            <option value="grammar">Grammar - Grammaire</option>
+                            <option value="business">Business English - Anglais professionnel</option>
+                        </select>
+                        <small style="color: #666;">Maintenez Ctrl (Cmd sur Mac) pour sélectionner plusieurs options</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="englishObjectives">Objectifs d'apprentissage *</label>
+                        <textarea id="englishObjectives" class="form-control" rows="3" required placeholder="Pourquoi souhaitez-vous apprendre l'anglais ? (professionnel, personnel, voyage, etc.)"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="englishAvailability">Disponibilités *</label>
+                        <select id="englishAvailability" class="form-control" required>
+                            <option value="">Sélectionnez vos disponibilités</option>
+                            <option value="weekend">Week-ends uniquement</option>
+                            <option value="week">En semaine (soirées)</option>
+                            <option value="flexible">Flexible</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn" style="background: linear-gradient(135deg, var(--accent2), #8e44ad);">
+                        <i class="fab fa-whatsapp"></i> S'INSCRIRE AUX COURS D'ANGLAIS
+                    </button>
+                </form>
+            </div>
         </div>
     </section>
 
     <!-- Contact Section -->
     <section id="contact" class="contact-section">
         <div class="contact-info">
-            <h2 class="section-title" style="color: white;">DES QUESTIONS ? CONTACTEZ-NOUS !</h2>
-            <p>Notre équipe est disponible pour vous guider dans votre choix de formation.</p>
+            <h2 class="section-title" style="color: white;">CONTACT & INFORMATIONS</h2>
             
-            <a href="https://wa.me/2290159609581?text=Bonjour%20Luckily,%20je%20m'intéresse%20à%20vos%20formations%20et%20j'aimerais%20plus%20d'informations" 
+            <div class="floating-notice" style="background: rgba(255,255,255,0.2); margin: 30px auto;">
+                <h4><i class="fas fa-map-marker-alt"></i> LIEU DES FORMATIONS</h4>
+                <p><strong>Centre de Formation Luckily Academy</strong></p>
+                <p><em>Adresse exacte communiquée après inscription</em></p>
+            </div>
+            
+            <a href="https://wa.me/2290159609581?text=Bonjour%20Luckily%20Academy,%20je%20m'intéresse%20à%20vos%20formations%20en%20présentiel" 
                class="whatsapp-link" target="_blank">
                 <i class="fab fa-whatsapp"></i> +229 01 59 60 95 81
             </a>
             
-            <p>Ou appelez-nous directement :</p>
-            <a href="tel:+221784855699" class="whatsapp-link" style="background: var(--primary);">
+            <a href="tel:+221784855699" class="whatsapp-link" style="background: var(--primary); margin: 20px 0;">
                 <i class="fas fa-phone"></i> +221 78 48 55 699
             </a>
             
-            <p style="margin-top: 30px; font-size: 18px;">
-                <i class="fas fa-clock"></i> <strong>RAPPEL :</strong> Inscriptions ouvertes jusqu'au 03/02/2026 à 00h00
+            <p style="margin-top: 30px; font-size: 20px;">
+                <i class="fas fa-calendar-times"></i> <strong>DATE LIMITE :</strong> Vendredi 06 Février 2026
             </p>
         </div>
     </section>
@@ -1040,29 +1243,33 @@
         <div class="footer-content">
             <div class="footer-section">
                 <h3>Luckily Academy</h3>
-                <p>Votre partenaire pour réussir dans le numérique. Formations pratiques et certifiantes.</p>
+                <p>Centre de formation professionnelle en présentiel.</p>
+                <p>Formations pratiques avec certification.</p>
             </div>
             
             <div class="footer-section">
-                <h3>Expertises</h3>
+                <h3>Informations</h3>
                 <ul style="list-style: none;">
-                    <li>Développement Web (Code & No-code)</li>
-                    <li>Analyse de données</li>
-                    <li>Web Marketing</li>
-                    <li>Négociation Commerciale</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Formations en présentiel</li>
+                    <li><i class="fas fa-calendar"></i> Dates : Février-Mars 2026</li>
+                    <li><i class="fas fa-clock"></i> Horaires : Week-ends</li>
+                    <li><i class="fas fa-certificate"></i> Certification incluse</li>
                 </ul>
             </div>
             
             <div class="footer-section">
-                <h3>Contact Rapide</h3>
+                <h3>Contact Urgent</h3>
                 <p><i class="fas fa-phone"></i> +221 78 48 55 699</p>
                 <p><i class="fab fa-whatsapp"></i> +229 01 59 60 95 81</p>
-                <p><i class="fas fa-calendar-exclamation"></i> Date limite : 03/02/2026</p>
+                <p><i class="fas fa-envelope"></i> Inscriptions avant le 06/02/2026</p>
             </div>
         </div>
         
         <div class="copyright">
-            <p>&copy; 2026 Luckily Formations. Tous droits réservés. | Dernière mise à jour : Janvier 2026</p>
+            <p>&copy; 2026 Luckily Academy - Centre de Formation Professionnelle. Tous droits réservés.</p>
+            <p style="margin-top: 10px; font-size: 14px;">
+                Site optimisé pour les inscriptions aux formations en présentiel
+            </p>
         </div>
     </footer>
 
@@ -1072,10 +1279,10 @@
             <div class="modal-icon">
                 <i class="fas fa-check-circle"></i>
             </div>
-            <h2>INSCRIPTION CONFIRMÉE !</h2>
-            <p>Félicitations ! Votre formulaire a été validé avec succès.</p>
-            <p>Vous allez être redirigé vers WhatsApp dans <span id="countdown">3</span> secondes...</p>
-            <p><strong>Important :</strong> Préparez votre acompte de 4.000 F pour finaliser l'inscription.</p>
+            <h2>INSCRIPTION ENVOYÉE !</h2>
+            <p>Votre formulaire a été soumis avec succès.</p>
+            <p>Vous allez être redirigé vers WhatsApp dans <span id="countdown">5</span> secondes...</p>
+            <p><strong>Important :</strong> Préparez les frais d'inscription de 4.000 F pour le premier jour.</p>
             <button id="manualRedirect" class="submit-btn" style="margin-top: 20px;">
                 <i class="fab fa-whatsapp"></i> Ouvrir WhatsApp maintenant
             </button>
@@ -1083,9 +1290,32 @@
     </div>
 
     <script>
+        // Gestion des onglets
+        function showTab(tabName) {
+            // Désactiver tous les onglets
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Activer l'onglet sélectionné
+            document.getElementById(tabName + 'Form').classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+        
+        function showEnglishForm() {
+            showTab('english');
+            window.scrollTo({
+                top: document.getElementById('inscription').offsetTop - 80,
+                behavior: 'smooth'
+            });
+        }
+        
         // Compte à rebours pour les inscriptions
         function updateCountdown() {
-            const deadline = new Date('Febriary 03, 2026 00:00:00').getTime();
+            const deadline = new Date('February 6, 2026 00:00:00').getTime();
             const now = new Date().getTime();
             const distance = deadline - now;
             
@@ -1097,20 +1327,21 @@
                 document.getElementById('countdownDays').textContent = '0';
                 document.querySelector('.countdown').innerHTML = '<i class="fas fa-exclamation-triangle"></i> INSCRIPTIONS FERMÉES';
                 document.querySelector('.countdown').style.background = '#e74c3c';
+                document.querySelector('.countdown').style.animation = 'none';
             }
         }
         
         updateCountdown();
-        setInterval(updateCountdown, 1000 * 60 * 60); // Mise à jour toutes les heures
+        setInterval(updateCountdown, 1000 * 60 * 60);
         
-        // Gestion du formulaire
-        document.getElementById('inscriptionForm').addEventListener('submit', function(e) {
+        // Gestion du formulaire principal
+        document.getElementById('mainInscriptionForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Validation de l'acompte
-            const acompte = document.getElementById('acompte').value;
-            if (acompte !== 'oui') {
-                alert('ATTENTION : Vous devez accepter et comprendre la condition de l\'acompte de 4.000 F pour pouvoir vous inscrire.');
+            // Validation
+            const fraisCompris = document.getElementById('fraisCompris').value;
+            if (fraisCompris !== 'oui') {
+                alert('ATTENTION : Vous devez comprendre et accepter les conditions de paiement (4.000 F d\'inscription le 1er jour) pour pouvoir vous inscrire.');
                 return;
             }
             
@@ -1119,38 +1350,86 @@
                 nom: document.getElementById('nom').value,
                 email: document.getElementById('email').value,
                 telephone: document.getElementById('telephone').value,
+                formation: document.getElementById('formation').value,
                 niveau: document.getElementById('niveau').value,
-                formation: document.querySelector('input[name="formation"]:checked').value,
-                objectifs: document.getElementById('objectifs').value,
-                acompte: acompte
+                objectifs: document.getElementById('objectifs').value
             };
             
             // Construction du message WhatsApp
-            const message = `🎓 NOUVELLE INSCRIPTION URGENTE - LUCKILY FORMATIONS 🎓%0A%0A` +
+            const message = `🎓 NOUVELLE INSCRIPTION FORMATION - LUCKILY ACADEMY 🎓%0A%0A` +
                            `*📋 INFORMATIONS PERSONNELLES*%0A` +
                            `Nom : ${formData.nom}%0A` +
                            `Email : ${formData.email}%0A` +
                            `Téléphone : ${formData.telephone}%0A` +
-                           `Niveau : ${formData.niveau || 'Non spécifié'}%0A%0A` +
+                           `Niveau : ${formData.niveau}%0A%0A` +
                            `*🎯 FORMATION CHOISIE*%0A` +
                            `${formData.formation}%0A%0A` +
-                           `*🎖️ OBJECTIFS PROFESSIONNELS*%0A` +
+                           `*🎖️ OBJECTIFS*%0A` +
                            `${formData.objectifs}%0A%0A` +
-                           `*💰 ACCOMPTE*%0A` +
-                           `Je confirme avoir compris la nécessité de l'acompte de 4.000 F : ${formData.acompte === 'oui' ? 'OUI ✅' : 'NON ❌'}%0A%0A` +
-                           `*⚠️ URGENCE*%0A` +
-                           `_Inscription effectuée via le site web - Date limite : 03/02/2026_%0A` +
-                           `_Merci de me recontacter pour finaliser l'inscription et effectuer l'acompte de 4.000 F_`;
+                           `*💰 CONDITIONS ACCEPTÉES*%0A` +
+                           `✅ Frais d'inscription : 4.000 F le 1er jour%0A` +
+                           `✅ Compris : Paiement solde/partiel possible%0A%0A` +
+                           `*📅 FORMATION EN PRÉSENTIEL*%0A` +
+                           `_Inscription effectuée via le site web - Date limite : 06/02/2026_%0A` +
+                           `_Merci de me contacter pour la confirmation et les détails du lieu_`;
             
-            // Afficher le modal de confirmation
+            // Redirection WhatsApp
+            redirectToWhatsApp(message);
+        });
+        
+        // Gestion du formulaire anglais
+        document.getElementById('englishInscriptionForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Récupération des données
+            const formData = {
+                nom: document.getElementById('englishNom').value,
+                email: document.getElementById('englishEmail').value,
+                telephone: document.getElementById('englishPhone').value,
+                niveau: document.getElementById('englishLevel').value,
+                centres: Array.from(document.getElementById('englishFocus').selectedOptions).map(o => o.value).join(', '),
+                objectifs: document.getElementById('englishObjectives').value,
+                disponibilites: document.getElementById('englishAvailability').value
+            };
+            
+            // Construction du message WhatsApp
+            const message = `🎓 INSCRIPTION COURS D'ANGLAIS - LUCKILY ACADEMY 🎓%0A%0A` +
+                           `*📋 INFORMATIONS PERSONNELLES*%0A` +
+                           `Nom : ${formData.nom}%0A` +
+                           `Email : ${formData.email}%0A` +
+                           `Téléphone : ${formData.telephone}%0A` +
+                           `Niveau actuel : ${formData.niveau}%0A%0A` +
+                           `*🎯 CENTRES D'INTÉRÊT*%0A` +
+                           `${formData.centres}%0A%0A` +
+                           `*🎖️ OBJECTIFS*%0A` +
+                           `${formData.objectifs}%0A%0A` +
+                           `*⏰ DISPONIBILITÉS*%0A` +
+                           `${formData.disponibilites}%0A%0A` +
+                           `*📞 CONTACT*%0A` +
+                           `_Inscription aux cours d'anglais via le site web_%0A` +
+                           `_Merci de me contacter pour les tarifs et horaires détaillés_`;
+            
+            // Redirection WhatsApp
+            redirectToWhatsApp(message, 'english');
+        });
+        
+        // Fonction de redirection WhatsApp
+        function redirectToWhatsApp(message, type = 'formation') {
+            const whatsappUrl = `https://wa.me/2290159609581?text=${message}`;
+            
+            // Afficher modal
             const modal = document.getElementById('confirmationModal');
             modal.style.display = 'flex';
             
-            // Sauvegarder l'URL WhatsApp pour la redirection
-            const whatsappUrl = `https://wa.me/2290159609581?text=${message}`;
+            // Modifier le message selon le type
+            if (type === 'english') {
+                document.querySelector('#confirmationModal h2').textContent = 'DEMANDE D\'INSCRIPTION ANGLAIS';
+                document.querySelector('#confirmationModal p:nth-child(3)').innerHTML = 'Vous allez être redirigé vers WhatsApp pour plus d\'informations sur les cours d\'anglais.';
+                document.querySelector('#confirmationModal p:nth-child(4)').innerHTML = '<strong>Important :</strong> Nous vous contacterons pour les détails des tarifs et horaires.';
+            }
             
-            // Compte à rebours dans le modal
-            let countdown = 3;
+            // Compte à rebours
+            let countdown = 5;
             const countdownElement = document.getElementById('countdown');
             const countdownInterval = setInterval(() => {
                 countdown--;
@@ -1160,7 +1439,11 @@
                     clearInterval(countdownInterval);
                     window.open(whatsappUrl, '_blank');
                     modal.style.display = 'none';
-                    document.getElementById('inscriptionForm').reset();
+                    if (type === 'formation') {
+                        document.getElementById('mainInscriptionForm').reset();
+                    } else {
+                        document.getElementById('englishInscriptionForm').reset();
+                    }
                 }
             }, 1000);
             
@@ -1169,9 +1452,13 @@
                 clearInterval(countdownInterval);
                 window.open(whatsappUrl, '_blank');
                 modal.style.display = 'none';
-                document.getElementById('inscriptionForm').reset();
+                if (type === 'formation') {
+                    document.getElementById('mainInscriptionForm').reset();
+                } else {
+                    document.getElementById('englishInscriptionForm').reset();
+                }
             };
-        });
+        }
         
         // Animation au scroll
         const observerOptions = {
@@ -1182,21 +1469,24 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.classList.add('animate__animated', 'animate__fadeInUp');
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, 300);
                 }
             });
         }, observerOptions);
         
         // Observer les éléments à animer
-        document.querySelectorAll('.formation-card, .form-container, .opportunity-card').forEach(el => {
+        document.querySelectorAll('.formation-card, .form-container, .english-card, .step').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
             el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(el);
         });
         
-        // Fermer le modal en cliquant à l'extérieur
+        // Fermer le modal
         window.onclick = function(event) {
             const modal = document.getElementById('confirmationModal');
             if (event.target === modal) {
@@ -1222,19 +1512,24 @@
             });
         });
         
-        // Alertes pour la date limite
-        window.addEventListener('load', function() {
-            const deadline = new Date('Febriary 03, 2026 00:00:00').getTime();
-            const now = new Date().getTime();
-            const daysLeft = Math.floor((deadline - now) / (1000 * 60 * 60 * 24));
-            
-            if (daysLeft <= 7) {
-                // Si moins d'une semaine, afficher une alerte
-                setTimeout(() => {
-                    alert(`🚨 URGENCE ! Il ne reste que ${daysLeft} jours avant la fermeture des inscriptions !\n\nNe ratez pas cette opportunité unique. Inscrivez-vous maintenant !`);
-                }, 2000);
+        // Effet de particules pour le hero
+        function createParticles() {
+            const hero = document.querySelector('.hero');
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.style.position = 'absolute';
+                particle.style.width = Math.random() * 10 + 5 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.background = 'rgba(255, 255, 255, 0.3)';
+                particle.style.borderRadius = '50%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animation = `float ${Math.random() * 20 + 10}s infinite linear`;
+                hero.appendChild(particle);
             }
-        });
+        }
+        
+        createParticles();
     </script>
 </body>
 </html>
