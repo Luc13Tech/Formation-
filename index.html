@@ -594,6 +594,37 @@
             50% { border-color: #27ae60; }
         }
 
+        .price-highlight {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 28px;
+            font-weight: 800;
+            display: inline-block;
+            margin: 15px 0;
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+            animation: pricePulse 2s infinite;
+        }
+
+        @keyframes pricePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 20px;
+            margin-right: 10px;
+        }
+
+        .new-price {
+            color: #e74c3c;
+            font-weight: bold;
+            font-size: 24px;
+        }
+
         .registration-steps {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -711,7 +742,13 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Formulaire */
+        /* Section Inscription */
+        .inscription-section {
+            padding: 80px 20px;
+            background: var(--light);
+        }
+
+        /* Conteneur de formulaire */
         .form-container {
             max-width: 800px;
             margin: 0 auto;
@@ -720,6 +757,221 @@
             padding: 50px;
             box-shadow: var(--shadow);
             animation: fadeInUp 0.8s ease;
+        }
+
+        .form-title {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 40px;
+            color: var(--dark);
+            position: relative;
+        }
+
+        .form-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+        }
+
+        /* Styles pour les groupes de formulaire */
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 16px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s;
+            background: white;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+        }
+
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        select.form-control[multiple] {
+            height: auto;
+            min-height: 120px;
+            padding: 10px;
+        }
+
+        select.form-control[multiple] option {
+            padding: 10px;
+            margin: 2px 0;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        select.form-control[multiple] option:hover {
+            background: var(--light);
+        }
+
+        /* Bouton de soumission */
+        .submit-btn {
+            background: linear-gradient(135deg, var(--accent), #27ae60);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: block;
+            width: 100%;
+            margin-top: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(46, 204, 113, 0.3);
+        }
+
+        .submit-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .submit-btn i {
+            margin-right: 10px;
+        }
+
+        /* Bouton spécifique pour anglais */
+        .submit-btn.english-btn {
+            background: linear-gradient(135deg, var(--accent2), #8e44ad);
+        }
+
+        .submit-btn.english-btn:hover {
+            box-shadow: 0 10px 20px rgba(155, 89, 182, 0.3);
+        }
+
+        /* Style pour le select multiple */
+        .select-multiple-note {
+            display: block;
+            margin-top: 5px;
+            font-size: 14px;
+            color: #666;
+            font-style: italic;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 80px 20px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--dark), #34495e);
+            color: white;
+        }
+
+        .contact-info {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .whatsapp-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            background: #25D366;
+            color: white;
+            padding: 20px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 24px;
+            font-weight: 600;
+            margin: 30px 0;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .whatsapp-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(37, 211, 102, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+
+        .copyright {
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* Modal de Confirmation */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 500px;
+            animation: scaleIn 0.5s ease;
+        }
+
+        @keyframes scaleIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-icon {
+            font-size: 80px;
+            color: var(--accent);
+            margin-bottom: 20px;
         }
 
         /* Responsive */
@@ -750,7 +1002,7 @@
             }
             
             .form-container {
-                padding: 25px 15px;
+                padding: 30px 20px;
             }
             
             .details-grid {
@@ -766,6 +1018,24 @@
             .section-title {
                 font-size: 32px;
                 margin-bottom: 50px;
+            }
+            
+            .form-tabs {
+                flex-direction: column;
+            }
+            
+            .tab-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .form-title {
+                font-size: 26px;
+            }
+            
+            .price-highlight {
+                font-size: 22px;
+                padding: 10px 20px;
             }
         }
     </style>
@@ -903,7 +1173,7 @@
             <div class="formation-card formation-2">
                 <div class="formation-header">
                     <h3 class="formation-title">Développement Web & Analyse des Données</h3>
-                    <div class="formation-price">À partir de 30.000 F CFA</div>
+                    <div class="price-highlight">À partir de 30.000 F CFA</div>
                     <p>Devenez développeur web en présentiel</p>
                 </div>
                 <div class="formation-body">
@@ -953,14 +1223,14 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="payment-info">
-                            <h4>💰 FRAIS DE FORMATION : 30.000 F CFA</h4>
+                        <div class="price-highlight">
+                            30.000 F CFA
                         </div>
                     </div>
                     
                     <div class="phase">
                         <h4 class="phase-title">PHASE 2 : DÉVELOPPEMENT AVEC CODE <span class="badge physical-badge">PRÉSENTIEL</span></h4>
-                        <p><em>Devenez développeur full-stack professionnel</em></p>
+                        <p><em>Devenez développeur full-stack professionnel - <strong>+2 semaines ajoutées</strong></em></p>
                         <div class="details-grid">
                             <div class="detail-item">
                                 <span class="detail-icon">📅</span>
@@ -968,7 +1238,8 @@
                                     <strong>Dates :</strong><br>
                                     Samedi 07/03/2026<br>
                                     au<br>
-                                    Dimanche 29/03/2026
+                                    Dimanche 12/04/2026<br>
+                                    <small>(2 semaines supplémentaires)</small>
                                 </div>
                             </div>
                             <div class="detail-item">
@@ -987,9 +1258,62 @@
                                     Centre Luckily
                                 </div>
                             </div>
+                            <div class="detail-item">
+                                <span class="detail-icon">⏱️</span>
+                                <div>
+                                    <strong>Durée :</strong><br>
+                                    10 Week-ends<br>
+                                    80h de formation
+                                </div>
+                            </div>
                         </div>
-                        <div class="payment-info">
-                            <h4>💰 FRAIS DE FORMATION : 80.000 F CFA</h4>
+                        <div class="price-highlight">
+                            80.000 F CFA
+                        </div>
+                    </div>
+                    
+                    <div class="phase" style="background: linear-gradient(135deg, #fffde7, #fff9c4); border-left: 5px solid #ff9800;">
+                        <h4 class="phase-title">FORMATION COMPLÈTE (PHASE 1 + PHASE 2) <span class="badge" style="background: linear-gradient(135deg, #ff9800, #f57c00);">OFFRE SPÉCIALE</span></h4>
+                        <p><em>Formation complète avec code et sans code - <strong>+2 semaines ajoutées</strong></em></p>
+                        <div class="details-grid">
+                            <div class="detail-item">
+                                <span class="detail-icon">📅</span>
+                                <div>
+                                    <strong>Dates :</strong><br>
+                                    Samedi 21/02/2026<br>
+                                    au<br>
+                                    Dimanche 12/04/2026
+                                </div>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-icon">⏰</span>
+                                <div>
+                                    <strong>Horaires :</strong><br>
+                                    Samedi & Dimanche<br>
+                                    9h - 13h
+                                </div>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-icon">📍</span>
+                                <div>
+                                    <strong>Lieu :</strong><br>
+                                    <strong>Présentiel</strong><br>
+                                    Centre Luckily
+                                </div>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-icon">⏱️</span>
+                                <div>
+                                    <strong>Durée totale :</strong><br>
+                                    14 Week-ends<br>
+                                    112h de formation
+                                </div>
+                            </div>
+                        </div>
+                        <div class="price-highlight" style="background: linear-gradient(135deg, #ff9800, #f57c00);">
+                            <span class="old-price">110.000 F</span>
+                            <span class="new-price">100.000 F CFA</span>
+                            <div style="font-size: 18px; margin-top: 10px;">Économisez 10.000 F !</div>
                         </div>
                     </div>
                     
@@ -1037,8 +1361,8 @@
             <h2 class="section-title" style="color: white; border: none;">🎓 COURS D'ANGLAIS</h2>
             <p style="font-size: 20px; margin: 20px 0;">Améliorez votre anglais pour booster votre carrière</p>
             
-            <div class="benefits" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3);">
-                <h4>📚 PROGRAMME COMPLET</h4>
+            <div class="benefits" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); color: white;">
+                <h4 style="color: white;">📚 PROGRAMME COMPLET</h4>
                 <ul>
                     <li><strong>Speaking</strong> - Expression orale</li>
                     <li><strong>Listening</strong> - Compréhension orale</li>
@@ -1071,144 +1395,140 @@
         </div>
         
         <!-- Formulaire Formation -->
-        <div id="formationForm" class="tab-content active">
-            <div class="form-container">
-                <h2 class="form-title">FORMULAIRE D'INSCRIPTION - FORMATIONS</h2>
-                
-                <div class="payment-info">
-                    <h4><i class="fas fa-money-bill-wave"></i> IMPORTANT : FRAIS D'INSCRIPTION</h4>
-                    <p>Un montant de <strong>4.000 F CFA</strong> est requis le premier jour de la formation pour valider votre inscription.</p>
-                    <p><strong>Possibilité de payer une partie ou la totalité des frais de formation le même jour.</strong></p>
+        <div id="formationForm" class="form-container tab-content active">
+            <h2 class="form-title">FORMULAIRE D'INSCRIPTION - FORMATIONS</h2>
+            
+            <div class="payment-info">
+                <h4><i class="fas fa-money-bill-wave"></i> IMPORTANT : FRAIS D'INSCRIPTION</h4>
+                <p>Un montant de <strong>4.000 F CFA</strong> est requis le premier jour de la formation pour valider votre inscription.</p>
+                <p><strong>Possibilité de payer une partie ou la totalité des frais de formation le même jour.</strong></p>
+            </div>
+            
+            <form id="mainInscriptionForm">
+                <div class="form-group">
+                    <label for="nom">Nom Complet *</label>
+                    <input type="text" id="nom" class="form-control" required placeholder="Votre nom et prénom">
                 </div>
                 
-                <form id="mainInscriptionForm">
-                    <div class="form-group">
-                        <label for="nom">Nom Complet *</label>
-                        <input type="text" id="nom" class="form-control" required placeholder="Votre nom et prénom">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="email">Adresse Email *</label>
-                        <input type="email" id="email" class="form-control" required placeholder="votre@email.com">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="telephone">Numéro WhatsApp *</label>
-                        <input type="tel" id="telephone" class="form-control" required placeholder="Votre numéro WhatsApp">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="formation">Choisissez votre formation *</label>
-                        <select id="formation" class="form-control" required>
-                            <option value="">Sélectionnez une formation</option>
-                            <option value="Négociation Commerciale & Web Marketing - 10.000 F">Négociation Commerciale & Web Marketing (10.000 F)</option>
-                            <option value="Développement Web - Phase 1 (Sans Code) - 30.000 F">Développement Web - Phase 1 (Sans Code) - 15.000 F</option>
-                            <option value="Développement Web - Phase 2 (Avec Code) - 80.000 F">Développement Web - Phase 2 (Avec Code) - 50.000 F</option>
-                            <option value="Développement Web - Complet (Phases 1+2) - 100.000 F">Développement Web - Complet (Phases 1+2) - 65.000 F</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="niveau">Niveau d'Étude/Expérience *</label>
-                        <select id="niveau" class="form-control" required>
-                            <option value="">Sélectionnez votre niveau</option>
-                            <option value="debutant">Débutant</option>
-                            <option value="intermediaire">Intermédiaire</option>
-                            <option value="avance">Avancé</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="objectifs">Vos objectifs professionnels *</label>
-                        <textarea id="objectifs" class="form-control" rows="3" required placeholder="Décrivez vos objectifs et attentes..."></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="fraisCompris">Avez-vous compris les conditions de paiement ? *</label>
-                        <select id="fraisCompris" class="form-control" required>
-                            <option value="">Sélectionnez une réponse</option>
-                            <option value="oui">OUI, je comprends : 4.000 F d'inscription le 1er jour + solde de la formation</option>
-                            <option value="non">Non, j'ai besoin d'explications</option>
-                        </select>
-                    </div>
-                    
-                    <button type="submit" class="submit-btn">
-                        <i class="fab fa-whatsapp"></i> SOUMETTRE MON INSCRIPTION
-                    </button>
-                </form>
-            </div>
+                <div class="form-group">
+                    <label for="email">Adresse Email *</label>
+                    <input type="email" id="email" class="form-control" required placeholder="votre@email.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="telephone">Numéro WhatsApp *</label>
+                    <input type="tel" id="telephone" class="form-control" required placeholder="Votre numéro WhatsApp">
+                </div>
+                
+                <div class="form-group">
+                    <label for="formation">Choisissez votre formation *</label>
+                    <select id="formation" class="form-control" required>
+                        <option value="">Sélectionnez une formation</option>
+                        <option value="Négociation Commerciale & Web Marketing - 10.000 F">Négociation Commerciale & Web Marketing (10.000 F)</option>
+                        <option value="Développement Web - Phase 1 (Sans Code) - 30.000 F">Développement Web - Phase 1 (Sans Code) - 30.000 F</option>
+                        <option value="Développement Web - Phase 2 (Avec Code) - 80.000 F">Développement Web - Phase 2 (Avec Code) - 80.000 F</option>
+                        <option value="Développement Web - Complet (Phases 1+2) - 100.000 F">Développement Web - Complet (Phases 1+2) - 100.000 F</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="niveau">Niveau d'Étude/Expérience *</label>
+                    <select id="niveau" class="form-control" required>
+                        <option value="">Sélectionnez votre niveau</option>
+                        <option value="debutant">Débutant</option>
+                        <option value="intermediaire">Intermédiaire</option>
+                        <option value="avance">Avancé</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="objectifs">Vos objectifs professionnels *</label>
+                    <textarea id="objectifs" class="form-control" rows="3" required placeholder="Décrivez vos objectifs et attentes..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="fraisCompris">Avez-vous compris les conditions de paiement ? *</label>
+                    <select id="fraisCompris" class="form-control" required>
+                        <option value="">Sélectionnez une réponse</option>
+                        <option value="oui">OUI, je comprends : 4.000 F d'inscription le 1er jour + solde de la formation</option>
+                        <option value="non">Non, j'ai besoin d'explications</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="submit-btn">
+                    <i class="fab fa-whatsapp"></i> SOUMETTRE MON INSCRIPTION
+                </button>
+            </form>
         </div>
         
         <!-- Formulaire Anglais -->
-        <div id="englishForm" class="tab-content">
-            <div class="form-container">
-                <h2 class="form-title">FORMULAIRE D'INSCRIPTION - COURS D'ANGLAIS</h2>
-                
-                <div class="benefits">
-                    <h4><i class="fas fa-info-circle"></i> À PROPOS DES COURS D'ANGLAIS</h4>
-                    <p>Programme complet couvrant tous les aspects de la langue anglaise : Speaking, Listening, Reading, Writing, Grammar et Business English.</p>
-                    <p>Horaires flexibles adaptés à votre disponibilité.</p>
+        <div id="englishForm" class="form-container tab-content">
+            <h2 class="form-title">FORMULAIRE D'INSCRIPTION - COURS D'ANGLAIS</h2>
+            
+            <div class="benefits">
+                <h4><i class="fas fa-info-circle"></i> À PROPOS DES COURS D'ANGLAIS</h4>
+                <p>Programme complet couvrant tous les aspects de la langue anglaise : Speaking, Listening, Reading, Writing, Grammar et Business English.</p>
+                <p>Horaires flexibles adaptés à votre disponibilité.</p>
+            </div>
+            
+            <form id="englishInscriptionForm">
+                <div class="form-group">
+                    <label for="englishNom">Nom Complet *</label>
+                    <input type="text" id="englishNom" class="form-control" required placeholder="Votre nom et prénom">
                 </div>
                 
-                <form id="englishInscriptionForm">
-                    <div class="form-group">
-                        <label for="englishNom">Nom Complet *</label>
-                        <input type="text" id="englishNom" class="form-control" required placeholder="Votre nom et prénom">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="englishEmail">Adresse Email *</label>
-                        <input type="email" id="englishEmail" class="form-control" required placeholder="votre@email.com">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="englishPhone">Numéro WhatsApp *</label>
-                        <input type="tel" id="englishPhone" class="form-control" required placeholder="Votre numéro WhatsApp">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="englishLevel">Niveau actuel en Anglais *</label>
-                        <select id="englishLevel" class="form-control" required>
-                            <option value="">Sélectionnez votre niveau</option>
-                            <option value="debutant">Débutant (A1-A2)</option>
-                            <option value="intermediaire">Intermédiaire (B1-B2)</option>
-                            <option value="avance">Avancé (C1-C2)</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="englishFocus">Centres d'intérêt prioritaires *</label>
-                        <select id="englishFocus" class="form-control" required multiple style="height: 120px;">
-                            <option value="speaking">Speaking - Expression orale</option>
-                            <option value="listening">Listening - Compréhension orale</option>
-                            <option value="reading">Reading - Compréhension écrite</option>
-                            <option value="writing">Writing - Expression écrite</option>
-                            <option value="grammar">Grammar - Grammaire</option>
-                            <option value="business">Business English - Anglais professionnel</option>
-                        </select>
-                        <small style="color: #666;">Maintenez Ctrl (Cmd sur Mac) pour sélectionner plusieurs options</small>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="englishObjectives">Objectifs d'apprentissage *</label>
-                        <textarea id="englishObjectives" class="form-control" rows="3" required placeholder="Pourquoi souhaitez-vous apprendre l'anglais ? (professionnel, personnel, voyage, etc.)"></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="englishAvailability">Disponibilités *</label>
-                        <select id="englishAvailability" class="form-control" required>
-                            <option value="">Sélectionnez vos disponibilités</option>
-                            <option value="weekend">Week-ends uniquement</option>
-                            <option value="week">En semaine (soirées)</option>
-                            <option value="flexible">Flexible</option>
-                        </select>
-                    </div>
-                    
-                    <button type="submit" class="submit-btn" style="background: linear-gradient(135deg, var(--accent2), #8e44ad);">
-                        <i class="fab fa-whatsapp"></i> S'INSCRIRE AUX COURS D'ANGLAIS
-                    </button>
-                </form>
-            </div>
+                <div class="form-group">
+                    <label for="englishEmail">Adresse Email *</label>
+                    <input type="email" id="englishEmail" class="form-control" required placeholder="votre@email.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="englishPhone">Numéro WhatsApp *</label>
+                    <input type="tel" id="englishPhone" class="form-control" required placeholder="Votre numéro WhatsApp">
+                </div>
+                
+                <div class="form-group">
+                    <label for="englishLevel">Niveau actuel en Anglais *</label>
+                    <select id="englishLevel" class="form-control" required>
+                        <option value="">Sélectionnez votre niveau</option>
+                        <option value="debutant">Débutant (A1-A2)</option>
+                        <option value="intermediaire">Intermédiaire (B1-B2)</option>
+                        <option value="avance">Avancé (C1-C2)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="englishFocus">Centres d'intérêt prioritaires *</label>
+                    <select id="englishFocus" class="form-control" required multiple style="height: 120px;">
+                        <option value="speaking">Speaking - Expression orale</option>
+                        <option value="listening">Listening - Compréhension orale</option>
+                        <option value="reading">Reading - Compréhension écrite</option>
+                        <option value="writing">Writing - Expression écrite</option>
+                        <option value="grammar">Grammar - Grammaire</option>
+                        <option value="business">Business English - Anglais professionnel</option>
+                    </select>
+                    <small class="select-multiple-note">Maintenez Ctrl (Cmd sur Mac) pour sélectionner plusieurs options</small>
+                </div>
+                
+                <div class="form-group">
+                    <label for="englishObjectives">Objectifs d'apprentissage *</label>
+                    <textarea id="englishObjectives" class="form-control" rows="3" required placeholder="Pourquoi souhaitez-vous apprendre l'anglais ? (professionnel, personnel, voyage, etc.)"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="englishAvailability">Disponibilités *</label>
+                    <select id="englishAvailability" class="form-control" required>
+                        <option value="">Sélectionnez vos disponibilités</option>
+                        <option value="weekend">Week-ends uniquement</option>
+                        <option value="week">En semaine (soirées)</option>
+                        <option value="flexible">Flexible</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="submit-btn english-btn">
+                    <i class="fab fa-whatsapp"></i> S'INSCRIRE AUX COURS D'ANGLAIS
+                </button>
+            </form>
         </div>
     </section>
 
@@ -1251,7 +1571,7 @@
                 <h3>Informations</h3>
                 <ul style="list-style: none;">
                     <li><i class="fas fa-map-marker-alt"></i> Formations en présentiel</li>
-                    <li><i class="fas fa-calendar"></i> Dates : Février-Mars 2026</li>
+                    <li><i class="fas fa-calendar"></i> Dates : Février-Avril 2026</li>
                     <li><i class="fas fa-clock"></i> Horaires : Week-ends</li>
                     <li><i class="fas fa-certificate"></i> Certification incluse</li>
                 </ul>
@@ -1381,13 +1701,21 @@
         document.getElementById('englishInscriptionForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
+            // Validation du select multiple
+            const englishFocus = document.getElementById('englishFocus');
+            const selectedOptions = Array.from(englishFocus.selectedOptions).map(o => o.value);
+            if (selectedOptions.length === 0) {
+                alert('Veuillez sélectionner au moins un centre d\'intérêt pour les cours d\'anglais.');
+                return;
+            }
+            
             // Récupération des données
             const formData = {
                 nom: document.getElementById('englishNom').value,
                 email: document.getElementById('englishEmail').value,
                 telephone: document.getElementById('englishPhone').value,
                 niveau: document.getElementById('englishLevel').value,
-                centres: Array.from(document.getElementById('englishFocus').selectedOptions).map(o => o.value).join(', '),
+                centres: selectedOptions.join(', '),
                 objectifs: document.getElementById('englishObjectives').value,
                 disponibilites: document.getElementById('englishAvailability').value
             };
@@ -1469,11 +1797,8 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('animate__animated', 'animate__fadeInUp');
-                    setTimeout(() => {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }, 300);
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
                 }
             });
         }, observerOptions);
