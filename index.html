@@ -286,6 +286,62 @@
             50% { transform: translateY(-10px); }
         }
 
+        /* BONUS SECTION */
+        .bonus-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #ff9800, #f57c00);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bonus-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=20');
+            background-size: cover;
+            opacity: 0.1;
+        }
+
+        .bonus-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 50px;
+            max-width: 900px;
+            margin: 0 auto;
+            border: 3px solid white;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 0.8s ease;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .bonus-icon {
+            font-size: 80px;
+            color: white;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+
+        .bonus-badge {
+            background: white;
+            color: #ff9800;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-size: 24px;
+            font-weight: 800;
+            display: inline-block;
+            margin: 20px 0;
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
+            transform: rotate(-5deg);
+        }
+
         /* Formations Section */
         .formations-section {
             padding: 100px 20px;
@@ -460,6 +516,51 @@
             color: var(--accent);
             font-weight: bold;
             font-size: 18px;
+        }
+
+        .english-bonus {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+            border: 3px dashed #ff9800;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .english-bonus::before {
+            content: '🎁';
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 30px;
+            opacity: 0.3;
+        }
+
+        .english-bonus h4 {
+            color: #e67e22;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+
+        .english-bonus p {
+            font-size: 18px;
+            color: #7d6608;
+            font-weight: 600;
+        }
+
+        .free-badge {
+            background: linear-gradient(135deg, #ff9800, #e67e22);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: 700;
+            box-shadow: 0 4px 10px rgba(255, 152, 0, 0.3);
+            display: inline-block;
+            margin: 10px;
+            animation: pulse 2s infinite;
         }
 
         .phase {
@@ -1053,6 +1154,15 @@
                 font-size: 22px;
                 padding: 10px 20px;
             }
+            
+            .bonus-card {
+                padding: 30px 20px;
+            }
+            
+            .bonus-badge {
+                font-size: 18px;
+                padding: 8px 15px;
+            }
         }
     </style>
 </head>
@@ -1066,7 +1176,7 @@
             </div>
             <nav class="nav-links">
                 <a href="#formations">Formations</a>
-                <a href="#anglais">Cours d'Anglais</a>
+                <a href="#anglais">Cours d'Anglais GRATUITS</a>
                 <a href="#inscription">Inscription</a>
                 <a href="#contact">Contact</a>
             </nav>
@@ -1078,8 +1188,8 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <h1>FORMATION EN LIGNE & PRÉSENTIEL</h1>
-        <p>Formez-vous en ligne via WhatsApp ou en présentiel selon vos besoins</p>
+        <h1>FORMATION + COURS D'ANGLAIS GRATUITS !</h1>
+        <p>Inscrivez-vous à une formation et obtenez les cours d'anglais GRATUITEMENT</p>
         
         <div class="deadline-alert">
             <h3><i class="fas fa-exclamation-triangle"></i> URGENT : DERNIÈRES INSCRIPTIONS !</h3>
@@ -1088,9 +1198,9 @@
         </div>
         
         <div class="floating-notice">
-            <h4><i class="fab fa-whatsapp"></i> FORMATIONS EN LIGNE DISPONIBLES</h4>
-            <p>Suivez nos formations directement sur WhatsApp !</p>
-            <p>Flexible et accessible de partout</p>
+            <h4><i class="fas fa-gift"></i> OFFRE EXCEPTIONNELLE</h4>
+            <p><strong>COURS D'ANGLAIS GRATUITS</strong> pour tous les inscrits en formation</p>
+            <p>Pas de paiement supplémentaire - C'est notre cadeau pour vous !</p>
         </div>
         
         <a href="#inscription" class="cta-button animate__animated animate__pulse animate__infinite">
@@ -1098,9 +1208,51 @@
         </a>
     </section>
 
+    <!-- Bonus Section -->
+    <section class="bonus-section">
+        <div class="bonus-card">
+            <div class="bonus-icon">
+                <i class="fas fa-gift"></i>
+            </div>
+            <h2 style="font-size: 42px; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">
+                BONUS EXCLUSIF !
+            </h2>
+            
+            <div class="bonus-badge">
+                COURS D'ANGLAIS 100% GRATUITS
+            </div>
+            
+            <h3 style="font-size: 28px; margin: 30px 0 20px;">
+                Inscrivez-vous à une formation et bénéficiez des cours d'anglais GRATUITEMENT !
+            </h3>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 30px 0;">
+                <div style="background: rgba(255,255,255,0.2); padding: 20px; border-radius: 15px; border: 2px solid white;">
+                    <i class="fas fa-check-circle" style="font-size: 30px; margin-bottom: 10px;"></i>
+                    <h4>Pas de paiement</h4>
+                    <p>Les cours d'anglais sont totalement gratuits</p>
+                </div>
+                <div style="background: rgba(255,255,255,0.2); padding: 20px; border-radius: 15px; border: 2px solid white;">
+                    <i class="fas fa-check-circle" style="font-size: 30px; margin-bottom: 10px;"></i>
+                    <h4>Programme complet</h4>
+                    <p>Speaking, Listening, Reading, Writing</p>
+                </div>
+                <div style="background: rgba(255,255,255,0.2); padding: 20px; border-radius: 15px; border: 2px solid white;">
+                    <i class="fas fa-check-circle" style="font-size: 30px; margin-bottom: 10px;"></i>
+                    <h4>Pour tous</h4>
+                    <p>Accessible à tous les inscrits en formation</p>
+                </div>
+            </div>
+            
+            <p style="font-size: 20px; margin-top: 30px;">
+                <i class="fas fa-star"></i> Cette offre est valable pour toutes les inscriptions aux formations de développement web et marketing digital.
+            </p>
+        </div>
+    </section>
+
     <!-- Formations Section -->
     <section id="formations" class="formations-section">
-        <h2 class="section-title animate__animated animate__fadeIn">NOS FORMATIONS</h2>
+        <h2 class="section-title animate__animated animate__fadeIn">NOS FORMATIONS AVEC BONUS ANGLAIS GRATUIT</h2>
         
         <div class="formations-grid">
             <!-- Formation 1 - EN LIGNE -->
@@ -1111,6 +1263,12 @@
                     <p>Formation intensive EN LIGNE via WhatsApp</p>
                 </div>
                 <div class="formation-body">
+                    <div class="english-bonus">
+                        <h4><i class="fas fa-gift"></i> BONUS INCLUS</h4>
+                        <p><span class="free-badge">COURS D'ANGLAIS GRATUITS</span></p>
+                        <p>En vous inscrivant à cette formation, vous obtenez automatiquement l'accès aux cours d'anglais gratuitement !</p>
+                    </div>
+                    
                     <div class="whatsapp-highlight">
                         <i class="fab fa-whatsapp"></i> 
                         <strong>FORMATION 100% EN LIGNE</strong> - Via WhatsApp
@@ -1123,7 +1281,7 @@
                             <li>Interactions directes avec le formateur via WhatsApp</li>
                             <li>Mise en situation professionnelle</li>
                             <li>Support personnalisé pendant la formation</li>
-                            <li>Accessible de n'importe où avec une connexion internet</li>
+                            <li><strong>+ Cours d'anglais gratuits</strong></li>
                         </ul>
                     </div>
                     
@@ -1169,7 +1327,7 @@
                     <div class="payment-info">
                         <h4>💰 FRAIS DE FORMATION : 10.000 F CFA</h4>
                         <p><strong>Frais d'inscription :</strong> 4.000 F (obligatoire avant le début)</p>
-                        <p><em>Paiement requis pour accéder aux cours</em></p>
+                        <p><em>+ Cours d'anglais GRATUITS inclus</em></p>
                     </div>
                     
                     <div class="conditions">
@@ -1178,7 +1336,7 @@
                             <li>Remplir le formulaire d'inscription ci-dessous</li>
                             <li>Paiement des frais d'inscription (4.000 F) avant le début</li>
                             <li>Test final pour l'obtention de l'attestation</li>
-                            <li>Assiduité minimum de 80%</li>
+                            <li><strong>Cours d'anglais gratuits automatiquement inclus</strong></li>
                             <li>Inscription avant le 06/02/2026</li>
                         </ul>
                     </div>
@@ -1193,6 +1351,12 @@
                     <p>Formation mixte : en ligne et présentiel</p>
                 </div>
                 <div class="formation-body">
+                    <div class="english-bonus">
+                        <h4><i class="fas fa-gift"></i> BONUS INCLUS</h4>
+                        <p><span class="free-badge">COURS D'ANGLAIS GRATUITS</span></p>
+                        <p>Que vous choisissiez Phase 1, Phase 2 ou la formation complète, vous obtenez les cours d'anglais gratuitement !</p>
+                    </div>
+                    
                     <div class="location-highlight">
                         <i class="fas fa-blender"></i> 
                         <strong>FORMATION MIXTE</strong> - En ligne & Présentiel
@@ -1206,6 +1370,7 @@
                             <li>Formation pratique sur machines</li>
                             <li>Accompagnement individuel</li>
                             <li>Projets réels pour votre portfolio</li>
+                            <li><strong>+ Cours d'anglais gratuits</strong></li>
                         </ul>
                     </div>
                     
@@ -1348,6 +1513,7 @@
                             <li>Frais d'inscription : 4.000 F pour la phase en ligne</li>
                             <li>Paiement du solde échelonné possible</li>
                             <li>Test final pour certification</li>
+                            <li><strong>Cours d'anglais GRATUITS automatiquement inclus</strong></li>
                             <li>Inscription avant le 06/02/2026</li>
                         </ul>
                     </div>
@@ -1373,8 +1539,8 @@
             </div>
             <div class="step">
                 <div class="step-number">4</div>
-                <h4>Formation</h4>
-                <p>Commencez votre formation en ligne</p>
+                <h4>Bonus Gratuit</h4>
+                <p>Recevez les cours d'anglais GRATUITEMENT</p>
             </div>
         </div>
     </section>
@@ -1382,11 +1548,22 @@
     <!-- Cours d'Anglais -->
     <section id="anglais" class="english-section">
         <div class="english-card">
-            <h2 class="section-title" style="color: white; border: none;">🎓 COURS D'ANGLAIS</h2>
-            <p style="font-size: 20px; margin: 20px 0;">Améliorez votre anglais pour booster votre carrière</p>
+            <h2 class="section-title" style="color: white; border: none;">🎓 COURS D'ANGLAIS GRATUITS</h2>
+            
+            <div style="background: rgba(255,255,255,0.2); border-radius: 15px; padding: 25px; margin: 20px 0; border: 2px solid white;">
+                <h3 style="color: white; font-size: 28px; margin-bottom: 15px;">
+                    <i class="fas fa-gift"></i> OFFERT POUR TOUS LES INSCRITS
+                </h3>
+                <p style="font-size: 20px;">
+                    Les cours d'anglais sont <strong>100% GRATUITS</strong> pour toute personne inscrite à l'une de nos formations.
+                </p>
+                <p style="margin-top: 15px;">
+                    Aucun paiement supplémentaire - Pas de frais d'inscription - C'est notre cadeau pour vous aider à booster votre carrière !
+                </p>
+            </div>
             
             <div class="benefits" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); color: white;">
-                <h4 style="color: white;">📚 PROGRAMME COMPLET</h4>
+                <h4 style="color: white;">📚 PROGRAMME COMPLET GRATUIT</h4>
                 <ul>
                     <li><strong>Speaking</strong> - Expression orale</li>
                     <li><strong>Listening</strong> - Compréhension orale</li>
@@ -1398,12 +1575,12 @@
             </div>
             
             <p style="margin: 25px 0; font-size: 18px;">
-                <i class="fas fa-info-circle"></i> Pour plus d'informations sur les cours d'anglais (horaires, tarifs, programme détaillé), inscrivez-vous via le formulaire dédié.
+                <i class="fas fa-info-circle"></i> Pour accéder aux cours d'anglais gratuits, il suffit de s'inscrire à l'une de nos formations ci-dessus.
             </p>
             
-            <button onclick="showEnglishForm()" class="cta-button" style="background: white; color: var(--accent2);">
-                <i class="fas fa-language"></i> S'INSCRIRE AUX COURS D'ANGLAIS
-            </button>
+            <a href="#inscription" class="cta-button" style="background: white; color: var(--accent2); text-decoration: none;">
+                <i class="fas fa-language"></i> S'INSCRIRE À UNE FORMATION
+            </a>
         </div>
     </section>
 
@@ -1413,19 +1590,22 @@
             <button class="tab-btn active" onclick="showTab('formation')">
                 <i class="fas fa-laptop-code"></i> Inscription Formation
             </button>
-            <button class="tab-btn" onclick="showTab('english')">
-                <i class="fas fa-language"></i> Inscription Anglais
-            </button>
         </div>
         
         <!-- Formulaire Formation -->
         <div id="formationForm" class="form-container tab-content active">
             <h2 class="form-title">FORMULAIRE D'INSCRIPTION - FORMATIONS</h2>
             
+            <div class="english-bonus" style="margin-bottom: 30px;">
+                <h4><i class="fas fa-gift"></i> BONUS : COURS D'ANGLAIS GRATUITS INCLUS</h4>
+                <p>En vous inscrivant à une formation, vous obtenez <strong>automatiquement l'accès aux cours d'anglais GRATUITEMENT</strong>.</p>
+                <p><span class="free-badge">PAS DE PAIEMENT SUPPLÉMENTAIRE</span></p>
+            </div>
+            
             <div class="payment-info">
                 <h4><i class="fas fa-money-bill-wave"></i> IMPORTANT : FRAIS D'INSCRIPTION OBLIGATOIRES</h4>
                 <p>Un montant de <strong>4.000 F CFA</strong> est requis AVANT le début de la formation en ligne.</p>
-                <p><strong>Accès aux cours uniquement après paiement.</strong></p>
+                <p><strong>Accès aux cours uniquement après paiement + Bonus anglais GRATUIT</strong></p>
             </div>
             
             <form id="mainInscriptionForm">
@@ -1448,10 +1628,10 @@
                     <label for="formation">Choisissez votre formation *</label>
                     <select id="formation" class="form-control" required>
                         <option value="">Sélectionnez une formation</option>
-                        <option value="Négociation Commerciale & Web Marketing - 10.000 F (En ligne)">Négociation Commerciale & Web Marketing - 10.000 F (En ligne)</option>
-                        <option value="Développement Web - Phase 1 (Sans Code) - 30.000 F (En ligne)">Développement Web - Phase 1 (Sans Code) - 30.000 F (En ligne)</option>
-                        <option value="Développement Web - Phase 2 (Avec Code) - 80.000 F (Présentiel)">Développement Web - Phase 2 (Avec Code) - 80.000 F (Présentiel)</option>
-                        <option value="Développement Web - Complet (Phases 1+2) - 100.000 F (En ligne + Présentiel)">Développement Web - Complet (Phases 1+2) - 100.000 F (En ligne + Présentiel)</option>
+                        <option value="Négociation Commerciale & Web Marketing - 10.000 F (En ligne) + Cours d'anglais GRATUITS">Négociation Commerciale & Web Marketing - 10.000 F (En ligne) + Cours d'anglais GRATUITS</option>
+                        <option value="Développement Web - Phase 1 (Sans Code) - 30.000 F (En ligne) + Cours d'anglais GRATUITS">Développement Web - Phase 1 (Sans Code) - 30.000 F (En ligne) + Cours d'anglais GRATUITS</option>
+                        <option value="Développement Web - Phase 2 (Avec Code) - 80.000 F (Présentiel) + Cours d'anglais GRATUITS">Développement Web - Phase 2 (Avec Code) - 80.000 F (Présentiel) + Cours d'anglais GRATUITS</option>
+                        <option value="Développement Web - Complet (Phases 1+2) - 100.000 F (En ligne + Présentiel) + Cours d'anglais GRATUITS">Développement Web - Complet (Phases 1+2) - 100.000 F (En ligne + Présentiel) + Cours d'anglais GRATUITS</option>
                     </select>
                 </div>
                 
@@ -1471,86 +1651,16 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="fraisCompris">Avez-vous compris les conditions de paiement ? *</label>
+                    <label for="fraisCompris">Avez-vous compris les conditions de paiement et le bonus ? *</label>
                     <select id="fraisCompris" class="form-control" required>
                         <option value="">Sélectionnez une réponse</option>
-                        <option value="oui">OUI, je comprends : 4.000 F d'inscription requis AVANT le début des cours en ligne</option>
+                        <option value="oui">OUI, je comprends : 4.000 F d'inscription requis + Cours d'anglais GRATUITS inclus</option>
                         <option value="non">Non, j'ai besoin d'explications</option>
                     </select>
                 </div>
                 
                 <button type="submit" class="submit-btn">
                     <i class="fab fa-whatsapp"></i> SOUMETTRE ET ÊTRE REDIRIGÉ VERS WHATSAPP
-                </button>
-            </form>
-        </div>
-        
-        <!-- Formulaire Anglais -->
-        <div id="englishForm" class="form-container tab-content">
-            <h2 class="form-title">FORMULAIRE D'INSCRIPTION - COURS D'ANGLAIS</h2>
-            
-            <div class="benefits">
-                <h4><i class="fas fa-info-circle"></i> À PROPOS DES COURS D'ANGLAIS</h4>
-                <p>Programme complet couvrant tous les aspects de la langue anglaise : Speaking, Listening, Reading, Writing, Grammar et Business English.</p>
-                <p>Horaires flexibles adaptés à votre disponibilité.</p>
-            </div>
-            
-            <form id="englishInscriptionForm">
-                <div class="form-group">
-                    <label for="englishNom">Nom Complet *</label>
-                    <input type="text" id="englishNom" class="form-control" required placeholder="Votre nom et prénom">
-                </div>
-                
-                <div class="form-group">
-                    <label for="englishEmail">Adresse Email *</label>
-                    <input type="email" id="englishEmail" class="form-control" required placeholder="votre@email.com">
-                </div>
-                
-                <div class="form-group">
-                    <label for="englishPhone">Numéro WhatsApp *</label>
-                    <input type="tel" id="englishPhone" class="form-control" required placeholder="Votre numéro WhatsApp">
-                </div>
-                
-                <div class="form-group">
-                    <label for="englishLevel">Niveau actuel en Anglais *</label>
-                    <select id="englishLevel" class="form-control" required>
-                        <option value="">Sélectionnez votre niveau</option>
-                        <option value="debutant">Débutant (A1-A2)</option>
-                        <option value="intermediaire">Intermédiaire (B1-B2)</option>
-                        <option value="avance">Avancé (C1-C2)</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="englishFocus">Centres d'intérêt prioritaires *</label>
-                    <select id="englishFocus" class="form-control" required multiple style="height: 120px;">
-                        <option value="speaking">Speaking - Expression orale</option>
-                        <option value="listening">Listening - Compréhension orale</option>
-                        <option value="reading">Reading - Compréhension écrite</option>
-                        <option value="writing">Writing - Expression écrite</option>
-                        <option value="grammar">Grammar - Grammaire</option>
-                        <option value="business">Business English - Anglais professionnel</option>
-                    </select>
-                    <small class="select-multiple-note">Maintenez Ctrl (Cmd sur Mac) pour sélectionner plusieurs options</small>
-                </div>
-                
-                <div class="form-group">
-                    <label for="englishObjectives">Objectifs d'apprentissage *</label>
-                    <textarea id="englishObjectives" class="form-control" rows="3" required placeholder="Pourquoi souhaitez-vous apprendre l'anglais ? (professionnel, personnel, voyage, etc.)"></textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label for="englishAvailability">Disponibilités *</label>
-                    <select id="englishAvailability" class="form-control" required>
-                        <option value="">Sélectionnez vos disponibilités</option>
-                        <option value="weekend">Week-ends uniquement</option>
-                        <option value="week">En semaine (soirées)</option>
-                        <option value="flexible">Flexible</option>
-                    </select>
-                </div>
-                
-                <button type="submit" class="submit-btn english-btn">
-                    <i class="fab fa-whatsapp"></i> S'INSCRIRE AUX COURS D'ANGLAIS
                 </button>
             </form>
         </div>
@@ -1567,7 +1677,7 @@
                 <p><em>Après inscription, vous serez redirigé vers ce numéro</em></p>
             </div>
             
-            <a href="https://wa.me/2290159609581?text=Bonjour%20Luckily%20Academy,%20je%20m'intéresse%20à%20vos%20formations%20en%20ligne" 
+            <a href="https://wa.me/2290159609581?text=Bonjour%20Luckily%20Academy,%20je%20m'intéresse%20à%20vos%20formations%20avec%20les%20cours%20d'anglais%20gratuits" 
                class="whatsapp-link" target="_blank">
                 <i class="fab fa-whatsapp"></i> +229 01 59 60 95 81
             </a>
@@ -1575,6 +1685,11 @@
             <a href="tel:+221784855699" class="whatsapp-link" style="background: var(--primary); margin: 20px 0;">
                 <i class="fas fa-phone"></i> +221 78 48 55 699
             </a>
+            
+            <div style="background: rgba(255,255,255,0.1); border-radius: 15px; padding: 20px; margin: 30px auto; max-width: 500px;">
+                <h4><i class="fas fa-gift"></i> RAPPEL : BONUS GRATUIT</h4>
+                <p>Tous les inscrits en formation reçoivent les <strong>cours d'anglais GRATUITEMENT</strong>.</p>
+            </div>
             
             <p style="margin-top: 30px; font-size: 20px;">
                 <i class="fas fa-calendar-times"></i> <strong>DATE LIMITE :</strong> Vendredi 06 Février 2026
@@ -1588,7 +1703,7 @@
             <div class="footer-section">
                 <h3>Luckily Academy</h3>
                 <p>Formations en ligne via WhatsApp et en présentiel.</p>
-                <p>Formations pratiques avec certification.</p>
+                <p><strong>Cours d'anglais GRATUITS</strong> pour tous les inscrits.</p>
             </div>
             
             <div class="footer-section">
@@ -1596,7 +1711,7 @@
                 <ul style="list-style: none;">
                     <li><i class="fab fa-whatsapp"></i> Formations en ligne disponibles</li>
                     <li><i class="fas fa-calendar"></i> Dates : Février-Avril 2026</li>
-                    <li><i class="fas fa-clock"></i> Horaires flexibles</li>
+                    <li><i class="fas fa-gift"></i> Cours d'anglais GRATUITS</li>
                     <li><i class="fas fa-certificate"></i> Certification incluse</li>
                 </ul>
             </div>
@@ -1610,9 +1725,9 @@
         </div>
         
         <div class="copyright">
-            <p>&copy; 2026 Luckily Academy - Formations en ligne & présentiel. Tous droits réservés.</p>
+            <p>&copy; 2026 Luckily Academy - Formations avec cours d'anglais GRATUITS. Tous droits réservés.</p>
             <p style="margin-top: 10px; font-size: 14px;">
-                Site optimisé pour les inscriptions aux formations en ligne via WhatsApp
+                Site optimisé pour les inscriptions aux formations avec bonus anglais gratuit
             </p>
         </div>
     </footer>
@@ -1626,7 +1741,7 @@
             <h2>INSCRIPTION ENVOYÉE !</h2>
             <p>Votre formulaire a été soumis avec succès.</p>
             <p>Vous allez être redirigé vers WhatsApp dans <span id="countdown">5</span> secondes...</p>
-            <p><strong>Important :</strong> Préparez les frais d'inscription de 4.000 F pour l'accès aux cours.</p>
+            <p><strong>Important :</strong> Préparez les frais d'inscription de 4.000 F + Bonus anglais GRATUIT inclus.</p>
             <button id="manualRedirect" class="submit-btn" style="margin-top: 20px;">
                 <i class="fab fa-whatsapp"></i> Ouvrir WhatsApp maintenant
             </button>
@@ -1685,7 +1800,7 @@
             // Validation
             const fraisCompris = document.getElementById('fraisCompris').value;
             if (fraisCompris !== 'oui') {
-                alert('ATTENTION : Vous devez comprendre et accepter les conditions de paiement (4.000 F d\'inscription requis AVANT le début des cours en ligne) pour pouvoir vous inscrire.');
+                alert('ATTENTION : Vous devez comprendre et accepter les conditions de paiement (4.000 F d\'inscription requis) et le bonus des cours d\'anglais gratuits pour pouvoir vous inscrire.');
                 return;
             }
             
@@ -1712,57 +1827,13 @@
                            `${formData.objectifs}%0A%0A` +
                            `*💰 CONDITIONS ACCEPTÉES*%0A` +
                            `✅ Frais d'inscription : 4.000 F requis AVANT le début%0A` +
-                           `✅ Compris : Accès aux cours après paiement%0A%0A` +
+                           `✅ BONUS : Cours d'anglais GRATUITS inclus%0A%0A` +
                            `*💡 FORMATION EN LIGNE VIA WHATSAPP*%0A` +
                            `_Inscription effectuée via le site web - Date limite : 06/02/2026_%0A` +
-                           `_Merci de procéder au paiement des 4.000 F pour accéder aux cours_`;
+                           `_Merci de procéder au paiement des 4.000 F pour accéder aux cours + bonus anglais gratuit_`;
             
             // Redirection WhatsApp
             redirectToWhatsApp(message);
-        });
-        
-        // Gestion du formulaire anglais
-        document.getElementById('englishInscriptionForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Validation du select multiple
-            const englishFocus = document.getElementById('englishFocus');
-            const selectedOptions = Array.from(englishFocus.selectedOptions).map(o => o.value);
-            if (selectedOptions.length === 0) {
-                alert('Veuillez sélectionner au moins un centre d\'intérêt pour les cours d\'anglais.');
-                return;
-            }
-            
-            // Récupération des données
-            const formData = {
-                nom: document.getElementById('englishNom').value,
-                email: document.getElementById('englishEmail').value,
-                telephone: document.getElementById('englishPhone').value,
-                niveau: document.getElementById('englishLevel').value,
-                centres: selectedOptions.join(', '),
-                objectifs: document.getElementById('englishObjectives').value,
-                disponibilites: document.getElementById('englishAvailability').value
-            };
-            
-            // Construction du message WhatsApp
-            const message = `🎓 INSCRIPTION COURS D'ANGLAIS - LUCKILY ACADEMY 🎓%0A%0A` +
-                           `*📋 INFORMATIONS PERSONNELLES*%0A` +
-                           `Nom : ${formData.nom}%0A` +
-                           `Email : ${formData.email}%0A` +
-                           `Téléphone : ${formData.telephone}%0A` +
-                           `Niveau actuel : ${formData.niveau}%0A%0A` +
-                           `*🎯 CENTRES D'INTÉRÊT*%0A` +
-                           `${formData.centres}%0A%0A` +
-                           `*🎖️ OBJECTIFS*%0A` +
-                           `${formData.objectifs}%0A%0A` +
-                           `*⏰ DISPONIBILITÉS*%0A` +
-                           `${formData.disponibilites}%0A%0A` +
-                           `*📞 CONTACT*%0A` +
-                           `_Inscription aux cours d'anglais via le site web_%0A` +
-                           `_Merci de me contacter pour les tarifs et horaires détaillés_`;
-            
-            // Redirection WhatsApp
-            redirectToWhatsApp(message, 'english');
         });
         
         // Fonction de redirection WhatsApp
@@ -1791,11 +1862,7 @@
                     clearInterval(countdownInterval);
                     window.open(whatsappUrl, '_blank');
                     modal.style.display = 'none';
-                    if (type === 'formation') {
-                        document.getElementById('mainInscriptionForm').reset();
-                    } else {
-                        document.getElementById('englishInscriptionForm').reset();
-                    }
+                    document.getElementById('mainInscriptionForm').reset();
                 }
             }, 1000);
             
@@ -1804,11 +1871,7 @@
                 clearInterval(countdownInterval);
                 window.open(whatsappUrl, '_blank');
                 modal.style.display = 'none';
-                if (type === 'formation') {
-                    document.getElementById('mainInscriptionForm').reset();
-                } else {
-                    document.getElementById('englishInscriptionForm').reset();
-                }
+                document.getElementById('mainInscriptionForm').reset();
             };
         }
         
@@ -1828,7 +1891,7 @@
         }, observerOptions);
         
         // Observer les éléments à animer
-        document.querySelectorAll('.formation-card, .form-container, .english-card, .step').forEach(el => {
+        document.querySelectorAll('.formation-card, .form-container, .english-card, .step, .bonus-card').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
             el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
