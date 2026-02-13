@@ -116,20 +116,21 @@
         }
 
         .countdown {
-            background: linear-gradient(135deg, var(--warning), #e67e22);
+            background: linear-gradient(135deg, var(--accent), #27ae60);
             color: white;
             padding: 8px 18px;
             border-radius: 20px;
             font-size: 14px;
             font-weight: 600;
             animation: pulse 2s infinite;
-            box-shadow: 0 4px 15px rgba(243, 156, 18, 0.3);
+            box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
+            border: 2px solid rgba(255,255,255,0.3);
         }
 
         @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 4px 15px rgba(243, 156, 18, 0.3); }
-            50% { transform: scale(1.05); box-shadow: 0 6px 20px rgba(243, 156, 18, 0.4); }
-            100% { transform: scale(1); box-shadow: 0 4px 15px rgba(243, 156, 18, 0.3); }
+            0% { transform: scale(1); box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3); }
+            50% { transform: scale(1.05); box-shadow: 0 6px 20px rgba(46, 204, 113, 0.4); }
+            100% { transform: scale(1); box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3); }
         }
 
         .cta-button {
@@ -240,33 +241,52 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .deadline-alert {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
+        .open-alert {
+            background: linear-gradient(135deg, var(--accent), #27ae60);
             padding: 25px;
             border-radius: 15px;
             margin: 40px auto;
             max-width: 700px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            animation: fadeInUp 1s ease 0.4s both;
+            border: 3px solid white;
+            animation: glow 2s infinite, fadeInUp 1s ease 0.4s both;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 0 30px rgba(46, 204, 113, 0.5);
         }
 
-        .deadline-alert::before {
+        @keyframes glow {
+            0% { box-shadow: 0 0 20px rgba(46, 204, 113, 0.5); }
+            50% { box-shadow: 0 0 40px rgba(46, 204, 113, 0.8); }
+            100% { box-shadow: 0 0 20px rgba(46, 204, 113, 0.5); }
+        }
+
+        .open-alert::before {
             content: '';
             position: absolute;
             top: 0;
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
             animation: shimmer 3s infinite;
         }
 
         @keyframes shimmer {
             0% { left: -100%; }
             100% { left: 100%; }
+        }
+
+        .open-badge {
+            background: white;
+            color: var(--accent);
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 15px;
+            animation: bounce 1s infinite;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
         .floating-notice {
@@ -340,6 +360,7 @@
             margin: 20px 0;
             box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
             transform: rotate(-5deg);
+            animation: rotate 5s infinite;
         }
 
         /* Formations Section */
@@ -485,6 +506,7 @@
             right: 15px;
             font-size: 24px;
             opacity: 0.3;
+            animation: spin 5s infinite;
         }
 
         .benefits h4 {
@@ -536,6 +558,7 @@
             right: 15px;
             font-size: 30px;
             opacity: 0.3;
+            animation: bounce 2s infinite;
         }
 
         .english-bonus h4 {
@@ -650,6 +673,22 @@
         @keyframes highlight {
             from { border-color: var(--primary); }
             to { border-color: var(--secondary); }
+        }
+
+        .open-highlight {
+            background: linear-gradient(135deg, #d4edda, #c3e6cb);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            border: 2px solid var(--accent);
+            text-align: center;
+            font-weight: bold;
+            animation: openPulse 2s infinite;
+        }
+
+        @keyframes openPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 10px rgba(46, 204, 113, 0.3); }
+            50% { transform: scale(1.02); box-shadow: 0 0 20px rgba(46, 204, 113, 0.6); }
         }
 
         .conditions {
@@ -1093,7 +1132,7 @@
                 <a href="#contact">Contact</a>
             </nav>
             <div class="countdown">
-                <i class="fas fa-clock"></i> J-<span id="countdownDays"></span> avant fin inscriptions
+                <i class="fas fa-check-circle"></i> INSCRIPTIONS TOUJOURS OUVERTES
             </div>
         </div>
     </header>
@@ -1103,14 +1142,15 @@
         <h1>FORMATION + COURS D'ANGLAIS GRATUITS !</h1>
         <p>Inscrivez-vous à une formation et obtenez les cours d'anglais GRATUITEMENT</p>
         
-        <div class="deadline-alert">
-            <h3><i class="fas fa-exclamation-triangle"></i> URGENT : DERNIÈRES INSCRIPTIONS !</h3>
-            <p>Date limite : <strong>Vendredi 13 Février 2026</strong></p>
-            <p>Places limitées - Inscrivez-vous maintenant pour garantir votre place !</p>
+        <div class="open-alert">
+            <span class="open-badge"><i class="fas fa-check-circle"></i> INSCRIPTIONS OUVERTES</span>
+            <h3><i class="fas fa-calendar-check"></i> INSCRIVEZ-VOUS À TOUT MOMENT</h3>
+            <p>Pas de date limite - Vous pouvez vous inscrire quand vous voulez !</p>
+            <p>Places limitées par session - Inscrivez-vous maintenant pour garantir votre place !</p>
         </div>
         
         <div class="date-highlight" style="color: white; background: rgba(255,255,255,0.2); border-color: white; max-width: 500px;">
-            <h4><i class="fas fa-calendar-check"></i> FORMATIONS 100% EN PRÉSENTIEL</h4>
+            <h4><i class="fas fa-map-marker-alt"></i> FORMATIONS 100% EN PRÉSENTIEL</h4>
             <p>Toutes les formations se déroulent à Liberté 6</p>
             <p>En face du cimetière St Lazare de Béthanie - Dakar</p>
         </div>
@@ -1186,6 +1226,11 @@
                         <strong>FORMATION 100% EN PRÉSENTIEL</strong> - Liberté 6, en face du cimetière St Lazare de Béthanie - Dakar
                     </div>
                     
+                    <div class="open-highlight">
+                        <i class="fas fa-check-circle"></i> <strong>INSCRIPTIONS OUVERTES EN CONTINU</strong>
+                        <p>Pas de dates fixes - Vous commencez quand vous voulez !</p>
+                    </div>
+                    
                     <div class="benefits">
                         <h4>🚀 AVANTAGES EXCLUSIFS</h4>
                         <ul>
@@ -1234,9 +1279,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="date-highlight" style="margin-top: 15px;">
-                            <p><i class="fas fa-clock"></i> Inscription ouverte en continu - La formation commence dès que vous êtes prêt !</p>
-                        </div>
                     </div>
                     
                     <div class="payment-info">
@@ -1252,8 +1294,7 @@
                             <li>Paiement des frais d'inscription (4.000 F) avant le début</li>
                             <li>Test final pour l'obtention de l'attestation</li>
                             <li><strong>Cours d'anglais gratuits automatiquement inclus</strong></li>
-                            <li>Inscription avant le 13/02/2026</li>
-                            <li>Pas de dates fixes - Vous choisissez votre période de formation</li>
+                            <li><strong>INSCRIPTIONS TOUJOURS OUVERTES</strong> - Vous choisissez votre date de début</li>
                         </ul>
                     </div>
                 </div>
@@ -1271,6 +1312,11 @@
                         <h4><i class="fas fa-gift"></i> BONUS INCLUS</h4>
                         <p><span class="free-badge">COURS D'ANGLAIS GRATUITS</span></p>
                         <p>Que vous choisissiez Phase 1, Phase 2 ou la formation complète, vous obtenez les cours d'anglais gratuitement !</p>
+                    </div>
+                    
+                    <div class="open-highlight">
+                        <i class="fas fa-check-circle"></i> <strong>INSCRIPTIONS OUVERTES EN CONTINU</strong>
+                        <p>Pas de dates fixes - Vous commencez quand vous voulez !</p>
                     </div>
                     
                     <div class="benefits">
@@ -1324,9 +1370,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="date-highlight" style="margin-top: 15px;">
-                            <p><i class="fas fa-clock"></i> Inscription ouverte en continu - La formation commence dès que vous êtes prêt !</p>
-                        </div>
                         <div class="price-highlight">
                             30.000 F CFA
                         </div>
@@ -1370,9 +1413,6 @@
                                     120h de formation
                                 </div>
                             </div>
-                        </div>
-                        <div class="date-highlight" style="margin-top: 15px;">
-                            <p><i class="fas fa-clock"></i> Inscription ouverte en continu - La formation commence dès que vous êtes prêt !</p>
                         </div>
                         <div class="price-highlight">
                             80.000 F CFA
@@ -1418,9 +1458,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="date-highlight" style="margin-top: 15px;">
-                            <p><i class="fas fa-clock"></i> Inscription ouverte en continu - La formation commence dès que vous êtes prêt !</p>
-                        </div>
                         <div class="price-highlight" style="background: linear-gradient(135deg, #ff9800, #f57c00);">
                             <span class="old-price">110.000 F</span>
                             <span class="new-price">100.000 F CFA</span>
@@ -1436,8 +1473,7 @@
                             <li>Paiement du solde échelonné possible</li>
                             <li>Test final pour certification</li>
                             <li><strong>Cours d'anglais GRATUITS automatiquement inclus</strong></li>
-                            <li>Inscription avant le 13/02/2026</li>
-                            <li>Pas de dates fixes - Vous choisissez votre période de formation</li>
+                            <li><strong>INSCRIPTIONS TOUJOURS OUVERTES</strong> - Vous choisissez votre date de début</li>
                         </ul>
                     </div>
                 </div>
@@ -1524,10 +1560,10 @@
                 <p>Toutes nos formations se déroulent en présentiel à cette adresse.</p>
             </div>
             
-            <div class="date-highlight" style="margin-bottom: 30px;">
-                <h4><i class="fas fa-calendar-alt"></i> INSCRIPTIONS OUVERTES EN CONTINU</h4>
-                <p>Pas de dates fixes - Vous choisissez votre période de formation</p>
-                <p><strong>Date limite d'inscription : 13 Février 2026</strong></p>
+            <div class="open-highlight" style="margin-bottom: 30px;">
+                <h4><i class="fas fa-check-circle"></i> INSCRIPTIONS OUVERTES EN CONTINU</h4>
+                <p><strong>Pas de date limite - Vous pouvez vous inscrire à tout moment !</strong></p>
+                <p>Choisissez votre date de début après inscription</p>
             </div>
             
             <div class="payment-info">
@@ -1605,6 +1641,11 @@
                 <p><em>Toutes nos formations se déroulent en présentiel à cette adresse</em></p>
             </div>
             
+            <div class="open-highlight" style="background: rgba(46, 204, 113, 0.3); color: white; border-color: white; margin: 30px auto;">
+                <h4><i class="fas fa-check-circle"></i> INSCRIPTIONS TOUJOURS OUVERTES</h4>
+                <p><strong>Pas de date limite - Inscrivez-vous quand vous voulez !</strong></p>
+            </div>
+            
             <a href="https://wa.me/2290159609581?text=Bonjour%20Luckily%20Academy,%20je%20m'intéresse%20à%20vos%20formations%20en%20présentiel%20à%20Liberté%206%20avec%20les%20cours%20d'anglais%20gratuits" 
                class="whatsapp-link" target="_blank">
                 <i class="fab fa-whatsapp"></i> +229 01 59 60 95 81
@@ -1613,12 +1654,6 @@
             <a href="tel:+221784855699" class="whatsapp-link" style="background: var(--primary); margin: 20px 0;">
                 <i class="fas fa-phone"></i> +221 78 48 55 699
             </a>
-            
-            <div class="date-highlight" style="background: rgba(255,255,255,0.1); color: white; border-color: white; margin: 30px auto;">
-                <h4><i class="fas fa-calendar-alt"></i> INSCRIPTIONS OUVERTES EN CONTINU</h4>
-                <p>Pas de dates fixes - Vous choisissez votre période de formation</p>
-                <p><strong>Date limite : 13 Février 2026</strong></p>
-            </div>
         </div>
     </section>
 
@@ -1635,17 +1670,17 @@
                 <h3>Nos Formations</h3>
                 <ul style="list-style: none;">
                     <li><i class="fas fa-map-marker-alt"></i> Lieu : Liberté 6</li>
-                    <li><i class="fas fa-clock"></i> Inscriptions ouvertes en continu</li>
+                    <li><i class="fas fa-check-circle"></i> Inscriptions toujours ouvertes</li>
                     <li><i class="fas fa-gift"></i> Cours d'anglais GRATUITS</li>
                     <li><i class="fas fa-certificate"></i> Certification incluse</li>
                 </ul>
             </div>
             
             <div class="footer-section">
-                <h3>Contact Urgent</h3>
+                <h3>Contact</h3>
                 <p><i class="fas fa-phone"></i> +221 78 48 55 699</p>
                 <p><i class="fab fa-whatsapp"></i> +229 01 59 60 95 81</p>
-                <p><i class="fas fa-envelope"></i> Inscriptions avant le 13/02/2026</p>
+                <p><i class="fas fa-clock"></i> Inscriptions ouvertes 7j/7</p>
             </div>
         </div>
         
@@ -1668,6 +1703,7 @@
             <p>Vous allez être redirigé vers WhatsApp dans <span id="countdown">5</span> secondes...</p>
             <p><strong>Important :</strong> Préparez les frais d'inscription de 4.000 F + Bonus anglais GRATUIT inclus.</p>
             <p><strong>Lieu des formations :</strong> Liberté 6, en face du cimetière St Lazare de Béthanie - Dakar</p>
+            <p><strong>Inscriptions toujours ouvertes :</strong> Vous choisissez votre date de début !</p>
             <button id="manualRedirect" class="submit-btn" style="margin-top: 20px;">
                 <i class="fab fa-whatsapp"></i> Ouvrir WhatsApp maintenant
             </button>
@@ -1675,26 +1711,21 @@
     </div>
 
     <script>
-        // Compte à rebours pour les inscriptions (13 Février 2026)
-        function updateCountdown() {
-            const deadline = new Date('February 13, 2026 00:00:00').getTime();
-            const now = new Date().getTime();
-            const distance = deadline - now;
-            
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            
-            document.getElementById('countdownDays').textContent = days;
-            
-            if (distance < 0) {
-                document.getElementById('countdownDays').textContent = '0';
-                document.querySelector('.countdown').innerHTML = '<i class="fas fa-exclamation-triangle"></i> INSCRIPTIONS FERMÉES';
-                document.querySelector('.countdown').style.background = '#e74c3c';
-                document.querySelector('.countdown').style.animation = 'none';
+        // Animation pour les inscriptions ouvertes (suppression du countdown)
+        function updateOpenStatus() {
+            const openElement = document.querySelector('.countdown');
+            if (openElement) {
+                // Animation supplémentaire
+                setInterval(() => {
+                    openElement.style.transform = 'scale(1.05)';
+                    setTimeout(() => {
+                        openElement.style.transform = 'scale(1)';
+                    }, 200);
+                }, 3000);
             }
         }
         
-        updateCountdown();
-        setInterval(updateCountdown, 1000 * 60 * 60);
+        updateOpenStatus();
         
         // Gestion du formulaire principal
         document.getElementById('mainInscriptionForm').addEventListener('submit', function(e) {
@@ -1734,9 +1765,9 @@
                            `*📍 LIEU DE FORMATION*%0A` +
                            `_Toutes les formations se déroulent en présentiel à :_%0A` +
                            `_Liberté 6, en face du cimetière St Lazare de Béthanie - Dakar_%0A%0A` +
-                           `*📅 INSCRIPTIONS OUVERTES EN CONTINU*%0A` +
-                           `_Pas de dates fixes - Vous choisissez votre période de formation_%0A` +
-                           `_Inscription effectuée via le site web - Date limite : 13/02/2026_%0A` +
+                           `*📅 INSCRIPTIONS TOUJOURS OUVERTES*%0A` +
+                           `_Pas de date limite - Vous choisissez votre période de formation_%0A` +
+                           `_Inscription effectuée via le site web_%0A` +
                            `_Merci de procéder au paiement des 4.000 F pour accéder aux cours + bonus anglais gratuit_`;
             
             // Redirection WhatsApp
