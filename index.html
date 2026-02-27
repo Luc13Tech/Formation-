@@ -17,6 +17,7 @@
             --dark: #2c3e50;
             --light: #f8f9fa;
             --shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --map-height: 450px;
         }
 
         * {
@@ -115,7 +116,7 @@
             width: 100%;
         }
 
-        .countdown {
+        .open-badge-header {
             background: linear-gradient(135deg, var(--accent), #27ae60);
             color: white;
             padding: 8px 18px;
@@ -854,6 +855,221 @@
             animation: fadeInUp 0.8s ease;
         }
 
+        /* Section Localisation */
+        .location-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .location-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .location-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .location-info {
+            padding: 30px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            animation: fadeInLeft 1s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .location-info::before {
+            content: '📍';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 60px;
+            opacity: 0.1;
+            animation: bounce 3s infinite;
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .location-info h3 {
+            font-size: 32px;
+            color: var(--primary);
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .location-info h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        .location-detail {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding: 15px;
+            background: var(--light);
+            border-radius: 15px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .location-detail:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .location-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .location-text h4 {
+            font-size: 18px;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+
+        .location-text p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .location-text strong {
+            color: var(--primary);
+            font-size: 16px;
+        }
+
+        .transport-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 8px;
+            margin-right: 5px;
+            animation: pulse 2s infinite;
+        }
+
+        .map-container {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            animation: fadeInRight 1s ease;
+            position: relative;
+            height: var(--map-height);
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            transition: transform 0.3s;
+        }
+
+        .map-container:hover iframe {
+            transform: scale(1.02);
+        }
+
+        .map-overlay {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: slideInRight 0.5s ease;
+            z-index: 10;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .map-overlay i {
+            color: var(--danger);
+            font-size: 20px;
+        }
+
+        .direction-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 102, 204, 0.3);
+        }
+
+        .direction-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 102, 204, 0.4);
+        }
+
+        .direction-btn i {
+            margin-right: 10px;
+        }
+
         /* Section Inscription */
         .inscription-section {
             padding: 80px 20px;
@@ -1086,7 +1302,7 @@
                 grid-template-columns: 1fr;
             }
             
-            .countdown {
+            .open-badge-header {
                 margin-top: 10px;
                 font-size: 12px;
                 padding: 6px 12px;
@@ -1114,6 +1330,14 @@
                 font-size: 18px;
                 padding: 8px 15px;
             }
+            
+            .location-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .map-container {
+                height: 350px;
+            }
         }
     </style>
 </head>
@@ -1128,11 +1352,12 @@
             <nav class="nav-links">
                 <a href="#formations">Formations</a>
                 <a href="#anglais">Cours d'Anglais GRATUITS</a>
+                <a href="#localisation">Nous trouver</a>
                 <a href="#inscription">Inscription</a>
                 <a href="#contact">Contact</a>
             </nav>
-            <div class="countdown">
-                <i class="fas fa-check-circle"></i> INSCRIPTIONS TOUJOURS OUVERTES
+            <div class="open-badge-header">
+                <i class="fas fa-check-circle"></i> INSCRIPTIONS OUVERTES
             </div>
         </div>
     </header>
@@ -1151,8 +1376,8 @@
         
         <div class="date-highlight" style="color: white; background: rgba(255,255,255,0.2); border-color: white; max-width: 500px;">
             <h4><i class="fas fa-map-marker-alt"></i> FORMATIONS 100% EN PRÉSENTIEL</h4>
-            <p>Toutes les formations se déroulent à Liberté 6</p>
-            <p>En face du cimetière St Lazare de Béthanie - Dakar</p>
+            <p>Toutes les formations se déroulent à <strong>Point E, Dakar</strong></p>
+            <p>À proximité de l'Université Cheikh Anta Diop</p>
         </div>
         
         <a href="#inscription" class="cta-button animate__animated animate__pulse animate__infinite">
@@ -1212,7 +1437,7 @@
                 <div class="formation-header">
                     <h3 class="formation-title">Négociation Commerciale & Web Marketing</h3>
                     <div class="formation-price">10.000 F CFA</div>
-                    <p>Formation intensive en PRÉSENTIEL à Liberté 6</p>
+                    <p>Formation intensive en PRÉSENTIEL à Point E, Dakar</p>
                 </div>
                 <div class="formation-body">
                     <div class="english-bonus">
@@ -1223,7 +1448,7 @@
                     
                     <div class="whatsapp-highlight">
                         <i class="fas fa-map-marker-alt"></i> 
-                        <strong>FORMATION 100% EN PRÉSENTIEL</strong> - Liberté 6, en face du cimetière St Lazare de Béthanie - Dakar
+                        <strong>FORMATION 100% EN PRÉSENTIEL</strong> - Point E, Dakar (à proximité de l'UCAD)
                     </div>
                     
                     <div class="open-highlight">
@@ -1265,9 +1490,8 @@
                                 <span class="detail-icon">📍</span>
                                 <div>
                                     <strong>Lieu :</strong><br>
-                                    <strong>Liberté 6</strong><br>
-                                    En face cimetière St Lazare<br>
-                                    de Béthanie - Dakar
+                                    <strong>Point E, Dakar</strong><br>
+                                    À proximité de l'UCAD
                                 </div>
                             </div>
                             <div class="detail-item">
@@ -1305,7 +1529,7 @@
                 <div class="formation-header">
                     <h3 class="formation-title">Développement Web & Analyse des Données</h3>
                     <div class="price-highlight">À partir de 30.000 F CFA</div>
-                    <p>Formation en présentiel à Liberté 6</p>
+                    <p>Formation en présentiel à Point E, Dakar</p>
                 </div>
                 <div class="formation-body">
                     <div class="english-bonus">
@@ -1356,9 +1580,8 @@
                                 <span class="detail-icon">📍</span>
                                 <div>
                                     <strong>Lieu :</strong><br>
-                                    <strong>Liberté 6</strong><br>
-                                    En face cimetière St Lazare<br>
-                                    de Béthanie - Dakar
+                                    <strong>Point E, Dakar</strong><br>
+                                    À proximité de l'UCAD
                                 </div>
                             </div>
                             <div class="detail-item">
@@ -1400,9 +1623,8 @@
                                 <span class="detail-icon">📍</span>
                                 <div>
                                     <strong>Lieu :</strong><br>
-                                    <strong>Liberté 6</strong><br>
-                                    En face cimetière St Lazare<br>
-                                    de Béthanie - Dakar
+                                    <strong>Point E, Dakar</strong><br>
+                                    À proximité de l'UCAD
                                 </div>
                             </div>
                             <div class="detail-item">
@@ -1444,9 +1666,8 @@
                                 <span class="detail-icon">📍</span>
                                 <div>
                                     <strong>Lieu :</strong><br>
-                                    <strong>Liberté 6</strong><br>
-                                    En face cimetière St Lazare<br>
-                                    de Béthanie - Dakar
+                                    <strong>Point E, Dakar</strong><br>
+                                    À proximité de l'UCAD
                                 </div>
                             </div>
                             <div class="detail-item">
@@ -1504,6 +1725,88 @@
         </div>
     </section>
 
+    <!-- Localisation Section avec Google Maps -->
+    <section id="localisation" class="location-section">
+        <h2 class="section-title">NOTRE CENTRE DE FORMATION À POINT E</h2>
+        
+        <div class="location-container">
+            <div class="location-info">
+                <h3><i class="fas fa-map-pin"></i> Point E, Dakar</h3>
+                
+                <div class="location-detail">
+                    <div class="location-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="location-text">
+                        <h4>Adresse exacte</h4>
+                        <p><strong>Point E, Dakar - Sénégal</strong><br>
+                        À proximité de l'Université Cheikh Anta Diop (UCAD)<br>
+                        Quartier résidentiel et estudiantin</p>
+                        <span class="transport-badge"><i class="fas fa-bus"></i> Arrêt bus à 3 min</span>
+                        <span class="transport-badge"><i class="fas fa-taxi"></i> Taxi facile</span>
+                        <span class="transport-badge"><i class="fas fa-university"></i> Proche UCAD</span>
+                    </div>
+                </div>
+                
+                <div class="location-detail">
+                    <div class="location-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="location-text">
+                        <h4>Horaires d'ouverture</h4>
+                        <p><strong>Lundi - Vendredi :</strong> 9h - 19h<br>
+                        <strong>Samedi :</strong> 9h - 14h<br>
+                        <strong>Dimanche :</strong> Fermé (sauf formations spéciales)</p>
+                    </div>
+                </div>
+                
+                <div class="location-detail">
+                    <div class="location-icon">
+                        <i class="fas fa-parking"></i>
+                    </div>
+                    <div class="location-text">
+                        <h4>Stationnement</h4>
+                        <p>Parking gratuit disponible pour les apprenants<br>
+                        <i class="fas fa-shield-alt"></i> Gardiennage 24h/24</p>
+                    </div>
+                </div>
+                
+                <div class="location-detail">
+                    <div class="location-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="location-text">
+                        <h4>Commodités à proximité</h4>
+                        <p>Restaurants, cafétérias, supérettes, librairies<br>
+                        <span class="transport-badge"><i class="fas fa-coffee"></i> Espace détente</span>
+                        <span class="transport-badge"><i class="fas fa-wifi"></i> WiFi gratuit</span>
+                        <span class="transport-badge"><i class="fas fa-book"></i> Bibliothèque</span></p>
+                    </div>
+                </div>
+                
+                <a href="https://www.google.com/maps/dir/?api=1&destination=14.697174345016201,-17.48148746211071" 
+                   class="direction-btn" target="_blank">
+                    <i class="fas fa-directions"></i> Obtenir l'itinéraire
+                </a>
+            </div>
+            
+            <div class="map-container">
+                <div class="map-overlay">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <span>Luckily Academy - Point E</span>
+                </div>
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30874.18021515785!2d-17.48148746211071!3d14.697174345016201!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xec172922e1f283f%3A0x26f341f60ba73d26!2sPoint%20E%2C%20Dakar!5e0!3m2!1sen!2ssn!4v1772193426054!5m2!1sen!2ssn" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title="Carte de localisation - Luckily Academy à Point E, Dakar">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
     <!-- Cours d'Anglais -->
     <section id="anglais" class="english-section">
         <div class="english-card">
@@ -1556,8 +1859,9 @@
             
             <div class="date-highlight" style="margin-bottom: 30px;">
                 <h4><i class="fas fa-map-marker-alt"></i> LIEU DES FORMATIONS</h4>
-                <p><strong>Liberté 6, en face du cimetière St Lazare de Béthanie - Dakar</strong></p>
+                <p><strong>Point E, Dakar - À proximité de l'UCAD</strong></p>
                 <p>Toutes nos formations se déroulent en présentiel à cette adresse.</p>
+                <p><i class="fas fa-map"></i> <a href="#localisation" style="color: var(--primary);">Voir sur la carte</a></p>
             </div>
             
             <div class="open-highlight" style="margin-bottom: 30px;">
@@ -1592,10 +1896,10 @@
                     <label for="formation">Choisissez votre formation *</label>
                     <select id="formation" class="form-control" required>
                         <option value="">Sélectionnez une formation</option>
-                        <option value="Négociation Commerciale & Web Marketing - 10.000 F (Présentiel à Liberté 6) + Cours d'anglais GRATUITS">Négociation Commerciale & Web Marketing - 10.000 F (Présentiel à Liberté 6) + Cours d'anglais GRATUITS</option>
-                        <option value="Développement Web - Phase 1 (Sans Code) - 30.000 F (Présentiel à Liberté 6) + Cours d'anglais GRATUITS">Développement Web - Phase 1 (Sans Code) - 30.000 F (Présentiel à Liberté 6) + Cours d'anglais GRATUITS</option>
-                        <option value="Développement Web - Phase 2 (Avec Code) - 80.000 F (Présentiel à Liberté 6) + Cours d'anglais GRATUITS">Développement Web - Phase 2 (Avec Code) - 80.000 F (Présentiel à Liberté 6) + Cours d'anglais GRATUITS</option>
-                        <option value="Développement Web - Complet (Phases 1+2) - 100.000 F (Présentiel à Liberté 6) + Cours d'anglais GRATUITS">Développement Web - Complet (Phases 1+2) - 100.000 F (Présentiel à Liberté 6) + Cours d'anglais GRATUITS</option>
+                        <option value="Négociation Commerciale & Web Marketing - 10.000 F (Présentiel à Point E, Dakar) + Cours d'anglais GRATUITS">Négociation Commerciale & Web Marketing - 10.000 F (Présentiel à Point E, Dakar) + Cours d'anglais GRATUITS</option>
+                        <option value="Développement Web - Phase 1 (Sans Code) - 30.000 F (Présentiel à Point E, Dakar) + Cours d'anglais GRATUITS">Développement Web - Phase 1 (Sans Code) - 30.000 F (Présentiel à Point E, Dakar) + Cours d'anglais GRATUITS</option>
+                        <option value="Développement Web - Phase 2 (Avec Code) - 80.000 F (Présentiel à Point E, Dakar) + Cours d'anglais GRATUITS">Développement Web - Phase 2 (Avec Code) - 80.000 F (Présentiel à Point E, Dakar) + Cours d'anglais GRATUITS</option>
+                        <option value="Développement Web - Complet (Phases 1+2) - 100.000 F (Présentiel à Point E, Dakar) + Cours d'anglais GRATUITS">Développement Web - Complet (Phases 1+2) - 100.000 F (Présentiel à Point E, Dakar) + Cours d'anglais GRATUITS</option>
                     </select>
                 </div>
                 
@@ -1637,7 +1941,8 @@
             
             <div class="floating-notice" style="background: rgba(255,255,255,0.2); margin: 30px auto;">
                 <h4><i class="fas fa-map-marker-alt"></i> ADRESSE DES FORMATIONS</h4>
-                <p><strong>Liberté 6, en face du cimetière St Lazare de Béthanie - Dakar</strong></p>
+                <p><strong>Point E, Dakar - Sénégal</strong><br>
+                À proximité de l'Université Cheikh Anta Diop (UCAD)</p>
                 <p><em>Toutes nos formations se déroulent en présentiel à cette adresse</em></p>
             </div>
             
@@ -1646,7 +1951,7 @@
                 <p><strong>Pas de date limite - Inscrivez-vous quand vous voulez !</strong></p>
             </div>
             
-            <a href="https://wa.me/2290159609581?text=Bonjour%20Luckily%20Academy,%20je%20m'intéresse%20à%20vos%20formations%20en%20présentiel%20à%20Liberté%206%20avec%20les%20cours%20d'anglais%20gratuits" 
+            <a href="https://wa.me/2290159609581?text=Bonjour%20Luckily%20Academy,%20je%20m'intéresse%20à%20vos%20formations%20en%20présentiel%20à%20Point%20E%20Dakar%20avec%20les%20cours%20d'anglais%20gratuits" 
                class="whatsapp-link" target="_blank">
                 <i class="fab fa-whatsapp"></i> +229 01 59 60 95 81
             </a>
@@ -1662,14 +1967,14 @@
         <div class="footer-content">
             <div class="footer-section">
                 <h3>Luckily Academy</h3>
-                <p>Formations en présentiel à Liberté 6, Dakar.</p>
+                <p>Formations en présentiel à Point E, Dakar.</p>
                 <p><strong>Cours d'anglais GRATUITS</strong> pour tous les inscrits.</p>
             </div>
             
             <div class="footer-section">
                 <h3>Nos Formations</h3>
                 <ul style="list-style: none;">
-                    <li><i class="fas fa-map-marker-alt"></i> Lieu : Liberté 6</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Lieu : Point E, Dakar</li>
                     <li><i class="fas fa-check-circle"></i> Inscriptions toujours ouvertes</li>
                     <li><i class="fas fa-gift"></i> Cours d'anglais GRATUITS</li>
                     <li><i class="fas fa-certificate"></i> Certification incluse</li>
@@ -1687,7 +1992,7 @@
         <div class="copyright">
             <p>&copy; 2026 Luckily Academy - Formations avec cours d'anglais GRATUITS. Tous droits réservés.</p>
             <p style="margin-top: 10px; font-size: 14px;">
-                Site optimisé pour les inscriptions aux formations avec bonus anglais gratuit
+                Centre de formation à Point E, Dakar - À proximité de l'UCAD
             </p>
         </div>
     </footer>
@@ -1702,7 +2007,7 @@
             <p>Votre formulaire a été soumis avec succès.</p>
             <p>Vous allez être redirigé vers WhatsApp dans <span id="countdown">5</span> secondes...</p>
             <p><strong>Important :</strong> Préparez les frais d'inscription de 4.000 F + Bonus anglais GRATUIT inclus.</p>
-            <p><strong>Lieu des formations :</strong> Liberté 6, en face du cimetière St Lazare de Béthanie - Dakar</p>
+            <p><strong>Lieu des formations :</strong> Point E, Dakar (à proximité de l'UCAD)</p>
             <p><strong>Inscriptions toujours ouvertes :</strong> Vous choisissez votre date de début !</p>
             <button id="manualRedirect" class="submit-btn" style="margin-top: 20px;">
                 <i class="fab fa-whatsapp"></i> Ouvrir WhatsApp maintenant
@@ -1711,22 +2016,6 @@
     </div>
 
     <script>
-        // Animation pour les inscriptions ouvertes (suppression du countdown)
-        function updateOpenStatus() {
-            const openElement = document.querySelector('.countdown');
-            if (openElement) {
-                // Animation supplémentaire
-                setInterval(() => {
-                    openElement.style.transform = 'scale(1.05)';
-                    setTimeout(() => {
-                        openElement.style.transform = 'scale(1)';
-                    }, 200);
-                }, 3000);
-            }
-        }
-        
-        updateOpenStatus();
-        
         // Gestion du formulaire principal
         document.getElementById('mainInscriptionForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -1764,7 +2053,7 @@
                            `✅ BONUS : Cours d'anglais GRATUITS inclus%0A%0A` +
                            `*📍 LIEU DE FORMATION*%0A` +
                            `_Toutes les formations se déroulent en présentiel à :_%0A` +
-                           `_Liberté 6, en face du cimetière St Lazare de Béthanie - Dakar_%0A%0A` +
+                           `_Point E, Dakar - À proximité de l'UCAD_%0A%0A` +
                            `*📅 INSCRIPTIONS TOUJOURS OUVERTES*%0A` +
                            `_Pas de date limite - Vous choisissez votre période de formation_%0A` +
                            `_Inscription effectuée via le site web_%0A` +
