@@ -6,8 +6,8 @@
     <title>Luckily Academy | Marketing Digital & Développement Web Full-Stack</title>
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Google Fonts : Inter (lisible) + Orbitron (effet tech) -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
+    <!-- Google Fonts : Poppins pour un rendu moderne et proche du logo -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         /* ----- VARIABLES THEME TECH / NÉON ----- */
         :root {
@@ -22,6 +22,8 @@
             --success: #00e676;
             --warning: #ffb74d;
             --map-height: 450px;
+            --logo-gradient: linear-gradient(135deg, #ffd700, #ffaa00, #ff8c00); /* Dégradé doré/orange comme sur l'image */
+            --logo-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
         }
 
         * {
@@ -31,7 +33,7 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Poppins', sans-serif;
             background: radial-gradient(circle at 30% 20%, #0f1a2b, #030712);
             color: #d1e0ff;
             line-height: 1.6;
@@ -79,28 +81,67 @@
             height: 80px;
         }
 
+        /* ----- LOGO RECRÉÉ EXACTEMENT COMME SUR L'IMAGE ----- */
         .logo {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 28px;
-            font-weight: 800;
-            color: white;
             display: flex;
             align-items: center;
-            gap: 10px;
-            text-shadow: 0 0 15px var(--accent);
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--logo-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--logo-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-icon::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), transparent 70%);
+            opacity: 0.4;
+        }
+
+        .logo-icon i {
+            font-size: 28px;
+            color: #0a0f1f;
+            text-shadow: 0 2px 5px rgba(255, 215, 0, 0.5);
+            z-index: 2;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
+        .logo-text-main {
+            font-size: 28px;
+            font-weight: 800;
+            background: var(--logo-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .logo-text-sub {
+            font-size: 12px;
+            font-weight: 600;
+            color: #00f0ff;
             letter-spacing: 2px;
-        }
-
-        .logo i {
-            color: var(--accent);
-            font-size: 36px;
-            filter: drop-shadow(0 0 10px var(--accent));
-            animation: rotate 10s linear infinite;
-        }
-
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            text-transform: uppercase;
+            margin-top: -2px;
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
         }
 
         .nav-links {
@@ -120,8 +161,8 @@
         }
 
         .nav-links a:hover {
-            color: var(--accent);
-            text-shadow: 0 0 10px var(--accent);
+            color: #ffaa00;
+            text-shadow: 0 0 10px #ffaa00;
         }
 
         .nav-links a::after {
@@ -129,11 +170,11 @@
             position: absolute;
             width: 0;
             height: 2px;
-            background: var(--accent);
+            background: var(--logo-gradient);
             bottom: 0;
             left: 0;
             transition: width 0.3s;
-            box-shadow: 0 0 10px var(--accent);
+            box-shadow: 0 0 10px #ffaa00;
         }
 
         .nav-links a:hover::after {
@@ -141,22 +182,22 @@
         }
 
         .open-badge-header {
-            background: linear-gradient(135deg, var(--accent2), var(--accent));
+            background: var(--logo-gradient);
             color: #0a0a0a;
             padding: 8px 20px;
             border-radius: 30px;
             font-size: 14px;
             font-weight: 700;
             animation: pulse 2s infinite;
-            box-shadow: 0 0 20px var(--accent2);
-            border: 1px solid white;
+            box-shadow: 0 0 20px #ffaa00;
+            border: 1px solid rgba(255, 255, 255, 0.3);
             text-transform: uppercase;
         }
 
         @keyframes pulse {
-            0% { box-shadow: 0 0 10px var(--accent2); }
-            50% { box-shadow: 0 0 30px var(--accent); }
-            100% { box-shadow: 0 0 10px var(--accent2); }
+            0% { box-shadow: 0 0 10px #ffaa00; }
+            50% { box-shadow: 0 0 30px #ffd700; }
+            100% { box-shadow: 0 0 10px #ffaa00; }
         }
 
         /* ----- BOUTON CTA NEON ----- */
@@ -167,8 +208,8 @@
             border-radius: 40px;
             text-decoration: none;
             font-weight: 700;
-            border: 2px solid var(--accent);
-            box-shadow: 0 0 15px var(--accent);
+            border: 2px solid #ffaa00;
+            box-shadow: 0 0 15px #ffaa00;
             transition: 0.3s;
             display: inline-block;
             backdrop-filter: blur(5px);
@@ -177,9 +218,10 @@
         }
 
         .cta-button:hover {
-            background: var(--accent);
+            background: var(--logo-gradient);
             color: #0a0a0a;
-            box-shadow: 0 0 40px var(--accent);
+            border-color: transparent;
+            box-shadow: 0 0 40px #ffaa00;
             transform: translateY(-3px);
         }
 
@@ -191,7 +233,7 @@
             position: relative;
             margin-top: 80px;
             overflow: hidden;
-            border-bottom: 3px solid var(--accent);
+            border-bottom: 3px solid #ffaa00;
         }
 
         .hero::before {
@@ -199,7 +241,7 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.1"><circle cx="20" cy="20" r="1.5" fill="%2300f0ff"/><circle cx="80" cy="40" r="1.5" fill="%23b026ff"/><path d="M10 80 L 30 60 L 50 80 L 70 50 L 90 70" stroke="%2300f0ff" stroke-width="0.6" fill="none" opacity="0.3"/></svg>');
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.1"><circle cx="20" cy="20" r="1.5" fill="%23ffaa00"/><circle cx="80" cy="40" r="1.5" fill="%23b026ff"/><path d="M10 80 L 30 60 L 50 80 L 70 50 L 90 70" stroke="%23ffaa00" stroke-width="0.6" fill="none" opacity="0.3"/></svg>');
             background-size: 80px 80px;
             top: 0;
             left: 0;
@@ -213,16 +255,17 @@
         }
 
         .hero h1 {
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'Poppins', sans-serif;
             font-size: 52px;
             margin-bottom: 20px;
             position: relative;
             z-index: 2;
-            text-shadow: 0 0 20px var(--accent), 0 0 40px var(--accent2);
-            background: linear-gradient(135deg, #fff, var(--accent));
+            text-shadow: 0 0 20px #ffaa00, 0 0 40px #ffd700;
+            background: var(--logo-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: fadeInUp 1s ease;
+            font-weight: 800;
         }
 
         .hero p {
@@ -239,26 +282,29 @@
             text-align: center;
             font-size: 42px;
             margin-bottom: 60px;
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'Poppins', sans-serif;
             position: relative;
             padding-bottom: 20px;
-            color: white;
+            background: var(--logo-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             text-transform: uppercase;
             letter-spacing: 3px;
-            text-shadow: 0 0 15px var(--accent);
+            text-shadow: 0 0 15px #ffaa00;
+            font-weight: 700;
         }
 
         .section-title::after {
             content: '';
             width: 180px;
             height: 4px;
-            background: linear-gradient(90deg, transparent, var(--accent), var(--accent2), transparent);
+            background: var(--logo-gradient);
             position: absolute;
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
             border-radius: 2px;
-            box-shadow: 0 0 20px var(--accent);
+            box-shadow: 0 0 20px #ffaa00;
         }
 
         /* ----- GRILLE DES FORMATIONS ----- */
@@ -278,8 +324,8 @@
             background: var(--card-bg);
             backdrop-filter: blur(14px);
             border-radius: 30px;
-            border: 1px solid var(--glass-border);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 30px rgba(0,240,255,0.2);
+            border: 1px solid rgba(255, 170, 0, 0.25);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 30px rgba(255, 170, 0, 0.2);
             overflow: hidden;
             transition: 0.4s;
             animation: fadeInUp 0.8s ease;
@@ -287,13 +333,13 @@
 
         .formation-card:hover {
             transform: translateY(-15px) scale(1.02);
-            box-shadow: 0 30px 60px rgba(0,240,255,0.3), 0 0 50px var(--accent2);
-            border-color: var(--accent);
+            box-shadow: 0 30px 60px rgba(255, 170, 0, 0.3), 0 0 50px #ffaa00;
+            border-color: #ffaa00;
         }
 
         .formation-header {
             padding: 35px;
-            border-bottom: 2px solid var(--accent);
+            border-bottom: 2px solid #ffaa00;
             background: linear-gradient(145deg, #0f1a30, #030b17);
             position: relative;
         }
@@ -305,22 +351,24 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(0,240,255,0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(255, 170, 0, 0.1) 0%, transparent 70%);
             opacity: 0.3;
         }
 
         .formation-title {
             font-size: 32px;
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'Poppins', sans-serif;
             margin-bottom: 15px;
-            color: white;
-            text-shadow: 0 0 10px var(--accent);
+            background: var(--logo-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
         }
 
         .price-tag {
             font-size: 28px;
             font-weight: 800;
-            background: linear-gradient(135deg, var(--accent), var(--warning));
+            background: var(--logo-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin: 15px 0;
@@ -332,8 +380,8 @@
         }
 
         .badge-tech {
-            background: rgba(0,240,255,0.15);
-            border: 1px solid var(--accent);
+            background: rgba(255, 170, 0, 0.15);
+            border: 1px solid #ffaa00;
             color: white;
             padding: 6px 15px;
             border-radius: 30px;
@@ -342,7 +390,7 @@
             display: inline-block;
             margin-right: 8px;
             margin-bottom: 8px;
-            box-shadow: 0 0 10px var(--accent);
+            box-shadow: 0 0 10px #ffaa00;
         }
 
         .info-line {
@@ -350,23 +398,23 @@
             align-items: center;
             gap: 15px;
             padding: 12px 0;
-            border-bottom: 1px dashed rgba(0,240,255,0.2);
+            border-bottom: 1px dashed rgba(255, 170, 0, 0.2);
         }
 
         .info-line i {
-            color: var(--accent);
+            color: #ffaa00;
             width: 30px;
             font-size: 20px;
-            text-shadow: 0 0 8px var(--accent);
+            text-shadow: 0 0 8px #ffaa00;
         }
 
         .highlight-neon {
-            background: rgba(176, 38, 255, 0.15);
-            border-left: 6px solid var(--accent2);
+            background: rgba(255, 170, 0, 0.1);
+            border-left: 6px solid #ffaa00;
             padding: 20px;
             border-radius: 10px;
             margin: 25px 0;
-            box-shadow: 0 0 20px rgba(176,38,255,0.3);
+            box-shadow: 0 0 20px rgba(255, 170, 0, 0.3);
         }
 
         .highlight-neon i {
@@ -389,8 +437,8 @@
         .ressources-section {
             padding: 80px 20px;
             background: linear-gradient(145deg, #071126, #010414);
-            border-top: 2px solid var(--accent);
-            border-bottom: 2px solid var(--accent);
+            border-top: 2px solid #ffaa00;
+            border-bottom: 2px solid #ffaa00;
         }
 
         .ressources-grid {
@@ -404,7 +452,7 @@
         .ressource-card {
             background: rgba(20, 30, 50, 0.6);
             backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
+            border: 1px solid rgba(255, 170, 0, 0.25);
             border-radius: 30px;
             padding: 40px 30px;
             text-align: center;
@@ -412,15 +460,17 @@
         }
 
         .ressource-card:hover {
-            border-color: var(--accent);
-            box-shadow: 0 0 50px var(--accent);
+            border-color: #ffaa00;
+            box-shadow: 0 0 50px #ffaa00;
             transform: scale(1.02);
         }
 
         .ressource-icon {
             font-size: 60px;
-            color: var(--accent);
-            filter: drop-shadow(0 0 20px var(--accent));
+            background: var(--logo-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 20px #ffaa00);
             margin-bottom: 20px;
         }
 
@@ -438,11 +488,27 @@
             align-items: center;
         }
 
+        .location-info {
+            background: rgba(10,20,40,0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 40px;
+            border: 1px solid #ffaa00;
+        }
+
+        .location-info h3 {
+            background: var(--logo-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
         .map-container {
             border-radius: 30px;
             overflow: hidden;
-            border: 3px solid var(--accent);
-            box-shadow: 0 0 40px var(--accent);
+            border: 3px solid #ffaa00;
+            box-shadow: 0 0 40px #ffaa00;
             height: var(--map-height);
         }
 
@@ -463,10 +529,10 @@
             margin: 0 auto;
             background: rgba(10, 20, 40, 0.8);
             backdrop-filter: blur(16px);
-            border: 1px solid var(--accent);
+            border: 1px solid #ffaa00;
             border-radius: 40px;
             padding: 50px;
-            box-shadow: 0 0 60px rgba(0,240,255,0.3);
+            box-shadow: 0 0 60px rgba(255, 170, 0, 0.3);
         }
 
         .form-group {
@@ -476,7 +542,9 @@
         .form-group label {
             display: block;
             margin-bottom: 10px;
-            color: var(--accent);
+            background: var(--logo-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -495,13 +563,13 @@
 
         .form-control:focus {
             outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 20px var(--accent);
+            border-color: #ffaa00;
+            box-shadow: 0 0 20px #ffaa00;
         }
 
         .submit-btn {
             background: transparent;
-            border: 3px solid var(--accent);
+            border: 3px solid #ffaa00;
             color: white;
             padding: 18px 40px;
             width: 100%;
@@ -512,13 +580,14 @@
             letter-spacing: 2px;
             cursor: pointer;
             transition: 0.3s;
-            box-shadow: 0 0 30px var(--accent);
+            box-shadow: 0 0 30px #ffaa00;
         }
 
         .submit-btn:hover {
-            background: var(--accent);
+            background: var(--logo-gradient);
             color: #000;
-            box-shadow: 0 0 70px var(--accent);
+            border-color: transparent;
+            box-shadow: 0 0 70px #ffaa00;
         }
 
         /* ----- CONTACT & FOOTER ----- */
@@ -526,7 +595,7 @@
             padding: 80px 20px;
             background: #030917;
             text-align: center;
-            border-top: 2px solid var(--accent);
+            border-top: 2px solid #ffaa00;
         }
 
         .whatsapp-link {
@@ -554,7 +623,7 @@
         footer {
             background: #010414;
             padding: 40px 20px;
-            border-top: 1px solid var(--accent);
+            border-top: 1px solid #ffaa00;
             text-align: center;
             color: #9aa9c7;
         }
@@ -578,9 +647,17 @@
 <body>
     <header>
         <div class="nav-container">
+            <!-- LOGO RECRÉÉ À L'IDENTIQUE DE L'IMAGE -->
             <div class="logo">
-                <i class="fas fa-microchip"></i> LUCKILY ACADEMY
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-text-main">LUCKILY ACADEMY</span>
+                    <span class="logo-text-sub">FORMATION · EXCELLENCE</span>
+                </div>
             </div>
+            
             <nav class="nav-links">
                 <a href="#formations">Formations</a>
                 <a href="#ressources">Ressources</a>
@@ -597,8 +674,8 @@
     <section class="hero">
         <h1>MARKETING DIGITAL & FULL‑STACK</h1>
         <p>Inscription unique 4 000 F – formations certifiantes les week-ends</p>
-        <div style="background: rgba(0,240,255,0.1); backdrop-filter: blur(8px); padding: 25px; border-radius: 50px; max-width: 700px; margin: 40px auto; border: 2px solid var(--accent);">
-            <p style="font-size: 22px;"><i class="fas fa-key" style="color:var(--accent);"></i> <strong>Frais d'inscription : 4 000 F (obligatoire)</strong></p>
+        <div style="background: rgba(255,170,0,0.1); backdrop-filter: blur(8px); padding: 25px; border-radius: 50px; max-width: 700px; margin: 40px auto; border: 2px solid #ffaa00;">
+            <p style="font-size: 22px;"><i class="fas fa-key" style="color:#ffaa00;"></i> <strong>Frais d'inscription : 4 000 F (obligatoire)</strong></p>
         </div>
         <a href="#inscription" class="cta-button">PRÉ-INSCRIRE MAINTENANT</a>
     </section>
@@ -607,7 +684,7 @@
     <section id="formations" class="formations-section">
         <h2 class="section-title">Formations certifiantes</h2>
         <div class="formations-grid">
-            <!-- CARTE 1 : MARKETING DIGITAL (ex négociation + web marketing + chargé clientèle) -->
+            <!-- CARTE 1 : MARKETING DIGITAL -->
             <div class="formation-card">
                 <div class="formation-header">
                     <h3 class="formation-title">📈 MARKETING DIGITAL 360°</h3>
@@ -631,7 +708,7 @@
                 </div>
             </div>
 
-            <!-- CARTE 2 : DÉVELOPPEMENT WEB FULL-STACK (inchangé mais nom maintenu) -->
+            <!-- CARTE 2 : DÉVELOPPEMENT WEB FULL-STACK -->
             <div class="formation-card">
                 <div class="formation-header">
                     <h3 class="formation-title">💻 DÉVELOPPEMENT WEB FULL‑STACK</h3>
@@ -661,24 +738,24 @@
         </div>
 
         <!-- RAPPEL COMMUN -->
-        <div style="max-width: 900px; margin: 50px auto 0; background: rgba(176,38,255,0.1); border: 2px dashed var(--accent2); border-radius: 60px; padding: 25px; text-align: center;">
-            <p style="font-size: 20px;"><i class="fas fa-check-circle" style="color:var(--success);"></i> <strong>INSCRIPTION 4 000 F</strong> (obligatoire) – examen final à Point E – attestation après validation</p>
+        <div style="max-width: 900px; margin: 50px auto 0; background: rgba(255,170,0,0.1); border: 2px dashed #ffaa00; border-radius: 60px; padding: 25px; text-align: center;">
+            <p style="font-size: 20px;"><i class="fas fa-check-circle" style="color:#00e676;"></i> <strong>INSCRIPTION 4 000 F</strong> (obligatoire) – examen final à Point E – attestation après validation</p>
         </div>
     </section>
 
-    <!-- RESSOURCES GOOGLE & ELEVIFY (liens) -->
+    <!-- RESSOURCES GOOGLE & ELEVIFY -->
     <section id="ressources" class="ressources-section">
         <h2 class="section-title">Ressources gratuites partenaires</h2>
         <div class="ressources-grid">
             <div class="ressource-card">
                 <div class="ressource-icon"><i class="fab fa-google"></i></div>
-                <h3 style="color:white;">Google Grow</h3>
+                <h3 style="background: var(--logo-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Google Grow</h3>
                 <p style="color:#b0c4de;">Marketing digital, data, business – cours officiels gratuits</p>
                 <a href="https://grow.google/intl/fr_fr/courses-and-tools/?category=business&topic=digital-marketing" target="_blank" class="cta-button" style="margin-top:20px;">Explorer</a>
             </div>
             <div class="ressource-card">
                 <div class="ressource-icon"><i class="fas fa-code"></i></div>
-                <h3 style="color:white;">Elevify Web</h3>
+                <h3 style="background: var(--logo-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Elevify Web</h3>
                 <p style="color:#b0c4de;">Formation développement web (HTML, CSS, JS, React…)</p>
                 <a href="https://www.elevify.com/fr-sn/courses/engineering-construction-and-technology-fr/technology-fr/web-development-course-ee7d9?utm_source=google_ads&utm_medium=cpc&utm_campaign=enrollment_fr_sn_icp3&utm_id=enrollment_fr_sn_icp3&gad_source=1&gclid=CjwKCAjwpcTNBhA5EiwAdO1S9jP3BtV3kPiRHhrMfBNtSz4psYjZuRZUoHU4RmrN9iAZ4e7MOERPFhoCyZQQAvD_BwE" target="_blank" class="cta-button" style="margin-top:20px;">Commencer</a>
             </div>
@@ -689,10 +766,10 @@
     <section id="localisation" class="location-section">
         <h2 class="section-title">Bureau – Point E</h2>
         <div class="location-container">
-            <div class="location-info" style="background: rgba(10,20,40,0.7); backdrop-filter: blur(10px); border-radius: 30px; padding: 40px; border: 1px solid var(--accent);">
-                <h3 style="color:var(--accent);"><i class="fas fa-map-pin"></i> Centre d'examen</h3>
-                <p style="margin:20px 0; font-size:18px;">📍 <strong>Point E, Dakar</strong> (à côté UCAD)</p>
-                <p>📌 Tous les examens finaux se déroulent obligatoirement dans nos locaux.</p>
+            <div class="location-info">
+                <h3><i class="fas fa-map-pin"></i> Centre d'examen</h3>
+                <p style="margin:20px 0; font-size:18px; color:#cbd5e1;">📍 <strong>Point E, Dakar</strong> (à côté UCAD)</p>
+                <p style="color:#cbd5e1;">📌 Tous les examens finaux se déroulent obligatoirement dans nos locaux.</p>
                 <a href="https://www.google.com/maps/dir/?api=1&destination=14.697174345016201,-17.48148746211071" target="_blank" class="cta-button" style="margin-top:25px;"><i class="fas fa-directions"></i> Itinéraire</a>
             </div>
             <div class="map-container">
@@ -704,7 +781,7 @@
     <!-- FORMULAIRE D'INSCRIPTION -->
     <section id="inscription" class="inscription-section">
         <div class="form-container">
-            <h2 style="font-family:'Orbitron'; text-align:center; margin-bottom:30px; color:white;">INSCRIPTION 4 000 F</h2>
+            <h2 style="font-family:'Poppins'; text-align:center; margin-bottom:30px; background: var(--logo-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 32px; font-weight: 700;">INSCRIPTION 4 000 F</h2>
             <form id="mainInscriptionForm">
                 <div class="form-group">
                     <label>Nom complet</label>
@@ -745,7 +822,7 @@
         <a href="https://wa.me/221784855699?text=Bonjour%20Luckily%20Academy%2C%20je%20souhaite%20m%27inscrire%20(4.000F)%20et%20avoir%20plus%20d%27infos" class="whatsapp-link" target="_blank">
             <i class="fab fa-whatsapp"></i> +221 78 485 56 99
         </a>
-        <p style="margin-top:20px;">📞 Disponibilité 7j/7 (réponse rapide)</p>
+        <p style="margin-top:20px; color:#b0e0ff;">📞 Disponibilité 7j/7 (réponse rapide)</p>
     </section>
 
     <footer>
@@ -755,9 +832,9 @@
 
     <!-- MODAL CONFIRMATION -->
     <div id="confirmationModal" style="display: none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:3000; align-items:center; justify-content:center;" class="modal">
-        <div style="background: #0a1222; border:3px solid var(--accent); border-radius:40px; padding:50px; max-width:500px; text-align:center; box-shadow:0 0 100px var(--accent);">
-            <i class="fas fa-check-circle" style="font-size:80px; color:var(--accent); margin-bottom:20px;"></i>
-            <h2 style="color:white;">✅ PRÉ-INSCRIPTION REÇUE</h2>
+        <div style="background: #0a1222; border:3px solid #ffaa00; border-radius:40px; padding:50px; max-width:500px; text-align:center; box-shadow:0 0 100px #ffaa00;">
+            <i class="fas fa-check-circle" style="font-size:80px; color:#ffaa00; margin-bottom:20px;"></i>
+            <h2 style="background: var(--logo-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 28px;">✅ PRÉ-INSCRIPTION REÇUE</h2>
             <p style="color:#b0e0ff; margin:20px 0;">Redirection vers WhatsApp dans <span id="countdown">5</span>s</p>
             <p style="color:#ffb74d;">N'oubliez pas : inscription 4 000F + frais de formation + examen final à Point E.</p>
             <button id="manualRedirect" class="submit-btn" style="margin-top:25px; width:auto; display:inline-block;">Ouvrir WhatsApp maintenant</button>
