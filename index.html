@@ -6,7 +6,7 @@
     <title>Luckily Academy | Marketing Digital & Développement Web Full-Stack</title>
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Google Fonts : Poppins pour un rendu moderne et proche du logo -->
+    <!-- Google Fonts : Poppins -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         /* ----- VARIABLES THEME TECH / NÉON ----- */
@@ -22,8 +22,9 @@
             --success: #00e676;
             --warning: #ffb74d;
             --map-height: 450px;
-            --logo-gradient: linear-gradient(135deg, #ffd700, #ffaa00, #ff8c00); /* Dégradé doré/orange comme sur l'image */
-            --logo-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            --logo-blue: #0066cc;        /* Bleu exact comme sur l'image */
+            --logo-light-blue: #4da6ff;   /* Bleu plus clair pour le dégradé */
+            --logo-gradient: linear-gradient(135deg, #0066cc, #003d99); /* Dégradé bleu */
         }
 
         * {
@@ -81,7 +82,7 @@
             height: 80px;
         }
 
-        /* ----- LOGO RECRÉÉ EXACTEMENT COMME SUR L'IMAGE ----- */
+        /* ----- LOGO EXACTEMENT EN BLEU COMME SUR L'IMAGE ----- */
         .logo {
             display: flex;
             align-items: center;
@@ -91,12 +92,12 @@
         .logo-icon {
             width: 50px;
             height: 50px;
-            background: var(--logo-gradient);
+            background: var(--logo-gradient); /* Dégradé bleu */
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: var(--logo-shadow);
+            box-shadow: 0 0 20px rgba(0, 102, 204, 0.5);
             position: relative;
             overflow: hidden;
         }
@@ -112,8 +113,8 @@
 
         .logo-icon i {
             font-size: 28px;
-            color: #0a0f1f;
-            text-shadow: 0 2px 5px rgba(255, 215, 0, 0.5);
+            color: white; /* Icône blanche pour contraster sur le fond bleu */
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
             z-index: 2;
         }
 
@@ -126,18 +127,16 @@
         .logo-text-main {
             font-size: 28px;
             font-weight: 800;
-            background: var(--logo-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: #0066cc; /* Bleu unicode */
             letter-spacing: 1px;
             text-transform: uppercase;
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+            text-shadow: 0 0 10px rgba(0, 102, 204, 0.3);
         }
 
         .logo-text-sub {
             font-size: 12px;
             font-weight: 600;
-            color: #00f0ff;
+            color: #00f0ff; /* Cyan néon pour contraster */
             letter-spacing: 2px;
             text-transform: uppercase;
             margin-top: -2px;
@@ -161,8 +160,8 @@
         }
 
         .nav-links a:hover {
-            color: #ffaa00;
-            text-shadow: 0 0 10px #ffaa00;
+            color: #0066cc;
+            text-shadow: 0 0 10px #0066cc;
         }
 
         .nav-links a::after {
@@ -174,7 +173,7 @@
             bottom: 0;
             left: 0;
             transition: width 0.3s;
-            box-shadow: 0 0 10px #ffaa00;
+            box-shadow: 0 0 10px #0066cc;
         }
 
         .nav-links a:hover::after {
@@ -183,21 +182,21 @@
 
         .open-badge-header {
             background: var(--logo-gradient);
-            color: #0a0a0a;
+            color: white;
             padding: 8px 20px;
             border-radius: 30px;
             font-size: 14px;
             font-weight: 700;
             animation: pulse 2s infinite;
-            box-shadow: 0 0 20px #ffaa00;
+            box-shadow: 0 0 20px #0066cc;
             border: 1px solid rgba(255, 255, 255, 0.3);
             text-transform: uppercase;
         }
 
         @keyframes pulse {
-            0% { box-shadow: 0 0 10px #ffaa00; }
-            50% { box-shadow: 0 0 30px #ffd700; }
-            100% { box-shadow: 0 0 10px #ffaa00; }
+            0% { box-shadow: 0 0 10px #0066cc; }
+            50% { box-shadow: 0 0 30px #4da6ff; }
+            100% { box-shadow: 0 0 10px #0066cc; }
         }
 
         /* ----- BOUTON CTA NEON ----- */
@@ -208,8 +207,8 @@
             border-radius: 40px;
             text-decoration: none;
             font-weight: 700;
-            border: 2px solid #ffaa00;
-            box-shadow: 0 0 15px #ffaa00;
+            border: 2px solid #0066cc;
+            box-shadow: 0 0 15px #0066cc;
             transition: 0.3s;
             display: inline-block;
             backdrop-filter: blur(5px);
@@ -219,9 +218,9 @@
 
         .cta-button:hover {
             background: var(--logo-gradient);
-            color: #0a0a0a;
+            color: white;
             border-color: transparent;
-            box-shadow: 0 0 40px #ffaa00;
+            box-shadow: 0 0 40px #0066cc;
             transform: translateY(-3px);
         }
 
@@ -233,7 +232,7 @@
             position: relative;
             margin-top: 80px;
             overflow: hidden;
-            border-bottom: 3px solid #ffaa00;
+            border-bottom: 3px solid #0066cc;
         }
 
         .hero::before {
@@ -241,7 +240,7 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.1"><circle cx="20" cy="20" r="1.5" fill="%23ffaa00"/><circle cx="80" cy="40" r="1.5" fill="%23b026ff"/><path d="M10 80 L 30 60 L 50 80 L 70 50 L 90 70" stroke="%23ffaa00" stroke-width="0.6" fill="none" opacity="0.3"/></svg>');
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.1"><circle cx="20" cy="20" r="1.5" fill="%230066cc"/><circle cx="80" cy="40" r="1.5" fill="%23b026ff"/><path d="M10 80 L 30 60 L 50 80 L 70 50 L 90 70" stroke="%230066cc" stroke-width="0.6" fill="none" opacity="0.3"/></svg>');
             background-size: 80px 80px;
             top: 0;
             left: 0;
@@ -260,7 +259,7 @@
             margin-bottom: 20px;
             position: relative;
             z-index: 2;
-            text-shadow: 0 0 20px #ffaa00, 0 0 40px #ffd700;
+            text-shadow: 0 0 20px #0066cc, 0 0 40px #4da6ff;
             background: var(--logo-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -290,7 +289,7 @@
             -webkit-text-fill-color: transparent;
             text-transform: uppercase;
             letter-spacing: 3px;
-            text-shadow: 0 0 15px #ffaa00;
+            text-shadow: 0 0 15px #0066cc;
             font-weight: 700;
         }
 
@@ -304,7 +303,7 @@
             left: 50%;
             transform: translateX(-50%);
             border-radius: 2px;
-            box-shadow: 0 0 20px #ffaa00;
+            box-shadow: 0 0 20px #0066cc;
         }
 
         /* ----- GRILLE DES FORMATIONS ----- */
@@ -324,8 +323,8 @@
             background: var(--card-bg);
             backdrop-filter: blur(14px);
             border-radius: 30px;
-            border: 1px solid rgba(255, 170, 0, 0.25);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 30px rgba(255, 170, 0, 0.2);
+            border: 1px solid rgba(0, 102, 204, 0.25);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 30px rgba(0, 102, 204, 0.2);
             overflow: hidden;
             transition: 0.4s;
             animation: fadeInUp 0.8s ease;
@@ -333,13 +332,13 @@
 
         .formation-card:hover {
             transform: translateY(-15px) scale(1.02);
-            box-shadow: 0 30px 60px rgba(255, 170, 0, 0.3), 0 0 50px #ffaa00;
-            border-color: #ffaa00;
+            box-shadow: 0 30px 60px rgba(0, 102, 204, 0.3), 0 0 50px #0066cc;
+            border-color: #0066cc;
         }
 
         .formation-header {
             padding: 35px;
-            border-bottom: 2px solid #ffaa00;
+            border-bottom: 2px solid #0066cc;
             background: linear-gradient(145deg, #0f1a30, #030b17);
             position: relative;
         }
@@ -351,7 +350,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(255, 170, 0, 0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(0, 102, 204, 0.1) 0%, transparent 70%);
             opacity: 0.3;
         }
 
@@ -380,8 +379,8 @@
         }
 
         .badge-tech {
-            background: rgba(255, 170, 0, 0.15);
-            border: 1px solid #ffaa00;
+            background: rgba(0, 102, 204, 0.15);
+            border: 1px solid #0066cc;
             color: white;
             padding: 6px 15px;
             border-radius: 30px;
@@ -390,7 +389,7 @@
             display: inline-block;
             margin-right: 8px;
             margin-bottom: 8px;
-            box-shadow: 0 0 10px #ffaa00;
+            box-shadow: 0 0 10px #0066cc;
         }
 
         .info-line {
@@ -398,23 +397,23 @@
             align-items: center;
             gap: 15px;
             padding: 12px 0;
-            border-bottom: 1px dashed rgba(255, 170, 0, 0.2);
+            border-bottom: 1px dashed rgba(0, 102, 204, 0.2);
         }
 
         .info-line i {
-            color: #ffaa00;
+            color: #0066cc;
             width: 30px;
             font-size: 20px;
-            text-shadow: 0 0 8px #ffaa00;
+            text-shadow: 0 0 8px #0066cc;
         }
 
         .highlight-neon {
-            background: rgba(255, 170, 0, 0.1);
-            border-left: 6px solid #ffaa00;
+            background: rgba(0, 102, 204, 0.1);
+            border-left: 6px solid #0066cc;
             padding: 20px;
             border-radius: 10px;
             margin: 25px 0;
-            box-shadow: 0 0 20px rgba(255, 170, 0, 0.3);
+            box-shadow: 0 0 20px rgba(0, 102, 204, 0.3);
         }
 
         .highlight-neon i {
@@ -437,8 +436,8 @@
         .ressources-section {
             padding: 80px 20px;
             background: linear-gradient(145deg, #071126, #010414);
-            border-top: 2px solid #ffaa00;
-            border-bottom: 2px solid #ffaa00;
+            border-top: 2px solid #0066cc;
+            border-bottom: 2px solid #0066cc;
         }
 
         .ressources-grid {
@@ -452,7 +451,7 @@
         .ressource-card {
             background: rgba(20, 30, 50, 0.6);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 170, 0, 0.25);
+            border: 1px solid rgba(0, 102, 204, 0.25);
             border-radius: 30px;
             padding: 40px 30px;
             text-align: center;
@@ -460,8 +459,8 @@
         }
 
         .ressource-card:hover {
-            border-color: #ffaa00;
-            box-shadow: 0 0 50px #ffaa00;
+            border-color: #0066cc;
+            box-shadow: 0 0 50px #0066cc;
             transform: scale(1.02);
         }
 
@@ -470,7 +469,7 @@
             background: var(--logo-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 20px #ffaa00);
+            filter: drop-shadow(0 0 20px #0066cc);
             margin-bottom: 20px;
         }
 
@@ -493,7 +492,7 @@
             backdrop-filter: blur(10px);
             border-radius: 30px;
             padding: 40px;
-            border: 1px solid #ffaa00;
+            border: 1px solid #0066cc;
         }
 
         .location-info h3 {
@@ -507,8 +506,8 @@
         .map-container {
             border-radius: 30px;
             overflow: hidden;
-            border: 3px solid #ffaa00;
-            box-shadow: 0 0 40px #ffaa00;
+            border: 3px solid #0066cc;
+            box-shadow: 0 0 40px #0066cc;
             height: var(--map-height);
         }
 
@@ -529,10 +528,10 @@
             margin: 0 auto;
             background: rgba(10, 20, 40, 0.8);
             backdrop-filter: blur(16px);
-            border: 1px solid #ffaa00;
+            border: 1px solid #0066cc;
             border-radius: 40px;
             padding: 50px;
-            box-shadow: 0 0 60px rgba(255, 170, 0, 0.3);
+            box-shadow: 0 0 60px rgba(0, 102, 204, 0.3);
         }
 
         .form-group {
@@ -563,13 +562,13 @@
 
         .form-control:focus {
             outline: none;
-            border-color: #ffaa00;
-            box-shadow: 0 0 20px #ffaa00;
+            border-color: #0066cc;
+            box-shadow: 0 0 20px #0066cc;
         }
 
         .submit-btn {
             background: transparent;
-            border: 3px solid #ffaa00;
+            border: 3px solid #0066cc;
             color: white;
             padding: 18px 40px;
             width: 100%;
@@ -580,14 +579,14 @@
             letter-spacing: 2px;
             cursor: pointer;
             transition: 0.3s;
-            box-shadow: 0 0 30px #ffaa00;
+            box-shadow: 0 0 30px #0066cc;
         }
 
         .submit-btn:hover {
             background: var(--logo-gradient);
-            color: #000;
+            color: white;
             border-color: transparent;
-            box-shadow: 0 0 70px #ffaa00;
+            box-shadow: 0 0 70px #0066cc;
         }
 
         /* ----- CONTACT & FOOTER ----- */
@@ -595,7 +594,7 @@
             padding: 80px 20px;
             background: #030917;
             text-align: center;
-            border-top: 2px solid #ffaa00;
+            border-top: 2px solid #0066cc;
         }
 
         .whatsapp-link {
@@ -623,7 +622,7 @@
         footer {
             background: #010414;
             padding: 40px 20px;
-            border-top: 1px solid #ffaa00;
+            border-top: 1px solid #0066cc;
             text-align: center;
             color: #9aa9c7;
         }
@@ -647,7 +646,7 @@
 <body>
     <header>
         <div class="nav-container">
-            <!-- LOGO RECRÉÉ À L'IDENTIQUE DE L'IMAGE -->
+            <!-- LOGO EXACTEMENT EN BLEU COMME SUR L'IMAGE -->
             <div class="logo">
                 <div class="logo-icon">
                     <i class="fas fa-graduation-cap"></i>
@@ -674,8 +673,8 @@
     <section class="hero">
         <h1>MARKETING DIGITAL & FULL‑STACK</h1>
         <p>Inscription unique 4 000 F – formations certifiantes les week-ends</p>
-        <div style="background: rgba(255,170,0,0.1); backdrop-filter: blur(8px); padding: 25px; border-radius: 50px; max-width: 700px; margin: 40px auto; border: 2px solid #ffaa00;">
-            <p style="font-size: 22px;"><i class="fas fa-key" style="color:#ffaa00;"></i> <strong>Frais d'inscription : 4 000 F (obligatoire)</strong></p>
+        <div style="background: rgba(0,102,204,0.1); backdrop-filter: blur(8px); padding: 25px; border-radius: 50px; max-width: 700px; margin: 40px auto; border: 2px solid #0066cc;">
+            <p style="font-size: 22px;"><i class="fas fa-key" style="color:#0066cc;"></i> <strong>Frais d'inscription : 4 000 F (obligatoire)</strong></p>
         </div>
         <a href="#inscription" class="cta-button">PRÉ-INSCRIRE MAINTENANT</a>
     </section>
@@ -738,7 +737,7 @@
         </div>
 
         <!-- RAPPEL COMMUN -->
-        <div style="max-width: 900px; margin: 50px auto 0; background: rgba(255,170,0,0.1); border: 2px dashed #ffaa00; border-radius: 60px; padding: 25px; text-align: center;">
+        <div style="max-width: 900px; margin: 50px auto 0; background: rgba(0,102,204,0.1); border: 2px dashed #0066cc; border-radius: 60px; padding: 25px; text-align: center;">
             <p style="font-size: 20px;"><i class="fas fa-check-circle" style="color:#00e676;"></i> <strong>INSCRIPTION 4 000 F</strong> (obligatoire) – examen final à Point E – attestation après validation</p>
         </div>
     </section>
@@ -832,8 +831,8 @@
 
     <!-- MODAL CONFIRMATION -->
     <div id="confirmationModal" style="display: none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:3000; align-items:center; justify-content:center;" class="modal">
-        <div style="background: #0a1222; border:3px solid #ffaa00; border-radius:40px; padding:50px; max-width:500px; text-align:center; box-shadow:0 0 100px #ffaa00;">
-            <i class="fas fa-check-circle" style="font-size:80px; color:#ffaa00; margin-bottom:20px;"></i>
+        <div style="background: #0a1222; border:3px solid #0066cc; border-radius:40px; padding:50px; max-width:500px; text-align:center; box-shadow:0 0 100px #0066cc;">
+            <i class="fas fa-check-circle" style="font-size:80px; color:#0066cc; margin-bottom:20px;"></i>
             <h2 style="background: var(--logo-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 28px;">✅ PRÉ-INSCRIPTION REÇUE</h2>
             <p style="color:#b0e0ff; margin:20px 0;">Redirection vers WhatsApp dans <span id="countdown">5</span>s</p>
             <p style="color:#ffb74d;">N'oubliez pas : inscription 4 000F + frais de formation + examen final à Point E.</p>
