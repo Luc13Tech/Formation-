@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Luckily Academy — Apprenez. Évoluez. Réussissez.</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Jost:wght@300;400;500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- ═══════════════ LOADER ═══════════════ -->
+<div id="loader">
+  <div class="loader-inner">
+    <div class="loader-logo">
+      <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10 30L30 10L50 30L30 50Z" fill="none" stroke="#00B4D8" stroke-width="2"/>
+        <circle cx="30" cy="30" r="8" fill="#00B4D8"/>
+      </svg>
+    </div>
+    <div class="loader-text">Luckily Academy</div>
+    <div class="loader-bar"><div class="loader-progress"></div></div>
+  </div>
+</div>
+
+<!-- ═══════════════ NAVIGATION ═══════════════ -->
+<nav id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <span class="logo-icon">🎓</span>
+      <span class="logo-text">Luckily <em>Academy</em></span>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html" class="nav-link active" data-i18n="nav_home">Accueil</a>
+      <a href="courses.html" class="nav-link" data-i18n="nav_courses">Formations</a>
+      <a href="index.html#about" class="nav-link" data-i18n="nav_about">À propos</a>
+      <a href="contact.html" class="nav-link" data-i18n="nav_contact">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <button class="btn-theme" id="themeToggle" title="Mode sombre">
+        <span class="theme-icon">🌙</span>
+      </button>
+      <div class="lang-selector">
+        <button class="lang-btn" id="langBtn">
+          <span id="currentLang">FR</span> ▾
+        </button>
+        <div class="lang-dropdown" id="langDropdown">
+          <button onclick="setLanguage('fr')" class="lang-option">🇫🇷 Français</button>
+          <button onclick="setLanguage('en')" class="lang-option">🇬🇧 English</button>
+          <button onclick="setLanguage('es')" class="lang-option">🇪🇸 Español</button>
+          <button onclick="setLanguage('pt')" class="lang-option">🇵🇹 Português</button>
+        </div>
+      </div>
+      <a href="auth.html" class="btn-nav-login" id="authNavBtn" data-i18n="nav_login">Se connecter</a>
+      <a href="dashboard.html" class="btn-nav-dashboard hidden" id="dashNavBtn">
+        <span id="navUserAvatar">👤</span>
+      </a>
+    </div>
+    <button class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<section class="hero" id="home">
+  <div class="hero-bg">
+    <div class="hero-orb orb-1"></div>
+    <div class="hero-orb orb-2"></div>
+    <div class="hero-orb orb-3"></div>
+    <div class="hero-grid"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge animate-in" data-delay="0">
+      <span class="badge-dot"></span>
+      <span data-i18n="hero_badge">Plateforme d'excellence · Bénin & Afrique</span>
+    </div>
+    <h1 class="hero-title animate-in" data-delay="1">
+      <span data-i18n="hero_title1">Apprenez.</span>
+      <span class="hero-title-script" data-i18n="hero_title2">Évoluez.</span>
+      <span data-i18n="hero_title3">Réussissez.</span>
+    </h1>
+    <p class="hero-sub animate-in" data-delay="2" data-i18n="hero_sub">
+      Des formations professionnelles de qualité, accessibles depuis chez vous. Développez vos compétences avec des experts et propulsez votre carrière.
+    </p>
+    <div class="hero-cta animate-in" data-delay="3">
+      <a href="courses.html" class="btn-primary" data-i18n="hero_cta1">Voir les formations</a>
+      <a href="#about" class="btn-outline" data-i18n="hero_cta2">En savoir plus</a>
+    </div>
+    <div class="hero-stats animate-in" data-delay="4">
+      <div class="hero-stat">
+        <span class="stat-num" data-count="2500">0</span><span>+</span>
+        <span class="stat-label" data-i18n="stat_students">Étudiants</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="hero-stat">
+        <span class="stat-num" data-count="13">0</span><span>+</span>
+        <span class="stat-label" data-i18n="stat_courses">Formations</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="hero-stat">
+        <span class="stat-num" data-count="98">0</span><span>%</span>
+        <span class="stat-label" data-i18n="stat_satisfaction">Satisfaction</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-visual animate-in" data-delay="2">
+    <div class="hero-card-float card-1">
+      <div class="float-card-icon">💻</div>
+      <div class="float-card-text">Dev Frontend</div>
+      <div class="float-card-tag">20.000 FCFA</div>
+    </div>
+    <div class="hero-card-float card-2">
+      <div class="float-card-icon">📊</div>
+      <div class="float-card-text">Data Analytics</div>
+      <div class="float-card-tag">15.000 FCFA</div>
+    </div>
+    <div class="hero-card-float card-3">
+      <div class="float-card-icon">🤝</div>
+      <div class="float-card-text">Négociation</div>
+      <div class="float-card-tag">10.000 FCFA</div>
+    </div>
+    <div class="hero-circle">
+      <div class="hero-circle-inner">
+        <span class="hero-circle-icon">🎓</span>
+        <span class="hero-circle-text">Luckily</span>
+        <span class="hero-circle-sub">Academy</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ FEATURES ═══════════════ -->
+<section class="features-section">
+  <div class="section-container">
+    <div class="section-header">
+      <div class="section-tag" data-i18n="features_tag">Pourquoi nous choisir</div>
+      <h2 class="section-title" data-i18n="features_title">Une expérience d'apprentissage <em>exceptionnelle</em></h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🤖</div>
+        <h3 data-i18n="feat1_title">IA Intégrée</h3>
+        <p data-i18n="feat1_desc">Votre assistant IA personnel répond à vos questions 24h/24, vous guide et adapte les explications à votre niveau.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📸</div>
+        <h3 data-i18n="feat2_title">Cours Illustrés</h3>
+        <p data-i18n="feat2_desc">Chaque étape est accompagnée d'illustrations visuelles pour une compréhension profonde et durable.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔐</div>
+        <h3 data-i18n="feat3_title">Accès Sécurisé</h3>
+        <p data-i18n="feat3_desc">Payez une fois, accédez à vie. Votre compte personnel protège votre progression et vos certifications.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📱</div>
+        <h3 data-i18n="feat4_title">100% Responsive</h3>
+        <p data-i18n="feat4_desc">Apprenez depuis votre téléphone, tablette ou ordinateur. La plateforme s'adapte parfaitement à tous les écrans.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📄</div>
+        <h3 data-i18n="feat5_title">Ressources PDF</h3>
+        <p data-i18n="feat5_desc">Téléchargez vos supports de cours en PDF avec le filigrane Luckily Academy pour réviser offline.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🏆</div>
+        <h3 data-i18n="feat6_title">Certificats</h3>
+        <p data-i18n="feat6_desc">À la fin de chaque formation, recevez un certificat officiel Luckily Academy reconnu par les employeurs.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ COURSES PREVIEW ═══════════════ -->
+<section class="courses-section">
+  <div class="section-container">
+    <div class="section-header">
+      <div class="section-tag" data-i18n="courses_tag">Catalogue</div>
+      <h2 class="section-title" data-i18n="courses_title">Nos <em>formations</em> phares</h2>
+      <p class="section-sub" data-i18n="courses_sub">Des formations conçues par des experts pour vous propulser vers le succès professionnel.</p>
+    </div>
+    <div class="courses-preview-grid" id="coursesPreview"></div>
+    <div class="courses-cta">
+      <a href="courses.html" class="btn-primary" data-i18n="courses_see_all">Voir toutes les formations</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ AI ASSISTANT TEASER ═══════════════ -->
+<section class="ai-section">
+  <div class="section-container">
+    <div class="ai-inner">
+      <div class="ai-text">
+        <div class="section-tag" data-i18n="ai_tag">Intelligence Artificielle</div>
+        <h2 class="section-title" data-i18n="ai_title">Votre tuteur <em>IA</em> personnel</h2>
+        <p data-i18n="ai_desc">Notre assistant IA intégré répond à toutes vos questions en temps réel, vous explique les concepts complexes et vous accompagne tout au long de votre apprentissage. Disponible 24h/24, 7j/7.</p>
+        <ul class="ai-features-list">
+          <li data-i18n="ai_f1">✦ Questions & réponses instantanées</li>
+          <li data-i18n="ai_f2">✦ Explications adaptées à votre niveau</li>
+          <li data-i18n="ai_f3">✦ Résumés de leçons personnalisés</li>
+          <li data-i18n="ai_f4">✦ Quiz générés automatiquement</li>
+        </ul>
+      </div>
+      <div class="ai-demo">
+        <div class="ai-chat-window">
+          <div class="ai-chat-header">
+            <div class="ai-avatar">🤖</div>
+            <div>
+              <div class="ai-name">Luckily AI</div>
+              <div class="ai-status">● En ligne</div>
+            </div>
+          </div>
+          <div class="ai-messages" id="aiDemoMessages">
+            <div class="ai-msg bot">
+              <div class="msg-bubble" data-i18n="ai_demo_q1">Bonjour ! Je suis votre assistant IA. Comment puis-je vous aider aujourd'hui ?</div>
+            </div>
+          </div>
+          <div class="ai-input-row">
+            <input type="text" class="ai-input" placeholder="Posez votre question..." id="aiDemoInput" data-i18n-placeholder="ai_placeholder" />
+            <button class="ai-send" onclick="sendAiDemo()">➤</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ ABOUT ═══════════════ -->
+<section class="about-section" id="about">
+  <div class="section-container">
+    <div class="about-inner">
+      <div class="about-visual">
+        <div class="about-card-main">
+          <div class="about-avatar">👨‍💼</div>
+          <div class="about-name">Luc DEGUENON</div>
+          <div class="about-title" data-i18n="founder_title">Fondateur & Directeur</div>
+          <div class="about-spec" data-i18n="founder_spec">Spécialiste en Technologie Moderne</div>
+          <div class="about-socials">
+            <a href="https://wa.me/2290159609581" target="_blank" class="social-wa">WhatsApp</a>
+          </div>
+        </div>
+        <div class="about-badge-float">
+          <span>🌍</span>
+          <span data-i18n="about_badge">Basé au Bénin</span>
+        </div>
+      </div>
+      <div class="about-text">
+        <div class="section-tag" data-i18n="about_tag">Notre Histoire</div>
+        <h2 class="section-title" data-i18n="about_title">Bâtir l'excellence <em>numérique</em> en Afrique</h2>
+        <p data-i18n="about_p1">Luckily Academy est née d'une conviction profonde : chaque Africain mérite d'accéder à des formations de qualité internationale, dans sa langue, à des prix accessibles.</p>
+        <p data-i18n="about_p2">Fondée par Luc DEGUENON, spécialiste en technologie moderne, notre plateforme propose des formations pratiques et orientées résultats, conçues pour les réalités du marché africain et international.</p>
+        <div class="about-values">
+          <div class="value-pill" data-i18n="val1">Excellence</div>
+          <div class="value-pill" data-i18n="val2">Innovation</div>
+          <div class="value-pill" data-i18n="val3">Accessibilité</div>
+          <div class="value-pill" data-i18n="val4">Impact</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ TESTIMONIALS ═══════════════ -->
+<section class="testimonials-section">
+  <div class="section-container">
+    <div class="section-header">
+      <div class="section-tag" data-i18n="testi_tag">Témoignages</div>
+      <h2 class="section-title" data-i18n="testi_title">Ce que disent nos <em>étudiants</em></h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p data-i18n="testi1_text">"Grâce à la formation Web Marketing de Luckily Academy, j'ai pu lancer mon agence digitale en 3 mois. Le contenu est pratique et les illustrations facilitent vraiment la compréhension."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">👩🏾</div>
+          <div>
+            <div class="testi-name">Aminata K.</div>
+            <div class="testi-role" data-i18n="testi1_role">Directrice d'agence digitale</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card testi-featured">
+        <div class="testi-stars">★★★★★</div>
+        <p data-i18n="testi2_text">"La plateforme est magnifique et les cours sont excellents. L'IA m'a aidé à comprendre des concepts complexes en JavaScript. Je recommande à 100% !"</p>
+        <div class="testi-author">
+          <div class="testi-avatar">👨🏾</div>
+          <div>
+            <div class="testi-name">Kofi M.</div>
+            <div class="testi-role" data-i18n="testi2_role">Développeur Frontend Junior</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p data-i18n="testi3_text">"La formation Excel m'a transformé. Je maîtrise maintenant les tableaux croisés dynamiques et j'ai obtenu une promotion dans mon entreprise."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">👩🏾</div>
+          <div>
+            <div class="testi-name">Fatoumata D.</div>
+            <div class="testi-role" data-i18n="testi3_role">Contrôleur de gestion</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ CTA BANNER ═══════════════ -->
+<section class="cta-banner">
+  <div class="cta-bg-orb"></div>
+  <div class="cta-content">
+    <h2 data-i18n="cta_title">Prêt à transformer votre avenir ?</h2>
+    <p data-i18n="cta_sub">Rejoignez des milliers d'étudiants qui ont déjà choisi l'excellence avec Luckily Academy.</p>
+    <div class="cta-buttons">
+      <a href="auth.html?mode=register" class="btn-primary-large" data-i18n="cta_register">Créer mon compte</a>
+      <a href="courses.html" class="btn-outline-light" data-i18n="cta_browse">Explorer les cours</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <span>🎓</span>
+        <span>Luckily <em>Academy</em></span>
+      </div>
+      <p data-i18n="footer_tagline">Votre succès commence ici. Des formations d'excellence pour l'Afrique et le monde.</p>
+      <div class="footer-contact">
+        <a href="https://wa.me/2290159609581" target="_blank" class="footer-wa">
+          <span>📱</span> +229 01 59 60 95 81
+        </a>
+      </div>
+    </div>
+    <div class="footer-links">
+      <h4 data-i18n="footer_formations">Formations</h4>
+      <a href="courses.html?cat=Marketing">Web Marketing</a>
+      <a href="courses.html?cat=Développement">Développement Web</a>
+      <a href="courses.html?cat=Data">Analyse des Données</a>
+      <a href="courses.html?cat=Informatique">Bureautique</a>
+    </div>
+    <div class="footer-links">
+      <h4 data-i18n="footer_platform">Plateforme</h4>
+      <a href="index.html" data-i18n="nav_home">Accueil</a>
+      <a href="courses.html" data-i18n="nav_courses">Formations</a>
+      <a href="auth.html" data-i18n="nav_login">Se connecter</a>
+      <a href="contact.html" data-i18n="nav_contact">Contact</a>
+    </div>
+    <div class="footer-links">
+      <h4 data-i18n="footer_legal">Légal</h4>
+      <a href="#" data-i18n="footer_terms">Conditions d'utilisation</a>
+      <a href="#" data-i18n="footer_privacy">Politique de confidentialité</a>
+      <a href="#" data-i18n="footer_refund">Politique de remboursement</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span data-i18n="footer_copy">© 2025 Luckily Academy. Tous droits réservés. Fondée par Luc DEGUENON.</span>
+  </div>
+</footer>
+
+<!-- ═══════════════ AI FLOATING BUTTON ═══════════════ -->
+<div class="ai-fab" id="aiFab" onclick="openAIModal()">
+  <span class="ai-fab-icon">🤖</span>
+  <span class="ai-fab-label" data-i18n="ai_fab">Assistant IA</span>
+</div>
+
+<!-- ═══════════════ AI MODAL ═══════════════ -->
+<div class="modal-overlay" id="aiModal">
+  <div class="ai-modal">
+    <div class="ai-modal-header">
+      <div class="ai-modal-title">
+        <span>🤖</span>
+        <span data-i18n="ai_modal_title">Assistant Luckily IA</span>
+      </div>
+      <button class="modal-close" onclick="closeAIModal()">✕</button>
+    </div>
+    <div class="ai-modal-messages" id="aiModalMessages">
+      <div class="ai-msg bot">
+        <div class="msg-bubble" data-i18n="ai_welcome">Bonjour ! 👋 Je suis l'assistant IA de Luckily Academy. Posez-moi vos questions sur nos formations, je suis là pour vous aider !</div>
+      </div>
+    </div>
+    <div class="ai-modal-input">
+      <input type="text" id="aiModalInput" placeholder="Votre question..." data-i18n-placeholder="ai_placeholder" onkeypress="if(event.key==='Enter') sendAiMessage()" />
+      <button onclick="sendAiMessage()" class="ai-send-btn">
+        <span>➤</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ WHATSAPP FLOAT ═══════════════ -->
+<a href="https://wa.me/2290159609581" target="_blank" class="wa-float">
+  <span>💬</span>
+</a>
+
+<script src="js/i18n.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/courses.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
