@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Politique de confidentialité — Luckily Academy</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Jost:wght@400;500;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="style.css"/>
+<script>tailwind.config={theme:{extend:{fontFamily:{display:['Cormorant Garamond','serif'],script:['Dancing Script','cursive'],body:['Jost','sans-serif']}}}}</script>
+</head>
+<body class="font-body">
+<div id="loader" class="fixed inset-0 z-[9999] flex flex-col items-center justify-center" style="background:var(--bg)">
+  <div class="w-14 h-14 rounded-full border-4 border-primary/20 border-t-primary animate-spin mb-3"></div>
+  <div style="font-family:var(--ff-s);font-size:1.6rem;color:var(--primary)">Luckily Academy</div>
+</div>
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-[1000] transition-all duration-300" style="height:var(--nav-h)">
+  <div class="nav-wrap">
+    <a href="index.html" class="nav-logo"><span class="nav-logo-icon">🎓</span><span class="nav-logo-text">Luckily <em>Academy</em></span></a>
+    <div class="nav-links" id="navLinks"><a href="index.html" class="nav-link">Accueil</a><a href="courses.html" class="nav-link">Formations</a><a href="contact.html" class="nav-link">Contact</a></div>
+    <div class="nav-actions">
+      <button id="themeBtn" class="btn-icon"><span id="themeIcon">🌙</span></button>
+      <a href="auth.html" class="btn-login hidden" id="authNavBtn">Se connecter</a>
+      <a href="dashboard.html" class="btn-avatar hidden" id="dashNavBtn"><span id="navAvatar">U</span></a>
+    </div>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div style="padding-top:var(--nav-h)">
+  <div class="page-hero text-center">
+    <div class="wrap">
+      <div class="sec-tag mb-3">Légal</div>
+      <h1 style="font-family:var(--ff-d);font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;">Politique de <em style="color:var(--primary);font-style:italic;">confidentialité</em></h1>
+      <p style="color:var(--text-m);margin-top:8px;font-size:.88rem;">Dernière mise à jour : 1er janvier 2025</p>
+    </div>
+  </div>
+
+  <div class="legal-body">
+
+    <h2>1. Introduction et engagement</h2>
+    <p>Luckily Academy, fondée par <strong>Luc DEGUENON</strong>, s'engage à protéger la vie privée de ses utilisateurs. La présente politique de confidentialité explique quelles données nous collectons, comment nous les utilisons, et les droits dont vous disposez.</p>
+    <p>En utilisant la plateforme Luckily Academy, vous acceptez les pratiques décrites dans cette politique. Nous traitons vos données dans le respect de la législation applicable en matière de protection des données personnelles.</p>
+
+    <h2>2. Données collectées</h2>
+    <h3>2.1 Données fournies directement</h3>
+    <p>Lors de votre inscription et utilisation de la plateforme, nous collectons :</p>
+    <ul>
+      <li><strong>Nom complet</strong> — pour personnaliser votre expérience et émettre vos certificats</li>
+      <li><strong>Adresse email</strong> — pour la création de compte et les communications</li>
+      <li><strong>Numéro de téléphone</strong> (optionnel) — pour les notifications WhatsApp et le support</li>
+      <li><strong>Mot de passe</strong> — chiffré, jamais stocké en clair</li>
+      <li><strong>Données de progression</strong> — leçons complétées, quiz réalisés</li>
+    </ul>
+    <h3>2.2 Données de paiement</h3>
+    <p>Les transactions financières sont traitées via WhatsApp avec notre équipe. Nous ne stockons aucune donnée bancaire ou de carte de crédit sur notre plateforme. Seules les références de paiement (identifiant unique de transaction) sont conservées pour la gestion des accès.</p>
+    <h3>2.3 Données techniques</h3>
+    <p>Notre plateforme peut collecter automatiquement :</p>
+    <ul>
+      <li>Adresse IP (pour des statistiques anonymisées)</li>
+      <li>Type de navigateur et système d'exploitation</li>
+      <li>Pages visitées et durée des sessions</li>
+      <li>Préférences d'interface (thème sombre, langue)</li>
+    </ul>
+    <p><strong>Note importante :</strong> Les données utilisateur (compte, progression, formations) sont stockées localement dans votre navigateur via la technologie localStorage. Elles ne sont pas transmises à des serveurs tiers.</p>
+
+    <h2>3. Utilisation des données</h2>
+    <p>Vos données personnelles sont utilisées exclusivement pour :</p>
+    <ul>
+      <li>Créer et gérer votre compte utilisateur</li>
+      <li>Vous donner accès aux formations achetées</li>
+      <li>Suivre votre progression et délivrer vos certificats</li>
+      <li>Vous envoyer les codes d'accès après paiement</li>
+      <li>Vous contacter pour le support client</li>
+      <li>Améliorer nos services et notre contenu pédagogique</li>
+    </ul>
+    <p><strong>Nous ne vendons, ne louons, ni ne partageons vos données personnelles avec des tiers à des fins commerciales.</strong></p>
+
+    <h2>4. Stockage et sécurité des données</h2>
+    <h3>4.1 Stockage local</h3>
+    <p>La majorité des données utilisateur (profil, formation, progression) sont stockées dans le localStorage de votre navigateur. Ces données restent sur votre appareil et ne transitent pas sur nos serveurs. La suppression du cache de votre navigateur ou de votre compte entraîne la perte de ces données.</p>
+    <h3>4.2 Mesures de sécurité</h3>
+    <p>Nous appliquons les mesures de sécurité suivantes :</p>
+    <ul>
+      <li>Chiffrement des mots de passe (base64, jamais en clair)</li>
+      <li>Connexion HTTPS sur l'ensemble de la plateforme</li>
+      <li>Codes d'accès uniques par formation et par utilisateur</li>
+      <li>Hébergement sécurisé via Vercel (infrastructure certifiée)</li>
+    </ul>
+
+    <h2>5. Cookies et technologies similaires</h2>
+    <p>Luckily Academy utilise :</p>
+    <ul>
+      <li><strong>localStorage</strong> — pour stocker vos préférences et données de session</li>
+      <li><strong>Cookies de session</strong> — pour maintenir votre connexion</li>
+    </ul>
+    <p>Nous n'utilisons pas de cookies publicitaires, de trackers tiers (Google Analytics, Facebook Pixel) ni de cookies de profilage commercial.</p>
+
+    <h2>6. Vos droits</h2>
+    <p>Conformément aux lois sur la protection des données, vous disposez des droits suivants :</p>
+    <ul>
+      <li><strong>Droit d'accès</strong> — consulter les données que nous détenons sur vous</li>
+      <li><strong>Droit de rectification</strong> — corriger vos données inexactes dans vos Paramètres</li>
+      <li><strong>Droit à l'effacement</strong> — supprimer votre compte depuis les Paramètres → Zone Danger</li>
+      <li><strong>Droit à la portabilité</strong> — obtenir une copie de vos données sur demande</li>
+      <li><strong>Droit d'opposition</strong> — vous opposer au traitement de vos données à des fins de communication</li>
+    </ul>
+    <p>Pour exercer ces droits, contactez-nous à <a href="mailto:cultech49@gmail.com" style="color:var(--primary);">cultech49@gmail.com</a>.</p>
+
+    <h2>7. Partage des données</h2>
+    <p>Nous pouvons partager vos données uniquement dans les cas suivants :</p>
+    <ul>
+      <li>Sur votre demande expresse (ex: référence de votre paiement pour vérification)</li>
+      <li>En cas d'obligation légale (réquisition judiciaire ou administrative)</li>
+      <li>Pour protéger les droits de Luckily Academy (fraude, abus)</li>
+    </ul>
+    <p>Nous ne partageons jamais vos données avec des annonceurs ou à des fins de marketing tiers.</p>
+
+    <h2>8. Communications</h2>
+    <p>Avec votre consentement, nous pouvons vous envoyer via WhatsApp ou email :</p>
+    <ul>
+      <li>Vos codes d'accès aux formations achetées</li>
+      <li>Des informations sur les nouvelles formations</li>
+      <li>Des conseils d'apprentissage et ressources gratuites</li>
+    </ul>
+    <p>Vous pouvez vous désabonner à tout moment en nous contactant ou en désactivant les notifications dans vos Paramètres.</p>
+
+    <h2>9. Modifications de la politique</h2>
+    <p>Luckily Academy se réserve le droit de modifier cette politique de confidentialité. Nous vous informerons des changements significatifs par email ou notification sur la plateforme. La version applicable est toujours celle affichée sur cette page.</p>
+
+    <h2>10. Contact et délégué à la protection des données</h2>
+    <p>Pour toute question relative à cette politique ou à vos données personnelles :</p>
+    <ul>
+      <li>📧 <a href="mailto:cultech49@gmail.com" style="color:var(--primary);">cultech49@gmail.com</a></li>
+      <li>📱 <a href="https://wa.me/2290159609581" style="color:var(--primary);">+229 01 59 60 95 81</a> (WhatsApp)</li>
+      <li>📍 Cotonou, République du Bénin</li>
+    </ul>
+
+    <div style="margin-top:40px;padding:20px;background:var(--bg-alt);border-radius:var(--r);border:1px solid var(--border);text-align:center;">
+      <p style="font-size:.83rem;color:var(--text-m);">Votre vie privée est importante pour nous. Luckily Academy s'engage à ne jamais exploiter commercialement vos données personnelles.</p>
+      <a href="index.html" class="btn-primary" style="display:inline-flex;margin-top:16px;">← Retour à l'accueil</a>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div><div class="footer-logo">🎓 Luckily <em>Academy</em></div><p class="footer-brand">Votre succès commence ici.</p><a href="https://wa.me/2290159609581" target="_blank" class="footer-wa">📱 +229 01 59 60 95 81</a></div>
+    <div class="footer-col"><h4>Légal</h4><a href="legal-terms.html">Conditions</a><a href="legal-privacy.html" style="color:var(--primary);">Confidentialité</a><a href="legal-refund.html">Remboursement</a></div>
+    <div class="footer-col"><h4>Plateforme</h4><a href="index.html">Accueil</a><a href="courses.html">Formations</a><a href="contact.html">Contact</a></div>
+    <div class="footer-col"><h4>Contact</h4><a href="mailto:cultech49@gmail.com">cultech49@gmail.com</a><a href="https://wa.me/2290159609581">WhatsApp</a></div>
+  </div>
+  <div class="footer-bottom">© 2025 Luckily Academy. Tous droits réservés. Fondée par Luc DEGUENON.</div>
+</footer>
+<script src="i18n.js"></script><script src="auth.js"></script><script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Dashboard — Luckily Academy</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Jost:wght@400;500;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css"/>
+<script>tailwind.config={theme:{extend:{fontFamily:{display:['Cormorant Garamond','serif'],script:['Dancing Script','cursive'],body:['Jost','sans-serif']}}}}</script>
+</head>
+<body class="font-body">
+<div id="loader" class="fixed inset-0 z-[9999] flex flex-col items-center justify-center" style="background:var(--bg)">
+  <div class="w-14 h-14 rounded-full border-4 border-primary/20 border-t-primary animate-spin mb-3"></div>
+  <div style="font-family:var(--ff-s);font-size:1.6rem;color:var(--primary)">Luckily Academy</div>
+</div>
+
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-[1000] transition-all duration-300" style="height:var(--nav-h)">
+  <div class="nav-wrap">
+    <a href="index.html" class="nav-logo"><span class="nav-logo-icon">🎓</span><span class="nav-logo-text">Luckily <em>Academy</em></span></a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html" class="nav-link">Accueil</a>
+      <a href="courses.html" class="nav-link">Formations</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <button id="themeBtn" class="btn-icon"><span id="themeIcon">🌙</span></button>
+      <div class="lang-wrap"><button id="langBtn" class="lang-btn"><span id="currentLang">FR</span> ▾</button>
+        <div class="lang-drop" id="langDrop">
+          <button onclick="setLanguage('fr')" class="lang-opt">🇫🇷 Français</button>
+          <button onclick="setLanguage('en')" class="lang-opt">🇬🇧 English</button>
+          <button onclick="setLanguage('es')" class="lang-opt">🇪🇸 Español</button>
+          <button onclick="setLanguage('pt')" class="lang-opt">🇵🇹 Português</button>
+        </div>
+      </div>
+      <a href="dashboard.html" class="btn-avatar" id="dashNavBtn"><span id="navAvatar">U</span></a>
+    </div>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="dash-layout">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sb-user">
+      <div class="sb-av" id="sbAvatar">U</div>
+      <div class="sb-name" id="sbName">Étudiant</div>
+      <div class="sb-email" id="sbEmail">email@example.com</div>
+    </div>
+    <nav class="sb-nav">
+      <a href="dashboard.html" class="sb-link active"><span>🏠</span> Dashboard</a>
+      <a href="courses.html" class="sb-link"><span>📚</span> Formations</a>
+      <a href="profile.html" class="sb-link"><span>⚙️</span> Paramètres</a>
+      <a href="contact.html" class="sb-link"><span>💬</span> Contact</a>
+      <hr style="border:none;border-top:1px solid var(--border);margin:8px 0;"/>
+      <button class="sb-link" onclick="logout()" style="color:#EF233C;"><span>🚪</span> Déconnexion</button>
+    </nav>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="dash-main">
+    <div data-aos="fade-up">
+      <h1 class="dash-welcome" id="dashWelcome">Bonjour 👋</h1>
+      <div class="dash-date" id="dashDate"></div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-grid" data-aos="fade-up" data-aos-delay="80">
+      <div class="stat-card" style="border-top:3px solid var(--primary);">
+        <div class="stat-icon">📚</div>
+        <div class="stat-num" id="statCourses">0</div>
+        <div class="stat-lbl">Formations inscrites</div>
+      </div>
+      <div class="stat-card" style="border-top:3px solid #06D6A0;">
+        <div class="stat-icon">📈</div>
+        <div class="stat-num" id="statProg">0%</div>
+        <div class="stat-lbl">Progression moyenne</div>
+      </div>
+      <div class="stat-card" style="border-top:3px solid var(--accent);">
+        <div class="stat-icon">🏆</div>
+        <div class="stat-num" id="statCerts">0</div>
+        <div class="stat-lbl">Certificats obtenus</div>
+      </div>
+      <div class="stat-card" style="border-top:3px solid #7209B7;">
+        <div class="stat-icon">⏱</div>
+        <div class="stat-num" id="statTime">0h</div>
+        <div class="stat-lbl">Temps d'apprentissage</div>
+      </div>
+    </div>
+
+    <!-- Enrolled courses -->
+    <div data-aos="fade-up" data-aos-delay="160">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px;">
+        <h2 style="font-family:var(--ff-d);font-size:1.4rem;font-weight:700;">Mes formations</h2>
+        <a href="courses.html" class="btn-primary" style="padding:9px 20px;font-size:.83rem;">+ Ajouter une formation</a>
+      </div>
+      <div class="enrolled-grid" id="enrolledGrid"></div>
+    </div>
+
+    <!-- AI Block -->
+    <div class="mt-10 rounded-2xl p-6" style="background:linear-gradient(135deg,rgba(0,180,216,.08),rgba(247,127,0,.05));border:1px solid rgba(0,180,216,.15);" data-aos="fade-up" data-aos-delay="240">
+      <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+        <div style="font-size:2.2rem;">🤖</div>
+        <div style="flex:1;">
+          <h3 style="font-family:var(--ff-d);font-size:1.1rem;font-weight:700;margin-bottom:4px;">Votre assistant IA est disponible</h3>
+          <p style="font-size:.83rem;color:var(--text-m);">Posez vos questions sur n'importe quelle formation, obtenez des explications et des exercices personnalisés.</p>
+        </div>
+        <button onclick="openAIModal()" class="btn-primary" style="padding:10px 22px;flex-shrink:0;">Ouvrir l'IA →</button>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- AI Modal -->
+<div class="modal-ov" id="aiModal">
+  <div class="modal-box">
+    <div class="modal-head"><div class="modal-title"><span>🤖</span><span>Luckily IA</span></div><button class="modal-close" onclick="closeAIModal()">✕</button></div>
+    <div class="modal-msgs" id="aiModalMsgs"><div class="ai-msg bot"><div class="msg-bbl" data-t="ai_welcome">Bonjour ! Comment puis-je vous aider aujourd'hui ?</div></div></div>
+    <div class="modal-inp-row"><input id="aiInput" class="modal-inp" placeholder="Votre question..." onkeypress="if(event.key==='Enter') sendAIModal()"/><button class="modal-send" onclick="sendAIModal()">➤</button></div>
+  </div>
+</div>
+<a href="https://wa.me/2290159609581" target="_blank" class="wa-fab">💬</a>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script src="i18n.js"></script><script src="auth.js"></script><script src="courses.js"></script><script src="main.js"></script>
+<script>
+AOS.init({duration:600,once:true});
+// Redirect if not logged in (handled in renderDashboard)
+const dateEl=document.getElementById('dashDate');
+if(dateEl) dateEl.textContent=new Date().toLocaleDateString('fr-FR',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+</script>
+</body>
+</html>
