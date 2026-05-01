@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Paramètres — Luckily Academy</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>"/>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<div id="loader"><div class="ld-ring"></div><div class="ld-text">Luckily Academy</div></div>
+
+<nav id="navbar">
+  <div class="nav-wrap">
+    <a href="index.html" class="nav-logo"><span class="nav-logo-icon">🎓</span><span class="nav-logo-text">Luckily <em>Academy</em></span></a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html" class="nav-link">Accueil</a>
+      <a href="courses.html" class="nav-link">Formations</a>
+    </div>
+    <div class="nav-actions">
+      <button class="btn-icon" id="themeBtn"><span id="themeIcon">🌙</span></button>
+      <a href="dashboard.html" class="btn-avatar" id="dashBtn"><span id="navAv">U</span></a>
+    </div>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="dash-layout">
+  <aside class="sidebar">
+    <div class="sb-user">
+      <div class="sb-av" id="sbAv">U</div>
+      <div class="sb-name" id="sbName">Étudiant</div>
+      <div class="sb-email" id="sbEmail">email@example.com</div>
+    </div>
+    <nav class="sb-nav">
+      <a href="dashboard.html" class="sb-link"><span>🏠</span> Dashboard</a>
+      <a href="courses.html" class="sb-link"><span>📚</span> Formations</a>
+      <a href="profile.html" class="sb-link active"><span>⚙️</span> Paramètres</a>
+      <a href="contact.html" class="sb-link"><span>💬</span> Contact</a>
+      <hr style="border:none;border-top:1px solid var(--border);margin:8px 0"/>
+      <button class="sb-link" onclick="doLogout()" style="color:#EF233C"><span>🚪</span> Déconnexion</button>
+    </nav>
+  </aside>
+
+  <main class="dash-main">
+    <h1 class="dash-welcome" style="margin-bottom:28px">⚙️ Paramètres</h1>
+
+    <!-- Profile -->
+    <div class="settings-card">
+      <h3>👤 Mon profil</h3>
+      <div id="saveOk" class="form-ok" style="margin-bottom:16px"></div>
+      <form id="profileForm">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+          <div class="form-grp" style="margin-bottom:0">
+            <label class="form-lbl">Nom complet</label>
+            <input type="text" id="profName" class="form-inp"/>
+          </div>
+          <div class="form-grp" style="margin-bottom:0">
+            <label class="form-lbl">Téléphone</label>
+            <input type="tel" id="profPhone" class="form-inp"/>
+          </div>
+        </div>
+        <div class="form-grp" style="margin-bottom:20px">
+          <label class="form-lbl">Email <span style="color:var(--text-m);font-weight:400;text-transform:none;letter-spacing:0;font-size:.75rem">(non modifiable)</span></label>
+          <input type="email" id="profEmail" class="form-inp" disabled style="opacity:.6"/>
+        </div>
+        <button type="submit" class="btn-primary" style="padding:12px 28px">Enregistrer les modifications</button>
+      </form>
+    </div>
+
+    <!-- Apparence -->
+    <div class="settings-card">
+      <h3>🎨 Apparence</h3>
+      <div class="settings-row">
+        <div>
+          <div class="settings-lbl">Mode sombre</div>
+          <div class="settings-desc">Activer le thème sombre pour réduire la fatigue oculaire</div>
+        </div>
+        <label class="toggle"><input type="checkbox" id="darkToggle" onchange="toggleTheme()"/><span class="toggle-sl"></span></label>
+      </div>
+      <div class="settings-row">
+        <div>
+          <div class="settings-lbl">Langue de l'interface</div>
+          <div class="settings-desc">Choisissez la langue d'affichage de la plateforme</div>
+        </div>
+        <select id="langSel" onchange="changeLang(this.value)" style="padding:8px 12px;border-radius:var(--r-sm);border:1px solid var(--border);background:var(--bg-alt);color:var(--text);font-family:var(--ff-b);font-size:.85rem;outline:none;cursor:pointer">
+          <option value="fr">🇫🇷 Français</option>
+          <option value="en">🇬🇧 English</option>
+          <option value="es">🇪🇸 Español</option>
+          <option value="pt">🇵🇹 Português</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Notifications -->
+    <div class="settings-card">
+      <h3>🔔 Notifications</h3>
+      <div class="settings-row">
+        <div>
+          <div class="settings-lbl">Nouvelles formations</div>
+          <div class="settings-desc">Être alerté des nouvelles formations disponibles</div>
+        </div>
+        <label class="toggle"><input type="checkbox" id="notifNew" checked/><span class="toggle-sl"></span></label>
+      </div>
+      <div class="settings-row">
+        <div>
+          <div class="settings-lbl">Rappels de progression</div>
+          <div class="settings-desc">Rappels hebdomadaires pour reprendre vos formations</div>
+        </div>
+        <label class="toggle"><input type="checkbox" id="notifProg" checked/><span class="toggle-sl"></span></label>
+      </div>
+    </div>
+
+    <!-- Sécurité -->
+    <div class="settings-card">
+      <h3>🔐 Sécurité</h3>
+      <div class="settings-row">
+        <div>
+          <div class="settings-lbl">Changer le mot de passe</div>
+          <div class="settings-desc">Modifier votre mot de passe de connexion</div>
+        </div>
+        <button onclick="togglePwdSection()" id="pwdToggleBtn" style="padding:7px 16px;border-radius:var(--r-full);border:1.5px solid var(--border);color:var(--text);font-size:.82rem;font-weight:600;cursor:pointer;background:transparent;transition:var(--tr);font-family:var(--ff-b)" onmouseover="this.style.borderColor='var(--primary)';this.style.color='var(--primary)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text)'">Modifier</button>
+      </div>
+      <div id="pwdSection" style="display:none;padding-top:16px">
+        <div id="pwdErr" class="form-err" style="margin-bottom:12px"></div>
+        <div class="form-grp"><label class="form-lbl">Nouveau mot de passe</label><input type="password" id="newPwd" class="form-inp" placeholder="••••••••"/></div>
+        <div class="form-grp"><label class="form-lbl">Confirmer</label><input type="password" id="confPwd" class="form-inp" placeholder="••••••••"/></div>
+        <button onclick="changePwd()" class="btn-primary" style="padding:11px 24px">Enregistrer le mot de passe</button>
+      </div>
+    </div>
+
+    <!-- Mes codes d'accès -->
+    <div class="settings-card">
+      <h3>🔑 Mes codes d'accès</h3>
+      <p style="font-size:.85rem;color:var(--text-m);margin-bottom:16px;line-height:1.6">Les codes d'accès vous sont envoyés par WhatsApp après confirmation de votre paiement. Chaque code est unique et personnel — ne le partagez jamais.</p>
+      <div id="myCodesGrid" style="display:flex;flex-direction:column;gap:8px"></div>
+      <div style="margin-top:14px;padding:12px 14px;background:var(--bg-alt);border-radius:var(--r-sm);border:1px solid var(--border)">
+        <div style="font-size:.82rem;font-weight:600;margin-bottom:4px">Vous n'avez pas encore de code ?</div>
+        <div style="font-size:.8rem;color:var(--text-m)">Choisissez une formation, cliquez sur "S'inscrire via WhatsApp" et notre équipe vous enverra votre code d'accès après confirmation du paiement.</div>
+        <a href="courses.html" class="btn-primary" style="display:inline-flex;margin-top:10px;padding:8px 18px;font-size:.82rem">Voir les formations →</a>
+      </div>
+    </div>
+
+    <!-- Danger Zone -->
+    <div class="settings-card" style="border-color:rgba(239,35,60,.2)">
+      <h3 style="color:#EF233C">⚠️ Zone Danger</h3>
+      <div class="settings-row">
+        <div>
+          <div class="settings-lbl">Supprimer mon compte</div>
+          <div class="settings-desc">Action irréversible — toutes vos données seront supprimées définitivement</div>
+        </div>
+        <button onclick="delAccount()" style="padding:7px 16px;border-radius:var(--r-full);background:rgba(239,35,60,.1);border:1.5px solid rgba(239,35,60,.3);color:#EF233C;font-size:.82rem;font-weight:600;cursor:pointer;font-family:var(--ff-b)">Supprimer</button>
+      </div>
+    </div>
+  </main>
+</div>
+
+<a href="https://wa.me/2290159609581" target="_blank" class="wa-fab">💬</a>
+
+<script>
+const K={USERS:'la_u',SESS:'la_s',ENROLL:'la_e',PROG:'la_p',THEME:'la_t',LANG:'la_l'};
+function sg(k){try{return JSON.parse(localStorage.getItem(k)||'null');}catch{return null;}}
+function ss(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch{}}
+function getUsers(){return sg(K.USERS)||[];}
+function saveUsers(u){ss(K.USERS,u);}
+function getSess(){return sg(K.SESS);}
+function clearSess(){localStorage.removeItem(K.SESS);}
+function isLoggedIn(){return !!getSess();}
+function getCurUser(){const s=getSess();if(!s)return null;return getUsers().find(u=>u.id===s.userId)||null;}
+function getEnrolls(){return sg(K.ENROLL)||{};}
+function getUserCourses(uid){return(getEnrolls()[uid]||[]);}
+function doLogout(){clearSess();window.location.href='index.html';}
+function toast(msg,type='info'){document.querySelector('.la-toast')?.remove();const c={success:'#06D6A0',error:'#EF233C',info:'#00B4D8',warning:'#F77F00'};const t=document.createElement('div');t.className='la-toast';t.textContent=msg;t.style.background=c[type]||c.info;document.body.appendChild(t);requestAnimationFrame(()=>{t.style.opacity='1';t.style.transform='translateX(-50%) translateY(0)';});setTimeout(()=>{t.style.opacity='0';t.style.transform='translateX(-50%) translateY(14px)';setTimeout(()=>t.remove(),350);},3200);}
+
+// Theme
+(function(){
+  const t=localStorage.getItem(K.THEME)||'light';
+  document.documentElement.setAttribute('data-theme',t);
+  const i=document.getElementById('themeIcon');if(i)i.textContent=t==='dark'?'☀️':'🌙';
+  const dt=document.getElementById('darkToggle');if(dt)dt.checked=t==='dark';
+})();
+function toggleTheme(){
+  const cur=document.documentElement.getAttribute('data-theme')||'light';
+  const nxt=cur==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',nxt);
+  localStorage.setItem(K.THEME,nxt);
+  const i=document.getElementById('themeIcon');if(i)i.textContent=nxt==='dark'?'☀️':'🌙';
+  const dt=document.getElementById('darkToggle');if(dt)dt.checked=nxt==='dark';
+}
+
+function changeLang(l){
+  localStorage.setItem(K.LANG,l);
+  toast('Langue mise à jour. Rechargez pour voir les changements.','success');
+}
+
+const COURSE_NAMES={
+  'web-marketing':'📢 Web Marketing','negociation':'🤝 Négociation Commerciale',
+  'charge-clientele':'🎯 Chargé Clientèle','dev-frontend':'💻 Dev Web Frontend',
+  'dev-backend':'⚙️ Dev Web Backend','analyse-donnees':'📊 Analyse des Données',
+  'word-debutant':'📝 Word — Débutant','word-intermediaire':'📄 Word — Intermédiaire',
+  'word-avance':'📋 Word — Avancé','excel-debutant':'📊 Excel — Débutant',
+  'excel-intermediaire':'📈 Excel — Intermédiaire','excel-avance':'📉 Excel — Avancé',
+  'outils':'🔧 Outils Bureautique'
+};
+
+function initSettings(){
+  if(!isLoggedIn()){window.location.href='auth.html';return;}
+  const user=getCurUser();const sess=getSess();
+
+  // Fill profile
+  if(user){
+    document.getElementById('profName').value=user.fullname||'';
+    document.getElementById('profEmail').value=user.email||'';
+    document.getElementById('profPhone').value=user.phone||'';
+    document.getElementById('sbAv').textContent=user.fullname.charAt(0).toUpperCase();
+    document.getElementById('sbName').textContent=user.fullname;
+    document.getElementById('sbEmail').textContent=user.email;
+    document.getElementById('navAv').textContent=user.fullname.charAt(0).toUpperCase();
+  }
+
+  // Language
+  const langSel=document.getElementById('langSel');
+  if(langSel)langSel.value=localStorage.getItem(K.LANG)||'fr';
+
+  // Enrolled courses
+  if(sess){
+    const ids=getUserCourses(sess.userId);
+    const grid=document.getElementById('myCodesGrid');
+    if(grid){
+      if(!ids.length){
+        grid.innerHTML='<div style="font-size:.85rem;color:var(--text-m)">Aucune formation achetée pour l\'instant.</div>';
+      }else{
+        grid.innerHTML=ids.map(cid=>`
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--bg-alt);border-radius:var(--r-sm);border:1px solid var(--border)">
+            <span style="font-size:.88rem;font-weight:600">${COURSE_NAMES[cid]||cid}</span>
+            <a href="lesson.html?course=${cid}&chapter=0&lesson=0" style="padding:6px 14px;border-radius:50px;background:var(--primary-l);color:var(--primary);font-size:.78rem;font-weight:700;text-decoration:none">Accéder →</a>
+          </div>`).join('');
+      }
+    }
+  }
+
+  // Profile form
+  document.getElementById('profileForm').addEventListener('submit',e=>{
+    e.preventDefault();
+    const sess2=getSess();if(!sess2)return;
+    const users=getUsers();
+    const idx=users.findIndex(u=>u.id===sess2.userId);
+    if(idx!==-1){
+      const newName=document.getElementById('profName').value.trim();
+      const newPhone=document.getElementById('profPhone').value.trim();
+      if(!newName){toast('Le nom ne peut pas être vide.','error');return;}
+      users[idx].fullname=newName.substring(0,100);
+      users[idx].phone=newPhone.substring(0,20);
+      saveUsers(users);
+      // Update session
+      ss(K.SESS,{userId:sess2.userId,email:sess2.email,fullname:newName});
+      const ok=document.getElementById('saveOk');
+      if(ok){ok.style.display='block';ok.textContent='✓ Profil mis à jour avec succès !';}
+      // Update UI
+      document.getElementById('sbName').textContent=newName;
+      document.getElementById('sbAv').textContent=newName.charAt(0).toUpperCase();
+      document.getElementById('navAv').textContent=newName.charAt(0).toUpperCase();
+      setTimeout(()=>{const el=document.getElementById('saveOk');if(el)el.style.display='none';},3000);
+    }
+  });
+}
+
+function togglePwdSection(){
+  const s=document.getElementById('pwdSection');
+  if(s)s.style.display=s.style.display==='none'?'block':'none';
+}
+
+function changePwd(){
+  const p=document.getElementById('newPwd')?.value||'';
+  const c=document.getElementById('confPwd')?.value||'';
+  const errEl=document.getElementById('pwdErr');
+  if(errEl)errEl.style.display='none';
+  if(!p){if(errEl){errEl.style.display='block';errEl.textContent='Entrez un nouveau mot de passe.';}return;}
+  if(p!==c){if(errEl){errEl.style.display='block';errEl.textContent='Les mots de passe ne correspondent pas.';}return;}
+  if(p.length<6){if(errEl){errEl.style.display='block';errEl.textContent='Minimum 6 caractères.';}return;}
+  const sess=getSess();if(!sess)return;
+  const users=getUsers();
+  const idx=users.findIndex(u=>u.id===sess.userId);
+  if(idx!==-1){
+    users[idx].password=btoa(unescape(encodeURIComponent(p)));
+    saveUsers(users);
+    toast('✓ Mot de passe mis à jour !','success');
+    document.getElementById('pwdSection').style.display='none';
+    document.getElementById('newPwd').value='';
+    document.getElementById('confPwd').value='';
+  }
+}
+
+function delAccount(){
+  if(!confirm('Êtes-vous sûr(e) de vouloir supprimer votre compte ? Cette action est irréversible et toutes vos données (progression, accès aux formations) seront perdues.'))return;
+  const sess=getSess();
+  if(sess){
+    const users=getUsers().filter(u=>u.id!==sess.userId);
+    saveUsers(users);
+    clearSess();
+    window.location.href='index.html';
+  }
+}
+
+function initNav(){
+  const nav=document.getElementById('navbar');const hbg=document.getElementById('hamburger');const nls=document.getElementById('navLinks');
+  if(nav)window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>40),{passive:true});
+  if(hbg&&nls){hbg.addEventListener('click',e=>{e.stopPropagation();const o=nls.classList.toggle('open');hbg.classList.toggle('open',o);});document.addEventListener('click',e=>{if(nav&&!nav.contains(e.target)){nls.classList.remove('open');hbg.classList.remove('open');}});}
+  document.getElementById('themeBtn')?.addEventListener('click',toggleTheme);
+}
+
+window.addEventListener('load',()=>setTimeout(()=>document.getElementById('loader')?.classList.add('hidden'),1000));
+const rs=document.createElement('style');rs.textContent='.la-toast{opacity:0;transform:translateX(-50%) translateY(14px);transition:all .3s cubic-bezier(.34,1.56,.64,1);}@media(max-width:640px){#profileForm .grid-cols-2{grid-template-columns:1fr!important;}}';document.head.appendChild(rs);
+document.addEventListener('DOMContentLoaded',()=>{initNav();initSettings();});
+</script>
+</body>
+</html>

@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Luckily Academy — Apprenez. Évoluez. Réussissez.</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>"/>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="ld-ring"></div>
+  <div class="ld-text">Luckily Academy</div>
+</div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="nav-wrap">
+    <a href="index.html" class="nav-logo">
+      <span class="nav-logo-icon">🎓</span>
+      <span class="nav-logo-text">Luckily <em>Academy</em></span>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html" class="nav-link active">Accueil</a>
+      <a href="courses.html" class="nav-link">Formations</a>
+      <a href="index.html#about" class="nav-link">À propos</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <button class="btn-icon" id="themeBtn" title="Thème"><span id="themeIcon">🌙</span></button>
+      <div class="lang-wrap">
+        <button class="lang-btn" id="langBtn"><span id="curLang">FR</span> ▾</button>
+        <div class="lang-drop" id="langDrop">
+          <button class="lang-opt" onclick="setLang('fr')">🇫🇷 Français</button>
+          <button class="lang-opt" onclick="setLang('en')">🇬🇧 English</button>
+          <button class="lang-opt" onclick="setLang('es')">🇪🇸 Español</button>
+          <button class="lang-opt" onclick="setLang('pt')">🇵🇹 Português</button>
+        </div>
+      </div>
+      <a href="auth.html" class="btn-login" id="authBtn">Se connecter</a>
+      <a href="dashboard.html" class="btn-avatar hidden" id="dashBtn"><span id="navAv">U</span></a>
+    </div>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-orb o1"></div>
+  <div class="hero-orb o2"></div>
+
+  <div class="hero-content">
+    <div>
+      <div class="hero-badge anim">
+        <span class="badge-dot"></span>
+        <span id="h-badge">Plateforme d'excellence · Bénin & Afrique</span>
+      </div>
+      <h1 class="hero-title anim">
+        <span id="h-t1">Apprenez.</span>
+        <span class="hero-title-em" id="h-t2">Évoluez.</span>
+        <span id="h-t3">Réussissez.</span>
+      </h1>
+      <p class="hero-sub anim" id="h-sub">Des formations professionnelles de qualité, accessibles depuis chez vous. Développez vos compétences avec des experts et propulsez votre carrière.</p>
+      <div class="hero-cta anim">
+        <a href="courses.html" class="btn-primary" id="h-cta1">Voir les formations →</a>
+        <a href="#about" class="btn-outline" id="h-cta2">En savoir plus</a>
+      </div>
+      <div class="hero-stats anim">
+        <div class="stat-item">
+          <div class="stat-n" data-count="2500">0</div>
+          <div class="stat-l" id="h-s1">Étudiants</div>
+        </div>
+        <div class="stat-div"></div>
+        <div class="stat-item">
+          <div class="stat-n" data-count="13">0</div>
+          <div class="stat-l" id="h-s2">Formations</div>
+        </div>
+        <div class="stat-div"></div>
+        <div class="stat-item">
+          <div class="stat-n" data-count="98">0</div><span style="font-family:var(--ff-d);font-size:2rem;font-weight:700;color:var(--primary);line-height:1;">%</span>
+          <div class="stat-l" id="h-s3">Satisfaction</div>
+        </div>
+      </div>
+    </div>
+    <!-- Visual -->
+    <div class="hero-visual">
+      <div class="hero-circle-wrap">
+        <div class="hero-circle">
+          <div class="hero-circle-inner">
+            <div class="hci-icon">🎓</div>
+            <div class="hci-text">Luckily</div>
+            <div class="hci-sub">Academy</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-float hf1"><span class="hf-icon">💻</span><div><div class="hf-name">Dev Frontend</div></div><span class="hf-price">20K FCFA</span></div>
+      <div class="hero-float hf2"><span class="hf-icon">📊</span><div><div class="hf-name">Data Analytics</div></div><span class="hf-price">15K FCFA</span></div>
+      <div class="hero-float hf3"><span class="hf-icon">🤝</span><div><div class="hf-name">Négociation</div></div><span class="hf-price">10K FCFA</span></div>
+    </div>
+  </div>
+  <div class="scroll-ind">
+    <span>Scroll</span>
+    <div class="scroll-wheel"><div class="scroll-dot"></div></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">📢 Web Marketing <span style="color:var(--primary)">10 000 FCFA</span></span>
+    <span style="color:var(--accent)">✦</span>
+    <span class="marquee-item">💻 Dev Frontend <span style="color:var(--primary)">20 000 FCFA</span></span>
+    <span style="color:var(--accent)">✦</span>
+    <span class="marquee-item">⚙️ Dev Backend <span style="color:var(--primary)">25 000 FCFA</span></span>
+    <span style="color:var(--accent)">✦</span>
+    <span class="marquee-item">📊 Analyse Données <span style="color:var(--primary)">15 000 FCFA</span></span>
+    <span style="color:var(--accent)">✦</span>
+    <span class="marquee-item">🤝 Négociation <span style="color:var(--primary)">10 000 FCFA</span></span>
+    <span style="color:var(--accent)">✦</span>
+    <span class="marquee-item">🎯 Chargé Clientèle <span style="color:var(--primary)">10 000 FCFA</span></span>
+    <span style="color:var(--accent)">✦</span>
+    <span class="marquee-item">📝 Word & Excel <span style="color:var(--primary)">5 000 FCFA</span></span>
+    <span style="color:var(--accent)">✦</span>
+    <span class="marquee-item">📢 Web Marketing <span style="color:var(--primary)">10 000 FCFA</span></span>
+    <span style="color:var(--accent)">✦</span>
+    <span class="marquee-item">💻 Dev Frontend <span style="color:var(--primary)">20 000 FCFA</span></span>
+    <span style="color:var(--accent)">✦</span>
+    <span class="marquee-item">⚙️ Dev Backend <span style="color:var(--primary)">25 000 FCFA</span></span>
+    <span style="color:var(--accent)">✦</span>
+    <span class="marquee-item">📊 Analyse Données <span style="color:var(--primary)">15 000 FCFA</span></span>
+    <span style="color:var(--accent)">✦</span>
+    <span class="marquee-item">🤝 Négociation <span style="color:var(--primary)">10 000 FCFA</span></span>
+    <span style="color:var(--accent)">✦</span>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-tag">Pourquoi nous choisir</div>
+      <h2 class="sec-title">Une expérience <em>exceptionnelle</em></h2>
+    </div>
+    <div class="features-grid">
+      <div class="feat-card anim"><span class="feat-icon">🤖</span><h3>IA Intégrée</h3><p>Votre assistant IA personnel répond à vos questions 24h/24, guide et adapte les explications à votre niveau.</p></div>
+      <div class="feat-card anim"><span class="feat-icon">🖼️</span><h3>Cours Illustrés</h3><p>Chaque étape est accompagnée d'illustrations visuelles réelles pour une compréhension profonde et durable.</p></div>
+      <div class="feat-card anim"><span class="feat-icon">🔐</span><h3>Accès Sécurisé</h3><p>Code d'accès unique après paiement confirmé. Votre formation est protégée et accessible uniquement pour vous.</p></div>
+      <div class="feat-card anim"><span class="feat-icon">📱</span><h3>100% Responsive</h3><p>Apprenez depuis votre téléphone, tablette ou ordinateur. La plateforme s'adapte parfaitement à tous les écrans.</p></div>
+      <div class="feat-card anim"><span class="feat-icon">📄</span><h3>PDF Téléchargeables</h3><p>Téléchargez vos supports de cours en PDF avec le filigrane officiel Luckily Academy pour réviser hors ligne.</p></div>
+      <div class="feat-card anim"><span class="feat-icon">🏆</span><h3>Certificats Officiels</h3><p>À la fin de chaque formation, recevez un certificat officiel Luckily Academy reconnu par les employeurs.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- COURSES -->
+<section class="section section-alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-tag">Catalogue</div>
+      <h2 class="sec-title">Nos <em>formations</em> phares</h2>
+      <p class="sec-sub">Des formations conçues par des experts pour votre succès professionnel.</p>
+    </div>
+    <div class="courses-grid" id="coursesPreview"></div>
+    <div style="text-align:center;margin-top:40px;">
+      <a href="courses.html" class="btn-primary">Voir toutes les formations →</a>
+    </div>
+  </div>
+</section>
+
+<!-- AI SECTION -->
+<section class="section">
+  <div class="wrap">
+    <div class="ai-grid">
+      <div class="ai-text-left anim">
+        <div class="sec-tag" style="text-align:left;">Intelligence Artificielle</div>
+        <h2 class="sec-title" style="text-align:left;font-size:clamp(1.7rem,3vw,2.4rem);margin-bottom:18px;">Votre tuteur <em>IA</em> personnel</h2>
+        <p>Notre assistant IA répond à vos questions 24h/24, explique les concepts complexes et vous accompagne à chaque étape de votre apprentissage.</p>
+        <ul class="ai-feats">
+          <li>✦ Questions & réponses instantanées</li>
+          <li>✦ Explications adaptées à votre niveau</li>
+          <li>✦ Résumés de leçons personnalisés</li>
+          <li>✦ Quiz générés automatiquement</li>
+          <li>✦ Disponible en 4 langues (FR/EN/ES/PT)</li>
+        </ul>
+      </div>
+      <div class="ai-window anim">
+        <div class="ai-head">
+          <div class="ai-av">🤖</div>
+          <div><div class="ai-nm">Luckily IA</div><div class="ai-st">● En ligne</div></div>
+        </div>
+        <div class="ai-msgs" id="demoMsgs">
+          <div class="ai-msg bot"><div class="msg-bbl">Bonjour ! Je suis votre assistant IA Luckily Academy. Comment puis-je vous aider aujourd'hui ? 😊</div></div>
+        </div>
+        <div class="ai-inp-row">
+          <input class="ai-inp" id="demoInput" placeholder="Ex: Quelle formation choisir pour le web ?" onkeypress="if(event.key==='Enter')sendDemo()"/>
+          <button class="ai-send" onclick="sendDemo()">➤</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section section-alt" id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div>
+        <div class="about-card anim">
+          <div class="ab-av">👨‍💼</div>
+          <div class="ab-name">Luc DEGUENON</div>
+          <div class="ab-role">Fondateur & Directeur</div>
+          <div class="ab-spec">Spécialiste en Technologie Moderne</div>
+          <a href="https://wa.me/2290159609581" target="_blank" class="ab-wa">💬 WhatsApp</a>
+          <div class="ab-badge">🌍 Bénin, Afrique</div>
+        </div>
+      </div>
+      <div class="about-text-right anim">
+        <div class="sec-tag" style="text-align:left;">Notre Histoire</div>
+        <h2 class="sec-title" style="text-align:left;font-size:clamp(1.7rem,3vw,2.4rem);margin-bottom:18px;">Bâtir l'excellence <em>numérique</em> en Afrique</h2>
+        <p>Luckily Academy est née d'une conviction profonde : chaque Africain mérite d'accéder à des formations de qualité internationale, dans sa langue, à des prix accessibles.</p>
+        <p>Fondée par Luc DEGUENON, spécialiste en technologie moderne, notre plateforme propose des formations pratiques et orientées résultats, conçues pour les réalités du marché africain et international.</p>
+        <div class="values-grid">
+          <div class="val-card"><div class="val-icon">⭐</div><div class="val-name">Excellence</div><div class="val-desc">Formations selon les standards internationaux, sélectionnées par des experts du terrain.</div></div>
+          <div class="val-card"><div class="val-icon">💡</div><div class="val-name">Innovation</div><div class="val-desc">IA intégrée, cours illustrés — nous utilisons les dernières technologies pour maximiser l'apprentissage.</div></div>
+          <div class="val-card"><div class="val-icon">🌍</div><div class="val-name">Accessibilité</div><div class="val-desc">Prix adaptés au marché africain, formations disponibles en 4 langues, accessibles partout.</div></div>
+          <div class="val-card"><div class="val-icon">🚀</div><div class="val-name">Impact</div><div class="val-desc">Chaque formation est conçue pour transformer concrètement votre vie professionnelle.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-tag">Témoignages</div>
+      <h2 class="sec-title">Ce que disent nos <em>étudiants</em></h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card anim">
+        <div class="testi-stars">★★★★★</div>
+        <p>"Grâce à la formation Web Marketing, j'ai lancé mon agence digitale en 3 mois. Le contenu est pratique et les illustrations facilitent vraiment la compréhension."</p>
+        <div class="testi-author"><div class="testi-av">👩🏾</div><div><div class="testi-name">Aminata K.</div><div class="testi-role">Directrice d'agence · Cotonou</div></div></div>
+      </div>
+      <div class="testi-card featured anim">
+        <div class="testi-stars">★★★★★</div>
+        <p>"La plateforme est magnifique et les cours sont excellents. L'IA m'a aidé à comprendre des concepts complexes en JavaScript. Je recommande à 100% !"</p>
+        <div class="testi-author"><div class="testi-av">👨🏾</div><div><div class="testi-name">Kofi M.</div><div class="testi-role">Développeur Frontend · Lomé</div></div></div>
+      </div>
+      <div class="testi-card anim">
+        <div class="testi-stars">★★★★★</div>
+        <p>"La formation Excel m'a transformé. Je maîtrise maintenant les tableaux croisés dynamiques et j'ai obtenu une promotion dans mon entreprise."</p>
+        <div class="testi-author"><div class="testi-av">👩🏾</div><div><div class="testi-name">Fatoumata D.</div><div class="testi-role">Contrôleur de gestion · Dakar</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-orb"></div>
+  <div class="cta-content">
+    <h2>Prêt à transformer votre avenir ?</h2>
+    <p>Rejoignez des milliers d'étudiants qui ont choisi l'excellence avec Luckily Academy.</p>
+    <div class="cta-btns">
+      <a href="auth.html?mode=register" class="btn-primary-lg">🎓 Créer mon compte</a>
+      <a href="courses.html" class="btn-outline-lt">Explorer les cours</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">🎓 Luckily <em>Academy</em></div>
+      <p class="footer-brand">Votre succès commence ici. Des formations d'excellence pour l'Afrique et le monde.</p>
+      <a href="https://wa.me/2290159609581" target="_blank" class="footer-wa">📱 +229 01 59 60 95 81</a>
+    </div>
+    <div class="footer-col">
+      <h4>Formations</h4>
+      <a href="courses.html?cat=Marketing">Web Marketing</a>
+      <a href="courses.html?cat=Dev">Développement Web</a>
+      <a href="courses.html?cat=Data">Analyse des Données</a>
+      <a href="courses.html?cat=Bureautique">Bureautique</a>
+    </div>
+    <div class="footer-col">
+      <h4>Plateforme</h4>
+      <a href="index.html">Accueil</a>
+      <a href="courses.html">Formations</a>
+      <a href="auth.html">Se connecter</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Légal</h4>
+      <a href="legal-terms.html">Conditions d'utilisation</a>
+      <a href="legal-privacy.html">Confidentialité</a>
+      <a href="legal-refund.html">Remboursement</a>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2025 Luckily Academy. Tous droits réservés. Fondée par Luc DEGUENON.</div>
+</footer>
+
+<!-- AI FAB -->
+<button class="ai-fab" onclick="openAI()" title="Assistant IA">🤖 <span>Assistant IA</span></button>
+<a href="https://wa.me/2290159609581" target="_blank" class="wa-fab" title="WhatsApp">💬</a>
+
+<!-- AI MODAL -->
+<div class="modal-ov" id="aiModal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <div class="modal-title"><span>🤖</span><span>Luckily IA</span></div>
+      <button class="modal-close" onclick="closeAI()">✕</button>
+    </div>
+    <div class="modal-msgs" id="aiMsgs">
+      <div class="ai-msg bot"><div class="msg-bbl">Bonjour ! 👋 Je suis l'assistant IA de Luckily Academy. Posez-moi vos questions sur nos formations !</div></div>
+    </div>
+    <div class="modal-inp-row">
+      <input class="modal-inp" id="aiInp" placeholder="Votre question..." onkeypress="if(event.key==='Enter')sendAI()"/>
+      <button class="modal-send" onclick="sendAI()">➤</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// LUCKILY ACADEMY — index.html (All JS inline)
+// ============================================================
+
+// ── SECURITY ──
+(function() {
+  // Disable right-click on lessons
+  document.addEventListener('contextmenu', function(e) {
+    if (e.target.closest('.lesson-body')) e.preventDefault();
+  });
+  // Basic XSS sanitizer
+  window.sanitize = function(str) {
+    const d = document.createElement('div');
+    d.textContent = str;
+    return d.innerHTML;
+  };
+})();
+
+// ── CONSTANTS ──
+const WA = '2290159609581';
+const K = { USERS:'la_u', SESS:'la_s', ENROLL:'la_e', PROG:'la_p', THEME:'la_t', LANG:'la_l' };
+const CODES = {
+  'web-marketing':'luckily2002','negociation':'luckily2003','charge-clientele':'luckily2004',
+  'dev-frontend':'luckily2005','dev-backend':'luckily2006','analyse-donnees':'luckily2007',
+  'word-debutant':'luckily2008','word-intermediaire':'luckily2009','word-avance':'luckily2010',
+  'excel-debutant':'luckily2011','excel-intermediaire':'luckily2012','excel-avance':'luckily2013',
+  'outils':'luckily2014'
+};
+
+// ── STORAGE (safe) ──
+function sg(k){try{return JSON.parse(localStorage.getItem(k)||'null');}catch{return null;}}
+function ss(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch{}}
+
+// ── AUTH ──
+function getUsers(){return sg(K.USERS)||[];}
+function saveUsers(u){ss(K.USERS,u);}
+function getSess(){return sg(K.SESS);}
+function setSess(u){ss(K.SESS,{userId:u.id,email:u.email,fullname:u.fullname});}
+function clearSess(){localStorage.removeItem(K.SESS);}
+function isLoggedIn(){return !!getSess();}
+function getCurUser(){const s=getSess();if(!s)return null;return getUsers().find(u=>u.id===s.userId)||null;}
+function getEnrolls(){return sg(K.ENROLL)||{};}
+function isEnrolled(uid,cid){const e=getEnrolls();return !!(e[uid]&&e[uid].includes(cid));}
+function enrollUser(uid,cid){const e=getEnrolls();if(!e[uid])e[uid]=[];if(!e[uid].includes(cid))e[uid].push(cid);ss(K.ENROLL,e);}
+function getUserCourses(uid){return(getEnrolls()[uid]||[]);}
+function getProgress(){return sg(K.PROG)||{};}
+function markDone(uid,cid,lid){const p=getProgress();const k=uid+'_'+cid;if(!p[k])p[k]=[];if(!p[k].includes(lid))p[k].push(lid);ss(K.PROG,p);}
+function getLessonProg(uid,cid){return(getProgress()[uid+'_'+cid]||[]);}
+function getProgPct(uid,cid,total){if(!total)return 0;return Math.round((getLessonProg(uid,cid).length/total)*100);}
+function verifyCode(cid,input){const exp=CODES[cid];if(!exp)return false;return input.trim().toLowerCase()===exp.toLowerCase();}
+
+// ── THEME ──
+(function(){
+  const t=localStorage.getItem(K.THEME)||'light';
+  document.documentElement.setAttribute('data-theme',t);
+  const i=document.getElementById('themeIcon');
+  if(i)i.textContent=t==='dark'?'☀️':'🌙';
+})();
+function toggleTheme(){
+  const cur=document.documentElement.getAttribute('data-theme')||'light';
+  const nxt=cur==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',nxt);
+  localStorage.setItem(K.THEME,nxt);
+  const i=document.getElementById('themeIcon');
+  if(i)i.textContent=nxt==='dark'?'☀️':'🌙';
+  const dt=document.getElementById('darkToggle');
+  if(dt)dt.checked=nxt==='dark';
+}
+
+// ── LANGUAGE ──
+const LANGS={
+  fr:{badge:'Plateforme d\'excellence · Bénin & Afrique',t1:'Apprenez.',t2:'Évoluez.',t3:'Réussissez.',sub:'Des formations professionnelles de qualité, accessibles depuis chez vous.',cta1:'Voir les formations →',cta2:'En savoir plus',s1:'Étudiants',s2:'Formations',s3:'Satisfaction',login:'Se connecter'},
+  en:{badge:'Excellence Platform · Benin & Africa',t1:'Learn.',t2:'Grow.',t3:'Succeed.',sub:'High-quality professional training, accessible from home.',cta1:'Explore Courses →',cta2:'Learn More',s1:'Students',s2:'Courses',s3:'Satisfaction',login:'Sign In'},
+  es:{badge:'Plataforma de excelencia · Benín & África',t1:'Aprende.',t2:'Evoluciona.',t3:'Triunfa.',sub:'Formación profesional de calidad, accesible desde casa.',cta1:'Ver cursos →',cta2:'Saber más',s1:'Estudiantes',s2:'Cursos',s3:'Satisfacción',login:'Iniciar sesión'},
+  pt:{badge:'Plataforma de excelência · Benim & África',t1:'Aprenda.',t2:'Evolua.',t3:'Triunfe.',sub:'Formação profissional de qualidade, acessível de casa.',cta1:'Ver cursos →',cta2:'Saiba mais',s1:'Estudantes',s2:'Cursos',s3:'Satisfação',login:'Entrar'}
+};
+let curLang=localStorage.getItem(K.LANG)||'fr';
+function setLang(l){
+  curLang=l;localStorage.setItem(K.LANG,l);
+  const el=document.getElementById('curLang');if(el)el.textContent=l.toUpperCase();
+  applyLang();
+  const dd=document.getElementById('langDrop');if(dd)dd.classList.remove('open');
+  renderPreview();
+}
+function applyLang(){
+  const L=LANGS[curLang]||LANGS.fr;
+  const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;};
+  set('h-badge',L.badge);set('h-t1',L.t1);set('h-t2',L.t2);set('h-t3',L.t3);
+  set('h-sub',L.sub);set('h-s1',L.s1);set('h-s2',L.s2);set('h-s3',L.s3);
+  const cta1=document.getElementById('h-cta1');if(cta1)cta1.textContent=L.cta1;
+  const cta2=document.getElementById('h-cta2');if(cta2)cta2.textContent=L.cta2;
+  const ab=document.getElementById('authBtn');if(ab)ab.textContent=L.login;
+  document.documentElement.lang=curLang;
+}
+
+// ── NAVBAR ──
+function initNav(){
+  const nav=document.getElementById('navbar');
+  const hbg=document.getElementById('hamburger');
+  const nls=document.getElementById('navLinks');
+  const lbtn=document.getElementById('langBtn');
+  const ldrop=document.getElementById('langDrop');
+
+  if(nav){window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>40),{passive:true});}
+  if(hbg&&nls){
+    hbg.addEventListener('click',e=>{e.stopPropagation();const o=nls.classList.toggle('open');hbg.classList.toggle('open',o);});
+    nls.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nls.classList.remove('open');hbg.classList.remove('open');}));
+    document.addEventListener('click',e=>{if(nav&&!nav.contains(e.target)){nls.classList.remove('open');hbg.classList.remove('open');}});
+  }
+  const themeBtn=document.getElementById('themeBtn');
+  if(themeBtn)themeBtn.onclick=toggleTheme;
+  if(lbtn&&ldrop){
+    lbtn.addEventListener('click',e=>{e.stopPropagation();ldrop.classList.toggle('open');});
+    document.addEventListener('click',()=>ldrop.classList.remove('open'));
+  }
+  // Auth state
+  const sess=getSess();
+  const ab=document.getElementById('authBtn');
+  const db=document.getElementById('dashBtn');
+  const av=document.getElementById('navAv');
+  if(sess){
+    if(ab)ab.classList.add('hidden');
+    if(db)db.classList.remove('hidden');
+    if(av)av.textContent=(sess.fullname||'U').charAt(0).toUpperCase();
+  }else{
+    if(ab)ab.classList.remove('hidden');
+    if(db)db.classList.add('hidden');
+  }
+}
+
+// ── SCROLL ANIMATIONS ──
+function initAnims(){
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target);}});
+  },{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+  const watch=()=>document.querySelectorAll('.anim:not(.vis)').forEach(el=>io.observe(el));
+  watch();
+  new MutationObserver(watch).observe(document.body,{childList:true,subtree:true});
+}
+
+// ── COUNTERS ──
+function initCounters(){
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting&&!e.target.dataset.done){
+        e.target.dataset.done='1';
+        const tgt=parseInt(e.target.dataset.count,10);
+        let cur=0;const step=tgt/112;
+        const t=setInterval(()=>{cur+=step;if(cur>=tgt){cur=tgt;clearInterval(t);}e.target.textContent=Math.floor(cur).toLocaleString('fr-FR');},16);
+      }
+    });
+  },{threshold:.6});
+  document.querySelectorAll('[data-count]').forEach(el=>io.observe(el));
+}
+
+// ── SMOOTH SCROLL ──
+document.addEventListener('click',e=>{
+  const a=e.target.closest('a[href^="#"]');
+  if(!a)return;
+  const h=a.getAttribute('href');
+  if(!h||h==='#')return;
+  const el=document.querySelector(h);
+  if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth',block:'start'});}
+});
+
+// ── TOAST ──
+function toast(msg,type='info'){
+  document.querySelector('.la-toast')?.remove();
+  const c={success:'#06D6A0',error:'#EF233C',info:'#00B4D8',warning:'#F77F00'};
+  const t=document.createElement('div');
+  t.className='la-toast';t.textContent=msg;
+  t.style.background=c[type]||c.info;
+  document.body.appendChild(t);
+  requestAnimationFrame(()=>{t.style.opacity='1';t.style.transform='translateX(-50%) translateY(0)';});
+  setTimeout(()=>{t.style.opacity='0';t.style.transform='translateX(-50%) translateY(14px)';setTimeout(()=>t.remove(),350);},3200);
+}
+
+// ── AI MODAL ──
+function openAI(){
+  document.getElementById('aiModal')?.classList.add('open');
+  setTimeout(()=>document.getElementById('aiInp')?.focus(),300);
+}
+function closeAI(){document.getElementById('aiModal')?.classList.remove('open');}
+document.addEventListener('click',e=>{const m=document.getElementById('aiModal');if(m&&e.target===m)closeAI();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeAI();});
+
+const aiHist=[];let aiBusy=false;
+async function callAI(msg,msgsId){
+  if(aiBusy)return;aiBusy=true;
+  const box=document.getElementById(msgsId);
+  const ty=document.createElement('div');ty.className='ai-msg bot';
+  ty.innerHTML='<div class="msg-bbl ai-typing"><span></span><span></span><span></span></div>';
+  box?.appendChild(ty);if(box)box.scrollTop=box.scrollHeight;
+  aiHist.push({role:'user',content:msg});
+  const lbl={fr:'Français',en:'English',es:'Español',pt:'Português'}[curLang]||'Français';
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',max_tokens:600,
+        system:`Tu es Luckily IA, assistant officiel de Luckily Academy — plateforme de formation en ligne fondée par Luc DEGUENON à Cotonou, Bénin. WhatsApp: +229 01 59 60 95 81. Formations: Web Marketing 10000F, Négociation 10000F, Chargé Clientèle 10000F, Dev Frontend 20000F, Dev Backend 25000F, Analyse Données 15000F, Word/Excel chaque niveau 5000F, Outils 5000F. Réponds en ${lbl}, chaleureusement et concisément.`,
+        messages:aiHist
+      })
+    });
+    const d=await res.json();
+    const reply=d.content?.[0]?.text||'Je suis là pour vous aider !';
+    aiHist.push({role:'assistant',content:reply});
+    ty.parentNode?.removeChild(ty);
+    addMsg(reply,'bot',msgsId);
+  }catch{
+    ty.parentNode?.removeChild(ty);
+    addMsg('Connexion temporairement indisponible. Réessayez dans un instant.','bot',msgsId);
+  }finally{aiBusy=false;}
+}
+function addMsg(txt,type,id){
+  const c=document.getElementById(id);if(!c)return;
+  const d=document.createElement('div');d.className='ai-msg '+type;
+  d.innerHTML='<div class="msg-bbl">'+txt.replace(/\n/g,'<br>')+'</div>';
+  c.appendChild(d);c.scrollTop=c.scrollHeight;
+}
+async function sendAI(){
+  const i=document.getElementById('aiInp');if(!i||!i.value.trim()||aiBusy)return;
+  const m=i.value.trim();i.value='';addMsg(m,'user','aiMsgs');await callAI(m,'aiMsgs');
+}
+async function sendDemo(){
+  const i=document.getElementById('demoInput');if(!i||!i.value.trim()||aiBusy)return;
+  const m=i.value.trim();i.value='';addMsg(m,'user','demoMsgs');await callAI(m,'demoMsgs');
+}
+
+// ── PAYMENT MODAL ──
+function showPayModal(cid){
+  const c=COURSES.find(x=>x.id===cid);if(!c)return;
+  const sess=getSess();
+  document.getElementById('payModal')?.remove();
+  const m=document.createElement('div');
+  m.id='payModal';m.className='modal-ov open';
+  m.innerHTML=`<div class="pay-box" id="payBox">
+    <div class="modal-head"><div class="modal-title"><span>💳</span><span>S'inscrire à la formation</span></div>
+    <button class="modal-close" onclick="closePayModal()">✕</button></div>
+    <div style="padding:20px 20px 0">
+      <div style="background:var(--bg-alt);border-radius:14px;padding:14px;display:flex;align-items:center;gap:12px;margin-bottom:18px;border:1px solid var(--border);">
+        <span style="font-size:2rem;flex-shrink:0">${c.icon}</span>
+        <div style="flex:1;min-width:0">
+          <div style="font-family:var(--ff-d);font-weight:700;font-size:1rem;margin-bottom:2px">${c.title}</div>
+          <div style="font-size:.74rem;color:var(--text-m)">${c.category} · ${c.duration}</div>
+        </div>
+        <div style="text-align:right;flex-shrink:0">
+          <div style="font-family:var(--ff-d);font-size:1.3rem;font-weight:800;color:var(--primary)">${fmtP(c.price)}</div>
+          <div style="font-size:.68rem;color:var(--text-m)">Accès à vie</div>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <div style="font-size:.73rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-m);margin-bottom:10px">Mode de paiement</div>
+        <div style="display:flex;flex-direction:column;gap:7px">
+          <label class="pay-method active" id="pm_mtn"><input type="radio" name="pm" value="mtn" checked onchange="hlPay()" style="accent-color:var(--primary);margin-right:8px"/> 📱 <span style="font-weight:600;font-size:.86rem">MTN Mobile Money</span></label>
+          <label class="pay-method" id="pm_moov"><input type="radio" name="pm" value="moov" onchange="hlPay()" style="accent-color:var(--primary);margin-right:8px"/> 🔵 <span style="font-weight:600;font-size:.86rem">Moov Money (Flooz)</span></label>
+          <label class="pay-method" id="pm_wave"><input type="radio" name="pm" value="wave" onchange="hlPay()" style="accent-color:var(--primary);margin-right:8px"/> 🌊 <span style="font-weight:600;font-size:.86rem">Wave</span></label>
+          <label class="pay-method" id="pm_carte"><input type="radio" name="pm" value="carte" onchange="hlPay()" style="accent-color:var(--primary);margin-right:8px"/> 💳 <span style="font-weight:600;font-size:.86rem">Carte Visa / Mastercard</span></label>
+        </div>
+      </div>
+      <div style="margin-bottom:14px">
+        <div style="font-size:.73rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-m);margin-bottom:7px">Téléphone <span style="color:#EF233C">*</span></div>
+        <input type="tel" id="payPhone" class="pay-inp" placeholder="+229 01 XX XX XX XX" value="${getCurUser()?.phone||''}"/>
+      </div>
+      ${!sess?`<div style="margin-bottom:14px"><div style="font-size:.73rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-m);margin-bottom:7px">Nom complet <span style="color:#EF233C">*</span></div><input type="text" id="payName" class="pay-inp" placeholder="Prénom Nom"/></div>
+      <div style="margin-bottom:14px"><div style="font-size:.73rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-m);margin-bottom:7px">Email</div><input type="email" id="payEmail" class="pay-inp" placeholder="votre@email.com"/></div>`:''}
+    </div>
+    <div style="padding:14px 20px 20px">
+      <button class="btn-wa" onclick="goWA('${cid}')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Continuer vers WhatsApp
+      </button>
+      <p style="text-align:center;font-size:.71rem;color:var(--text-m);margin-top:10px;line-height:1.5">🔒 Paiement confirmé par notre équipe. Accès activé dans les <strong>5 minutes</strong>.</p>
+    </div>
+  </div>`;
+  document.body.appendChild(m);document.body.style.overflow='hidden';
+  m.addEventListener('click',e=>{if(e.target===m)closePayModal();});
+}
+function hlPay(){
+  const sel=document.querySelector('input[name="pm"]:checked')?.value;
+  ['mtn','moov','wave','carte'].forEach(k=>{
+    const l=document.getElementById('pm_'+k);
+    if(l)l.classList.toggle('active',k===sel);
+  });
+}
+function closePayModal(){
+  document.getElementById('payModal')?.remove();
+  document.body.style.overflow='';
+}
+function goWA(cid){
+  const c=COURSES.find(x=>x.id===cid);if(!c)return;
+  const sess=getSess();const user=getCurUser();
+  const method=document.querySelector('input[name="pm"]:checked')?.value||'mtn';
+  const phone=document.getElementById('payPhone')?.value?.trim()||'';
+  const nameI=document.getElementById('payName');
+  const emailI=document.getElementById('payEmail');
+  const nom=nameI?nameI.value.trim():(user?.fullname||sess?.fullname||'');
+  const email=emailI?emailI.value.trim():(user?.email||sess?.email||'');
+  if(!phone){const pi=document.getElementById('payPhone');if(pi){pi.style.borderColor='#EF233C';pi.focus();}toast('⚠ Renseignez votre téléphone.','error');return;}
+  if(!sess&&!nom){const ni=document.getElementById('payName');if(ni){ni.style.borderColor='#EF233C';ni.focus();}toast('⚠ Renseignez votre nom.','error');return;}
+  const ml={mtn:'MTN Mobile Money',moov:'Moov Money (Flooz)',wave:'Wave',carte:'Carte Visa/Mastercard'};
+  const ref='LA-'+Date.now().toString(36).toUpperCase();
+  const date=new Date().toLocaleString('fr-FR',{dateStyle:'full',timeStyle:'short'});
+  const msg=`🎓 *LUCKILY ACADEMY — Demande de paiement*\n\nBonjour, je souhaite m'inscrire :\n\n📚 *Formation :* ${c.title}\n⏱ *Durée :* ${c.duration}\n💰 *Montant :* ${fmtP(c.price)}\n\n────────────────\n👤 *Infos :*\n• Nom : ${nom||'Non renseigné'}\n• Email : ${email||'Non renseigné'}\n• Tél : ${phone}\n\n💳 *Mode :* ${ml[method]||method}\n📅 *Date :* ${date}\n🔖 *Réf :* ${ref}\n────────────────\n\nMerci de confirmer les instructions de paiement ! 🙏`;
+  window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(msg),'_blank','noopener');
+  const box=document.getElementById('payBox');
+  if(box)box.innerHTML=`<div style="padding:40px 24px;text-align:center"><div style="font-size:3.5rem;margin-bottom:14px;animation:successBounce .5s ease both">✅</div><h2 style="font-family:var(--ff-d);font-size:1.5rem;font-weight:700;margin-bottom:10px;color:var(--text)">WhatsApp ouvert !</h2><p style="color:var(--text-m);font-size:.88rem;margin-bottom:8px">Votre demande a été préparée avec toutes vos informations.</p><div style="background:var(--bg-alt);border-radius:10px;padding:10px 16px;margin:12px auto;display:inline-block"><div style="font-size:.7rem;color:var(--text-m)">Référence</div><div style="font-family:var(--ff-d);font-size:1.2rem;font-weight:800;color:var(--primary)">${ref}</div></div><p style="color:var(--text-m);font-size:.83rem;margin-bottom:22px">Notre équipe active votre accès <strong>dans les 5 minutes</strong> après votre paiement.</p><div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><a href="https://wa.me/${WA}?text=${encodeURIComponent(msg)}" target="_blank" style="padding:10px 20px;border-radius:50px;background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;font-weight:700;font-size:.83rem;text-decoration:none">💬 Ré-ouvrir</a><button onclick="closePayModal()" style="padding:10px 20px;border-radius:50px;border:1.5px solid var(--border);color:var(--text-m);font-size:.83rem;cursor:pointer;background:transparent">Fermer</button></div></div>`;
+}
+
+// ── ACCESS CODE MODAL ──
+function showAccessModal(cid){
+  const sess=getSess();
+  if(!sess){window.location.href='auth.html?redirect='+encodeURIComponent('course-detail.html?id='+cid);return;}
+  const c=COURSES.find(x=>x.id===cid);if(!c)return;
+  document.getElementById('accessModal')?.remove();
+  const m=document.createElement('div');
+  m.id='accessModal';m.className='modal-ov open';
+  m.innerHTML=`<div class="access-box">
+    <div style="background:linear-gradient(135deg,var(--primary),var(--accent));padding:20px 22px;text-align:center">
+      <div style="font-size:2.4rem;margin-bottom:8px">${c.icon}</div>
+      <div style="font-family:var(--ff-d);font-size:1.3rem;font-weight:700;color:#fff;margin-bottom:2px">${c.title}</div>
+      <div style="font-size:.8rem;color:rgba(255,255,255,.8)">Entrez votre code d'accès</div>
+    </div>
+    <div style="padding:24px">
+      <p style="font-size:.84rem;color:var(--text-m);margin-bottom:14px;line-height:1.6">Ce code vous a été envoyé par WhatsApp après confirmation de votre paiement par notre équipe.</p>
+      <input type="text" id="codeInput" class="access-code-inp" placeholder="Ex : luckily2005" onkeypress="if(event.key==='Enter')submitCode('${cid}')"/>
+      <div id="codeErr" style="color:#EF233C;font-size:.82rem;margin-top:8px;text-align:center;display:none">Code incorrect. Vérifiez ou contactez-nous.</div>
+      <button onclick="submitCode('${cid}')" class="btn-access" style="margin-top:12px">🔓 Accéder à la formation</button>
+      <div style="text-align:center;margin-top:14px">
+        <a href="https://wa.me/${WA}?text=${encodeURIComponent('Bonjour, je souhaite m\'inscrire à la formation '+c.title+' ('+fmtP(c.price)+')')}" target="_blank" style="display:inline-block;padding:8px 18px;border-radius:50px;background:#25D366;color:#fff;font-size:.8rem;font-weight:700;text-decoration:none;margin-bottom:8px">💬 Payer et obtenir mon code</a>
+        <br><button onclick="document.getElementById('accessModal').remove();document.body.style.overflow=''" style="font-size:.8rem;color:var(--text-m);cursor:pointer;background:transparent;border:none;margin-top:4px">Annuler</button>
+      </div>
+    </div>
+  </div>`;
+  document.body.appendChild(m);document.body.style.overflow='hidden';
+  m.addEventListener('click',e=>{if(e.target===m){m.remove();document.body.style.overflow='';}});
+  setTimeout(()=>document.getElementById('codeInput')?.focus(),300);
+}
+function submitCode(cid){
+  const input=document.getElementById('codeInput');
+  const errEl=document.getElementById('codeErr');
+  if(!input)return;
+  const code=input.value.trim();
+  if(!code){input.style.borderColor='#EF233C';return;}
+  const sess=getSess();if(!sess){window.location.href='auth.html';return;}
+  if(verifyCode(cid,code)){
+    enrollUser(sess.userId,cid);
+    document.getElementById('accessModal')?.remove();
+    document.body.style.overflow='';
+    toast('✓ Accès accordé ! Bienvenue dans la formation.','success');
+    setTimeout(()=>{window.location.href='lesson.html?course='+cid+'&chapter=0&lesson=0';},1200);
+  }else{
+    if(errEl)errEl.style.display='block';
+    input.style.borderColor='#EF233C';
+    input.style.animation='shake .3s ease';
+    setTimeout(()=>{input.style.animation='';},300);
+  }
+}
+
+// ── COURSES DATA ──
+const IMG={
+  'web-marketing':'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80',
+  'negociation':'https://images.unsplash.com/photo-1521791136064-7986c2920216?w=600&q=80',
+  'charge-clientele':'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&q=80',
+  'dev-frontend':'https://images.unsplash.com/photo-1547658719-da2b51169166?w=600&q=80',
+  'dev-backend':'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&q=80',
+  'analyse-donnees':'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80',
+  'word-debutant':'https://images.unsplash.com/photo-1618044619888-009e412ff12a?w=600&q=80',
+  'word-intermediaire':'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=600&q=80',
+  'word-avance':'https://images.unsplash.com/photo-1456324504439-367cee3b3c32?w=600&q=80',
+  'excel-debutant':'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600&q=80',
+  'excel-intermediaire':'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80',
+  'excel-avance':'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80',
+  'outils':'https://images.unsplash.com/photo-1573804633927-bfcbcd909acd?w=600&q=80'
+};
+const COURSES=[
+  {id:'web-marketing',title:'Web Marketing',price:10000,category:'Marketing',level:'Débutant → Pro',duration:'8 semaines',icon:'📢',desc:'Maîtrisez les stratégies digitales : SEO, réseaux sociaux, publicité en ligne, email marketing et analytics.'},
+  {id:'negociation',title:'Négociation Commerciale',price:10000,category:'Business',level:'Débutant → Avancé',duration:'6 semaines',icon:'🤝',desc:'Techniques de persuasion, gestion des objections, closing et fidélisation client.'},
+  {id:'charge-clientele',title:'Chargé Clientèle',price:10000,category:'Service',level:'Débutant → Pro',duration:'6 semaines',icon:'🎯',desc:'Accueil, gestion des réclamations, fidélisation et service après-vente de qualité.'},
+  {id:'dev-frontend',title:'Dev Web Frontend',price:20000,category:'Dev',level:'Débutant → Pro',duration:'12 semaines',icon:'💻',desc:'HTML5, CSS3, JavaScript ES6+, React.js — de débutant à développeur pro.'},
+  {id:'dev-backend',title:'Dev Web Backend',price:25000,category:'Dev',level:'Intermédiaire → Pro',duration:'14 semaines',icon:'⚙️',desc:'Node.js, PHP, MySQL, MongoDB, APIs REST — maîtrisez le développement serveur.'},
+  {id:'analyse-donnees',title:'Analyse des Données',price:15000,category:'Data',level:'Débutant → Pro',duration:'10 semaines',icon:'📊',desc:'Excel avancé, Python (Pandas), Power BI — transformez les données en insights.'},
+  {id:'word-debutant',title:'Word — Débutant',price:5000,category:'Bureautique',level:'Débutant',duration:'2 semaines',icon:'📝',desc:'Créer, formater et imprimer des documents professionnels avec Word.'},
+  {id:'word-intermediaire',title:'Word — Intermédiaire',price:5000,category:'Bureautique',level:'Intermédiaire',duration:'2 semaines',icon:'📄',desc:'Styles, tables des matières automatiques, publipostage et modèles avancés.'},
+  {id:'word-avance',title:'Word — Avancé',price:5000,category:'Bureautique',level:'Avancé',duration:'3 semaines',icon:'📋',desc:'Macros VBA, formulaires interactifs et automatisation complète de Word.'},
+  {id:'excel-debutant',title:'Excel — Débutant',price:5000,category:'Bureautique',level:'Débutant',duration:'2 semaines',icon:'📊',desc:'Feuilles de calcul, formules de base (SOMME, MOYENNE) et graphiques simples.'},
+  {id:'excel-intermediaire',title:'Excel — Intermédiaire',price:5000,category:'Bureautique',level:'Intermédiaire',duration:'3 semaines',icon:'📈',desc:'VLOOKUP, INDEX-MATCH, tableaux structurés et mise en forme conditionnelle.'},
+  {id:'excel-avance',title:'Excel — Avancé',price:5000,category:'Bureautique',level:'Avancé',duration:'3 semaines',icon:'📉',desc:'Power Query, VBA, tableaux croisés avancés et dashboards professionnels.'},
+  {id:'outils',title:'Outils Bureautique & Compatibilité',price:5000,category:'Bureautique',level:'Tous niveaux',duration:'2 semaines',icon:'🔧',desc:'PDF, Google Workspace, LibreOffice — maîtrisez l\'écosystème bureautique.'}
+];
+function fmtP(p){return Number(p).toLocaleString('fr-FR')+' FCFA';}
+
+function cardHTML(c){
+  const img=IMG[c.id]||'https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=600&q=80';
+  return `<div class="course-card anim" onclick="window.location.href='course-detail.html?id=${c.id}'" style="cursor:pointer">
+    <div class="cc-img">
+      <img src="${img}" alt="${c.title}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=600&q=80'"/>
+      <div class="cc-overlay"></div>
+      <div class="cc-badge">${c.level}</div>
+      <div class="cc-icon">${c.icon}</div>
+      <div class="cc-lock">🔒 Code requis</div>
+    </div>
+    <div class="cc-body">
+      <div class="cc-cat">${c.category}</div>
+      <h3 class="cc-title">${c.title}</h3>
+      <div class="cc-meta"><span>⏱ ${c.duration}</span></div>
+      <p class="cc-desc">${c.desc}</p>
+      <div class="cc-foot">
+        <div class="cc-price">${fmtP(c.price)} <small>/ formation</small></div>
+        <div class="cc-btn">Voir →</div>
+      </div>
+    </div>
+  </div>`;
+}
+function renderPreview(){
+  const el=document.getElementById('coursesPreview');
+  if(!el)return;
+  el.innerHTML=COURSES.slice(0,6).map(c=>cardHTML(c)).join('');
+}
+
+// ── LOADER ──
+window.addEventListener('load',()=>setTimeout(()=>document.getElementById('loader')?.classList.add('hidden'),1200));
+
+// ── CSS RUNTIME ──
+const rs=document.createElement('style');
+rs.textContent=`
+  @keyframes successBounce{0%{transform:scale(0) rotate(-10deg)}60%{transform:scale(1.2) rotate(3deg)}100%{transform:scale(1) rotate(0)}}
+  @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+  .la-toast{opacity:0;transform:translateX(-50%) translateY(14px);transition:all .3s cubic-bezier(.34,1.56,.64,1);}
+`;
+document.head.appendChild(rs);
+
+// ── INIT ──
+document.addEventListener('DOMContentLoaded',()=>{
+  initNav();
+  initAnims();
+  initCounters();
+  applyLang();
+  renderPreview();
+});
+</script>
+</body>
+</html>

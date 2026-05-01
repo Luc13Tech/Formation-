@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Connexion — Luckily Academy</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>"/>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<div id="loader"><div class="ld-ring"></div><div class="ld-text">Luckily Academy</div></div>
+
+<a href="index.html" style="position:fixed;top:18px;left:18px;z-index:100;display:flex;align-items:center;gap:7px;padding:8px 16px;border-radius:var(--r-full);background:rgba(0,0,0,.35);backdrop-filter:blur(8px);color:#fff;font-size:.83rem;font-weight:600;text-decoration:none;transition:all .2s" onmouseover="this.style.background='rgba(0,0,0,.55)'" onmouseout="this.style.background='rgba(0,0,0,.35)'">← Accueil</a>
+
+<div class="auth-wrap">
+  <!-- LEFT -->
+  <div class="auth-left">
+    <div id="authParticles" style="position:absolute;inset:0;overflow:hidden;pointer-events:none"></div>
+    <div class="auth-brand" style="position:relative">
+      <span style="font-size:2rem">🎓</span>
+      <div class="auth-brand-text">Luckily <em>Academy</em></div>
+    </div>
+    <div class="auth-tagline" style="position:relative">Transformez votre <em>avenir</em><br/>dès aujourd'hui.</div>
+    <p class="auth-sub" style="position:relative">Rejoignez des milliers d'apprenants qui développent leurs compétences et construisent leur succès professionnel avec Luckily Academy.</p>
+    <div class="auth-perks" style="position:relative">
+      <div class="auth-perk">✅ Accès immédiat après paiement</div>
+      <div class="auth-perk">✅ Cours illustrés étape par étape</div>
+      <div class="auth-perk">✅ Assistant IA disponible 24h/24</div>
+      <div class="auth-perk">✅ Certificat officiel à la clé</div>
+      <div class="auth-perk">✅ PDF téléchargeables</div>
+      <div class="auth-perk">✅ Formations en 4 langues</div>
+    </div>
+    <div style="position:relative;margin-top:28px;padding:16px;border-radius:16px;background:rgba(255,255,255,.1);backdrop-filter:blur(10px)">
+      <div style="font-size:.75rem;color:rgba(255,255,255,.65);margin-bottom:4px">Fondateur</div>
+      <div style="font-family:var(--ff-d);font-size:1.1rem;font-weight:700;color:#fff">Luc DEGUENON</div>
+      <div style="font-size:.8rem;color:rgba(255,255,255,.7)">Spécialiste en Technologie Moderne · Bénin</div>
+    </div>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="auth-right">
+    <div class="auth-form-wrap">
+      <div class="tab-sw">
+        <div class="tab-btn active" id="tabL" onclick="switchTab('login')">Se connecter</div>
+        <div class="tab-btn" id="tabR" onclick="switchTab('register')">S'inscrire</div>
+      </div>
+
+      <!-- LOGIN -->
+      <div id="loginForm">
+        <h1 class="form-ttl">Bon retour !</h1>
+        <p class="form-sub">Connectez-vous pour accéder à vos formations.</p>
+        <div class="form-err" id="loginErr"></div>
+        <div class="form-grp">
+          <label class="form-lbl">Email</label>
+          <input type="email" id="lEmail" class="form-inp" placeholder="votre@email.com" autocomplete="email"/>
+        </div>
+        <div class="form-grp">
+          <label class="form-lbl">Mot de passe</label>
+          <div class="pwd-wrap">
+            <input type="password" id="lPwd" class="form-inp" placeholder="••••••••" autocomplete="current-password" onkeypress="if(event.key==='Enter')doLogin()"/>
+            <span class="pwd-eye" onclick="tPwd('lPwd',this)">👁</span>
+          </div>
+        </div>
+        <div style="text-align:right;margin-bottom:18px"><a href="#" style="font-size:.82rem;font-weight:600;color:var(--primary)">Mot de passe oublié ?</a></div>
+        <button class="btn-submit" onclick="doLogin()">Se connecter</button>
+        <p class="form-sw">Pas encore de compte ? <a href="#" onclick="switchTab('register')">S'inscrire</a></p>
+      </div>
+
+      <!-- REGISTER -->
+      <div id="regForm" style="display:none">
+        <h1 class="form-ttl">Créer un compte</h1>
+        <p class="form-sub">Rejoignez Luckily Academy aujourd'hui.</p>
+        <div class="form-err" id="regErr"></div>
+        <div class="form-ok" id="regOk"></div>
+        <div class="form-grp">
+          <label class="form-lbl">Nom complet *</label>
+          <input type="text" id="rName" class="form-inp" placeholder="Prénom Nom" autocomplete="name"/>
+        </div>
+        <div class="form-grp">
+          <label class="form-lbl">Email *</label>
+          <input type="email" id="rEmail" class="form-inp" placeholder="votre@email.com" autocomplete="email"/>
+        </div>
+        <div class="form-grp">
+          <label class="form-lbl">Téléphone</label>
+          <input type="tel" id="rPhone" class="form-inp" placeholder="+229 01 XX XX XX" autocomplete="tel"/>
+        </div>
+        <div class="form-grp">
+          <label class="form-lbl">Mot de passe *</label>
+          <div class="pwd-wrap">
+            <input type="password" id="rPwd" class="form-inp" placeholder="••••••••" oninput="chkStr(this.value)" autocomplete="new-password"/>
+            <span class="pwd-eye" onclick="tPwd('rPwd',this)">👁</span>
+          </div>
+          <div class="str-bar" id="strBar">
+            <div class="str-seg" id="s1"></div><div class="str-seg" id="s2"></div>
+            <div class="str-seg" id="s3"></div><div class="str-seg" id="s4"></div>
+          </div>
+          <div style="font-size:.72rem;margin-top:3px;color:var(--text-m)" id="strLbl"></div>
+        </div>
+        <div class="form-grp">
+          <label class="form-lbl">Confirmer mot de passe *</label>
+          <div class="pwd-wrap">
+            <input type="password" id="rConf" class="form-inp" placeholder="••••••••" autocomplete="new-password" onkeypress="if(event.key==='Enter')doRegister()"/>
+            <span class="pwd-eye" onclick="tPwd('rConf',this)">👁</span>
+          </div>
+        </div>
+        <div style="margin-bottom:18px;display:flex;align-items:flex-start;gap:8px">
+          <input type="checkbox" id="rTerms" style="margin-top:2px;accent-color:var(--primary);width:15px;height:15px;flex-shrink:0"/>
+          <label for="rTerms" style="font-size:.82rem;color:var(--text-m);cursor:pointer">J'accepte les <a href="legal-terms.html" style="color:var(--primary);font-weight:600">Conditions d'utilisation</a> et la <a href="legal-privacy.html" style="color:var(--primary);font-weight:600">Politique de confidentialité</a>.</label>
+        </div>
+        <button class="btn-submit" onclick="doRegister()">Créer mon compte</button>
+        <p class="form-sw">Déjà un compte ? <a href="#" onclick="switchTab('login')">Se connecter</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── SHARED DATA ──
+const K={USERS:'la_u',SESS:'la_s',ENROLL:'la_e',PROG:'la_p',THEME:'la_t',LANG:'la_l'};
+function sg(k){try{return JSON.parse(localStorage.getItem(k)||'null');}catch{return null;}}
+function ss(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch{}}
+function getUsers(){return sg(K.USERS)||[];}
+function saveUsers(u){ss(K.USERS,u);}
+function getSess(){return sg(K.SESS);}
+function setSess(u){ss(K.SESS,{userId:u.id,email:u.email,fullname:u.fullname});}
+function isLoggedIn(){return !!getSess();}
+
+// ── THEME ──
+(function(){const t=localStorage.getItem(K.THEME)||'light';document.documentElement.setAttribute('data-theme',t);})();
+
+// ── REDIRECT IF LOGGED IN ──
+if(isLoggedIn()){
+  const red=new URLSearchParams(window.location.search).get('redirect')||'dashboard.html';
+  window.location.href=red;
+}
+const urlMode=new URLSearchParams(window.location.search).get('mode');
+if(urlMode==='register')setTimeout(()=>switchTab('register'),100);
+
+// ── LOADER ──
+window.addEventListener('load',()=>setTimeout(()=>document.getElementById('loader')?.classList.add('hidden'),1000));
+
+// ── PARTICLES ──
+(function(){
+  const c=document.getElementById('authParticles');if(!c)return;
+  for(let i=0;i<16;i++){
+    const p=document.createElement('div');
+    const sz=Math.random()*80+20;
+    p.style.cssText=`position:absolute;border-radius:50%;background:rgba(255,255,255,.07);width:${sz}px;height:${sz}px;left:${Math.random()*100}%;animation:authFloat ${Math.random()*14+10}s linear ${Math.random()*8}s infinite`;
+    c.appendChild(p);
+  }
+  if(!document.getElementById('authPStyle')){
+    const s=document.createElement('style');s.id='authPStyle';
+    s.textContent='@keyframes authFloat{0%{transform:translateY(110vh) rotate(0);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(-120px) rotate(360deg);opacity:0}}';
+    document.head.appendChild(s);
+  }
+})();
+
+// ── FUNCTIONS ──
+function switchTab(tab){
+  const lf=document.getElementById('loginForm');
+  const rf=document.getElementById('regForm');
+  const lt=document.getElementById('tabL');
+  const rt=document.getElementById('tabR');
+  if(tab==='login'){
+    lf.style.display='block';rf.style.display='none';
+    lt.classList.add('active');rt.classList.remove('active');
+    document.title='Connexion — Luckily Academy';
+  }else{
+    lf.style.display='none';rf.style.display='block';
+    lt.classList.remove('active');rt.classList.add('active');
+    document.title='Inscription — Luckily Academy';
+  }
+}
+
+function tPwd(id,btn){
+  const inp=document.getElementById(id);if(!inp)return;
+  const show=inp.type==='password';
+  inp.type=show?'text':'password';
+  btn.textContent=show?'🙈':'👁';
+}
+
+function chkStr(pwd){
+  let s=0;
+  if(pwd.length>=8)s++;if(/[A-Z]/.test(pwd))s++;if(/[0-9]/.test(pwd))s++;if(/[^A-Za-z0-9]/.test(pwd))s++;
+  const cols=['#EF233C','#F77F00','#F9C74F','#06D6A0'];
+  const lbls=['Faible','Moyen','Bon','Fort'];
+  ['s1','s2','s3','s4'].forEach((id,i)=>{
+    const el=document.getElementById(id);
+    if(el)el.style.background=i<s?cols[s-1]:'var(--border)';
+  });
+  const lb=document.getElementById('strLbl');
+  if(lb){lb.textContent=pwd.length>0?(lbls[s-1]||'Faible'):'';lb.style.color=s>0?cols[s-1]:'var(--text-m)';}
+}
+
+function showErr(id,msg){const el=document.getElementById(id);if(el){el.style.display='block';el.textContent=msg;}}
+function hideErr(id){const el=document.getElementById(id);if(el)el.style.display='none';}
+
+function doLogin(){
+  const email=document.getElementById('lEmail')?.value.trim()||'';
+  const pwd=document.getElementById('lPwd')?.value||'';
+  hideErr('loginErr');
+  if(!email||!pwd){showErr('loginErr','Veuillez remplir tous les champs.');return;}
+  const users=getUsers();
+  const enc=btoa(unescape(encodeURIComponent(pwd)));
+  const user=users.find(u=>u.email.toLowerCase()===email.toLowerCase()&&u.password===enc);
+  if(!user){showErr('loginErr','Email ou mot de passe incorrect.');return;}
+  setSess(user);
+  const red=new URLSearchParams(window.location.search).get('redirect')||'dashboard.html';
+  window.location.href=red;
+}
+
+function doRegister(){
+  const name=document.getElementById('rName')?.value.trim()||'';
+  const email=document.getElementById('rEmail')?.value.trim()||'';
+  const phone=document.getElementById('rPhone')?.value.trim()||'';
+  const pwd=document.getElementById('rPwd')?.value||'';
+  const conf=document.getElementById('rConf')?.value||'';
+  const terms=document.getElementById('rTerms')?.checked||false;
+  hideErr('regErr');
+  const ok=document.getElementById('regOk');if(ok)ok.style.display='none';
+  if(!name||!email||!pwd){showErr('regErr','Remplissez tous les champs obligatoires (*).');return;}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){showErr('regErr','Email invalide.');return;}
+  if(pwd!==conf){showErr('regErr','Les mots de passe ne correspondent pas.');return;}
+  if(pwd.length<6){showErr('regErr','Mot de passe trop court (minimum 6 caractères).');return;}
+  if(!terms){showErr('regErr','Acceptez les conditions d\'utilisation.');return;}
+  const users=getUsers();
+  if(users.find(u=>u.email.toLowerCase()===email.toLowerCase())){showErr('regErr','Cet email est déjà utilisé.');return;}
+  const user={id:'u_'+Date.now(),fullname:name.substring(0,100),email:email.toLowerCase(),password:btoa(unescape(encodeURIComponent(pwd))),phone:phone.substring(0,20),createdAt:new Date().toISOString()};
+  users.push(user);saveUsers(users);setSess(user);
+  if(ok){ok.style.display='block';ok.textContent='✓ Compte créé avec succès ! Redirection...';}
+  setTimeout(()=>{const red=new URLSearchParams(window.location.search).get('redirect')||'dashboard.html';window.location.href=red;},1000);
+}
+</script>
+</body>
+</html>

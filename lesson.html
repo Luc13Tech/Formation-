@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Leçon — Luckily Academy</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>"/>
+<link rel="stylesheet" href="style.css"/>
+<style>
+body{padding-top:58px;}
+.lesson-tb{position:fixed;top:0;left:0;right:0;z-index:1000;height:58px;background:var(--bg-card);border-bottom:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.06);display:flex;align-items:center;padding:0 20px;gap:12px;}
+.ltb-logo{font-family:var(--ff-d);font-size:1rem;font-weight:700;color:var(--text);display:flex;align-items:center;gap:6px;flex-shrink:0;text-decoration:none;}
+.ltb-logo em{font-style:italic;color:var(--primary);}
+.ltb-title{flex:1;font-size:.83rem;color:var(--text-m);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.ltb-prog-wrap{min-width:140px;flex-shrink:0;}
+.ltb-pb{height:4px;background:var(--bg-alt);border-radius:2px;}
+.ltb-pf{height:100%;background:linear-gradient(90deg,var(--primary),var(--accent));border-radius:2px;transition:width 1s ease;}
+.ltb-pt{font-size:.67rem;color:var(--text-m);margin-top:3px;text-align:right;}
+.lesson-wrap{max-width:1280px;margin:0 auto;padding:36px 24px;display:grid;grid-template-columns:1fr 300px;gap:36px;}
+.lesson-body-content h3{font-family:var(--ff-d);font-size:1.25rem;font-weight:700;color:var(--text);margin:24px 0 10px;}
+.lesson-body-content p{font-size:.95rem;color:var(--text-m);line-height:1.85;margin-bottom:14px;}
+.lesson-body-content pre{background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--r-sm);padding:16px;overflow-x:auto;margin:16px 0;font-family:'Courier New',monospace;font-size:.82rem;line-height:1.6;}
+.lesson-body-content strong{color:var(--text);font-weight:700;}
+.lesson-body-content ul{padding-left:20px;margin-bottom:14px;}
+.lesson-body-content ul li{font-size:.93rem;color:var(--text-m);line-height:1.8;margin-bottom:5px;}
+.ai-quick-btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;}
+.ai-q-btn{padding:7px 14px;border-radius:50px;background:rgba(0,180,216,.1);border:1px solid rgba(0,180,216,.2);color:var(--primary);font-size:.78rem;font-weight:600;cursor:pointer;transition:all .18s;font-family:var(--ff-b);}
+.ai-q-btn:hover{background:var(--primary);color:#fff;}
+@media(max-width:900px){.lesson-wrap{grid-template-columns:1fr;}.ls-panel{position:static;max-height:none;}}
+@media(max-width:600px){.ltb-prog-wrap{display:none;}.ltb-title{font-size:.75rem;}}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="lesson-tb">
+  <a href="courses.html" class="ltb-logo">🎓 Luckily <em>Academy</em></a>
+  <div class="ltb-title" id="topTitle">Chargement...</div>
+  <div class="ltb-prog-wrap">
+    <div class="ltb-pb"><div class="ltb-pf" id="progFill" style="width:0%"></div></div>
+    <div class="ltb-pt" id="progTxt">0% complété</div>
+  </div>
+  <button class="btn-icon" id="themeBtn" style="flex-shrink:0"><span id="themeIcon">🌙</span></button>
+  <a href="dashboard.html" style="flex-shrink:0;font-size:.8rem;font-weight:600;padding:6px 12px;border-radius:var(--r-sm);background:var(--bg-alt);color:var(--text-m);text-decoration:none;white-space:nowrap">Dashboard</a>
+</div>
+
+<div class="lesson-wrap" id="lessonWrap">
+  <div>
+    <div class="breadcrumb" id="lessonBC"><a href="courses.html">Formations</a></div>
+    <h1 class="lesson-title" id="lessonTitle">Chargement...</h1>
+    <img id="lessonImg" class="lesson-img-el" src="" alt="" style="display:none" onload="this.style.display='block'" onerror="this.style.display='none'"/>
+    <div class="lesson-body-content" id="lessonBody">
+      <div style="text-align:center;padding:40px;color:var(--text-m)"><div class="ld-ring" style="margin:0 auto 16px"></div>Chargement du contenu...</div>
+    </div>
+
+    <!-- Mark complete + Nav -->
+    <div style="border-top:1px solid var(--border);padding-top:28px;margin-top:36px">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:20px">
+        <button class="mark-btn" id="markBtn">✓ Marquer comme complétée</button>
+        <span style="font-size:.78rem;color:var(--text-m)">Progressez à votre rythme 🚀</span>
+      </div>
+      <div class="lesson-nav-btns">
+        <button class="btn-nav-lesson btn-prev-l" id="prevBtn">← Leçon précédente</button>
+        <button class="btn-nav-lesson btn-next-l" id="nextBtn">Leçon suivante →</button>
+      </div>
+    </div>
+
+    <!-- AI Help -->
+    <div style="margin-top:36px;background:var(--bg-alt);border-radius:20px;padding:24px;border:1px solid var(--border)">
+      <h3 style="font-family:var(--ff-d);font-size:1.1rem;font-weight:700;margin-bottom:6px">🤖 Besoin d'aide sur cette leçon ?</h3>
+      <p style="font-size:.83rem;color:var(--text-m);margin-bottom:12px">Notre IA peut expliquer les concepts, donner des exemples et tester votre compréhension.</p>
+      <div class="ai-quick-btns">
+        <button class="ai-q-btn" onclick="aiQ('Explique le concept principal de cette leçon en détail avec des exemples concrets')">💡 Expliquer en détail</button>
+        <button class="ai-q-btn" onclick="aiQ('Donne-moi un exemple pratique concret pour cette leçon')">🎯 Exemple pratique</button>
+        <button class="ai-q-btn" onclick="aiQ('Génère un quiz de 3 questions sur cette leçon avec les réponses')">📝 Quiz rapide</button>
+        <button class="ai-q-btn" onclick="aiQ('Résume cette leçon en 5 points clés essentiels')">📋 5 points clés</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sidebar -->
+  <div class="ls-panel" id="lsSidebar">
+    <div style="text-align:center;padding:20px;color:var(--text-m)">Chargement...</div>
+  </div>
+</div>
+
+<!-- AI Modal -->
+<div class="modal-ov" id="aiModal">
+  <div class="modal-box">
+    <div class="modal-head"><div class="modal-title"><span>🤖</span><span>Luckily IA</span></div><button class="modal-close" onclick="closeAI()">✕</button></div>
+    <div class="modal-msgs" id="aiMsgs"><div class="ai-msg bot"><div class="msg-bbl">Je suis prêt à vous aider sur cette leçon ! Utilisez les boutons rapides ou posez votre propre question. 🎓</div></div></div>
+    <div class="modal-inp-row"><input class="modal-inp" id="aiInp" placeholder="Votre question sur la leçon..." onkeypress="if(event.key==='Enter')sendAI()"/><button class="modal-send" onclick="sendAI()">➤</button></div>
+  </div>
+</div>
+<a href="https://wa.me/2290159609581" target="_blank" class="wa-fab">💬</a>
+
+<script>
+const K={USERS:'la_u',SESS:'la_s',ENROLL:'la_e',PROG:'la_p',THEME:'la_t',LANG:'la_l'};
+function sg(k){try{return JSON.parse(localStorage.getItem(k)||'null');}catch{return null;}}
+function ss(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch{}}
+function getSess(){return sg(K.SESS);}
+function isLoggedIn(){return !!getSess();}
+function getEnrolls(){return sg(K.ENROLL)||{};}
+function isEnrolled(uid,cid){const e=getEnrolls();return !!(e[uid]&&e[uid].includes(cid));}
+function getProgress(){return sg(K.PROG)||{};}
+function markDone(uid,cid,lid){const p=getProgress();const k=uid+'_'+cid;if(!p[k])p[k]=[];if(!p[k].includes(lid))p[k].push(lid);ss(K.PROG,p);}
+function getLessonProg(uid,cid){return(getProgress()[uid+'_'+cid]||[]);}
+function getProgPct(uid,cid,total){if(!total)return 0;return Math.round((getLessonProg(uid,cid).length/total)*100);}
+function toast(msg,type='info'){document.querySelector('.la-toast')?.remove();const c={success:'#06D6A0',error:'#EF233C',info:'#00B4D8',warning:'#F77F00'};const t=document.createElement('div');t.className='la-toast';t.textContent=msg;t.style.background=c[type]||c.info;document.body.appendChild(t);requestAnimationFrame(()=>{t.style.opacity='1';t.style.transform='translateX(-50%) translateY(0)';});setTimeout(()=>{t.style.opacity='0';t.style.transform='translateX(-50%) translateY(14px)';setTimeout(()=>t.remove(),350);},3200);}
+
+(function(){const t=localStorage.getItem(K.THEME)||'light';document.documentElement.setAttribute('data-theme',t);const i=document.getElementById('themeIcon');if(i)i.textContent=t==='dark'?'☀️':'🌙';})();
+function toggleTheme(){const cur=document.documentElement.getAttribute('data-theme')||'light';const nxt=cur==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',nxt);localStorage.setItem(K.THEME,nxt);const i=document.getElementById('themeIcon');if(i)i.textContent=nxt==='dark'?'☀️':'🌙';}
+document.getElementById('themeBtn')?.addEventListener('click',toggleTheme);
+
+function openAI(){document.getElementById('aiModal')?.classList.add('open');setTimeout(()=>document.getElementById('aiInp')?.focus(),300);}
+function closeAI(){document.getElementById('aiModal')?.classList.remove('open');}
+document.addEventListener('click',e=>{const m=document.getElementById('aiModal');if(m&&e.target===m)closeAI();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeAI();});
+const aiH=[];let aiB=false;
+let curLessonTitle='';
+function aiQ(prompt){const full=`[Leçon: "${curLessonTitle}"] ${prompt}`;openAI();const inp=document.getElementById('aiInp');if(inp){inp.value=full;setTimeout(()=>sendAI(),300);}}
+async function sendAI(){const i=document.getElementById('aiInp');if(!i||!i.value.trim()||aiB)return;const m=i.value.trim();i.value='';addMsg(m,'user','aiMsgs');aiB=true;const box=document.getElementById('aiMsgs');const ty=document.createElement('div');ty.className='ai-msg bot';ty.innerHTML='<div class="msg-bbl ai-typing"><span></span><span></span><span></span></div>';box?.appendChild(ty);if(box)box.scrollTop=box.scrollHeight;aiH.push({role:'user',content:m});try{const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:700,system:`Tu es Luckily IA, assistant pédagogique de Luckily Academy. Tu aides les apprenants à comprendre les leçons de leurs formations. Sois pédagogue, clair et utilise des exemples concrets. Réponds en Français.`,messages:aiH})});const d=await res.json();const r=d.content?.[0]?.text||'Je suis là pour vous aider !';aiH.push({role:'assistant',content:r});ty.parentNode?.removeChild(ty);addMsg(r,'bot','aiMsgs');}catch{ty.parentNode?.removeChild(ty);addMsg('Connexion temporairement indisponible. Réessayez.','bot','aiMsgs');}finally{aiB=false;}}
+function addMsg(txt,type,id){const c=document.getElementById(id);if(!c)return;const d=document.createElement('div');d.className='ai-msg '+type;d.innerHTML='<div class="msg-bbl">'+txt.replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>')+'</div>';c.appendChild(d);c.scrollTop=c.scrollHeight;}
+
+// COMPLETE LESSONS CONTENT
+const LESSONS_CONTENT={
+  'web-marketing':{chapters:[
+    {title:'Introduction au Marketing Digital',lessons:[
+      {title:'Qu\'est-ce que le Marketing Digital ?',img:'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',content:`Le marketing digital est l'ensemble des actions et stratégies marketing réalisées sur les canaux numériques : sites web, moteurs de recherche, réseaux sociaux, emails et applications mobiles.\n\n**Pourquoi le marketing digital est-il indispensable ?**\n\nContrairement au marketing traditionnel (télévision, radio, presse), le marketing digital permet de :\n• Cibler précisément votre audience selon l'âge, la localisation, les intérêts\n• Mesurer vos résultats en temps réel\n• Ajuster vos campagnes instantanément\n• Atteindre des milliers de personnes avec un budget limité\n\n**Les piliers du marketing digital :**\n1. Le SEO (référencement naturel)\n2. Le SEA (publicité payante)\n3. Les réseaux sociaux\n4. L'email marketing\n5. Le content marketing\n6. L'analytics`},
+      {title:'L\'écosystème digital africain',img:'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=800&q=80',content:`L'Afrique connaît une révolution digitale sans précédent. Avec plus de 600 millions d'utilisateurs internet et une pénétration mobile de 80%, le continent offre des opportunités immenses.\n\n**Plateformes les plus utilisées en Afrique de l'Ouest :**\n• WhatsApp (90% des internautes) — canal n°1\n• Facebook (70%) — communautés et publicité\n• Instagram (45%) — e-commerce et influence\n• TikTok — croissance de 200% par an\n\n**Les spécificités du marché africain :**\n1. Mobile-first : 85% des connexions via smartphone\n2. Données limitées : contenu léger privilégié\n3. WhatsApp Business : outil de vente incontournable\n4. Paiement mobile : MTN MoMo, Flooz, Wave\n\n**Opportunités :**\nLe Bénin, le Togo, le Sénégal, la Côte d'Ivoire et le Ghana sont les marchés les plus dynamiques d'Afrique de l'Ouest pour le digital.`},
+      {title:'Définir ses objectifs SMART',img:'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80',content:`Avant toute action marketing, définissez des objectifs SMART :\n\n**S — Spécifique :** "Obtenir 500 abonnés Facebook en 3 mois"\n**M — Mesurable :** vous pouvez compter les abonnés exactement\n**A — Atteignable :** réaliste selon vos ressources disponibles\n**R — Réaliste :** cohérent avec votre marché et secteur\n**T — Temporel :** avec une date limite claire\n\n**Exemple d'objectif mal défini :**\n"Augmenter ma visibilité sur les réseaux sociaux"\n\n**Exemple d'objectif SMART :**\n"Générer 200 leads qualifiés via Facebook Ads en 60 jours avec un budget de 150 000 FCFA, pour le lancement de ma boutique en ligne."\n\n**Les 4 types d'objectifs marketing :**\n1. Notoriété — faire connaître votre marque\n2. Engagement — créer une communauté active\n3. Leads — attirer des prospects qualifiés\n4. Conversion — transformer en clients payants`},
+      {title:'Les canaux de marketing digital',img:'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=800&q=80',content:`Chaque canal digital a ses forces et ses spécificités. Voici comment choisir :\n\n**SEO (référencement naturel)**\n✓ Résultats durables sur le long terme\n✓ Trafic gratuit et qualifié\n✗ Délai de 3 à 6 mois avant résultats\n\n**Publicité payante (Ads)**\n✓ Résultats immédiats\n✓ Ciblage précis de l'audience\n✗ Coût continu — s'arrête sans budget\n\n**Réseaux sociaux**\n✓ Construction de communauté\n✓ Interaction directe avec clients\n✗ Algorithmes changeants\n\n**Email marketing**\n✓ ROI le plus élevé (42€ pour 1€ investi)\n✓ Audience captive qui vous appartient\n✗ Nécessite de construire une liste\n\n**Recommandation pour débuter :**\nCommencez par 2 canaux maximum. En Afrique de l'Ouest : WhatsApp Business + Facebook/Instagram.`}
+    ]},
+    {title:'SEO — Référencement Naturel',lessons:[
+      {title:'Les bases du SEO',img:'https://images.unsplash.com/photo-1562577309-4932fdd64cd1?w=800&q=80',content:`Le SEO (Search Engine Optimization) est l'art d'optimiser votre site web pour apparaître en première page de Google sans payer.\n\n**Pourquoi le SEO est crucial :**\n• 75% des utilisateurs ne vont jamais au-delà de la première page\n• Les résultats organiques reçoivent 10x plus de clics que les publicités\n• Le SEO génère des résultats durables\n\n**Les 3 piliers du SEO :**\n\n**1. SEO Technique**\n• Vitesse de chargement (moins de 3 secondes)\n• Site mobile-friendly (responsive)\n• Structure URL claire\n• Certificat SSL (HTTPS)\n\n**2. SEO On-Page**\n• Mots-clés dans les titres et le contenu\n• Balises meta title et description\n• Images optimisées avec attribut alt\n• Contenu de qualité et unique\n\n**3. SEO Off-Page**\n• Backlinks (liens entrants de qualité)\n• Présence sur Google My Business\n• Avis et réputation en ligne`},
+      {title:'Recherche de mots-clés',img:'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&q=80',content:`La recherche de mots-clés est la fondation de toute stratégie SEO réussie.\n\n**Outils gratuits pour trouver vos mots-clés :**\n• Google Keyword Planner\n• Google Search Console\n• Ubersuggest (version gratuite)\n• Answer The Public\n• Google Autocomplete\n\n**Types de mots-clés :**\n\n**Mots-clés génériques (head keywords)**\n• Fort volume de recherche\n• Forte concurrence\n• Exemple : "formation marketing"\n\n**Mots-clés de longue traîne (long-tail)**\n• Volume plus faible\n• Moins de concurrence\n• Taux de conversion plus élevé\n• Exemple : "formation web marketing en ligne Bénin"\n\n**Stratégie recommandée :**\nPour un nouveau site, concentrez-vous sur les mots-clés de longue traîne. Ils sont plus faciles à cibler et convertissent mieux.`}
+    ]}
+  ]},
+  'dev-frontend':{chapters:[
+    {title:'HTML5 — Fondamentaux',lessons:[
+      {title:'Structure d\'une page web HTML5',img:'https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=800&q=80',content:`HTML (HyperText Markup Language) est le langage de balisage qui structure le contenu de toute page web.\n\n**Structure de base HTML5 :**\n\`\`\`html\n<!DOCTYPE html>\n<html lang="fr">\n<head>\n  <meta charset="UTF-8"/>\n  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>\n  <title>Ma Page</title>\n  <link rel="stylesheet" href="style.css"/>\n</head>\n<body>\n  <header>\n    <nav>Navigation</nav>\n  </header>\n  <main>\n    <h1>Mon Titre Principal</h1>\n    <p>Mon paragraphe de contenu.</p>\n  </main>\n  <footer>Pied de page</footer>\n  <script src="script.js"></script>\n</body>\n</html>\n\`\`\`\n\n**Les balises sémantiques HTML5 :**\n• \`<header>\` — En-tête du site ou d'une section\n• \`<nav>\` — Navigation principale\n• \`<main>\` — Contenu principal (unique par page)\n• \`<article>\` — Article indépendant\n• \`<section>\` — Section thématique\n• \`<aside>\` — Contenu secondaire / sidebar\n• \`<footer>\` — Pied de page\n\n**Pourquoi les balises sémantiques ?**\n✓ Meilleur référencement (SEO)\n✓ Accessibilité pour les lecteurs d'écran\n✓ Code plus lisible et maintenable`},
+      {title:'Les balises sémantiques',img:'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&q=80',content:`Les balises HTML structurent et donnent du sens au contenu. Voici les plus importantes :\n\n**Titres (h1 à h6) :**\n\`\`\`html\n<h1>Titre principal — un seul par page</h1>\n<h2>Sous-titre de section</h2>\n<h3>Sous-sous-titre</h3>\n\`\`\`\n\n**Texte et mise en forme :**\n\`\`\`html\n<p>Un paragraphe de texte.</p>\n<strong>Texte en gras (important)</strong>\n<em>Texte en italique (accentué)</em>\n<br/> <!-- Saut de ligne -->\n<hr/> <!-- Ligne horizontale -->\n\`\`\`\n\n**Listes :**\n\`\`\`html\n<!-- Liste non ordonnée -->\n<ul>\n  <li>Premier élément</li>\n  <li>Deuxième élément</li>\n</ul>\n\n<!-- Liste ordonnée -->\n<ol>\n  <li>Étape 1</li>\n  <li>Étape 2</li>\n</ol>\n\`\`\`\n\n**Liens :**\n\`\`\`html\n<!-- Lien externe -->\n<a href="https://google.com" target="_blank" rel="noopener">Google</a>\n\n<!-- Lien interne -->\n<a href="contact.html">Contactez-nous</a>\n\n<!-- Lien WhatsApp -->\n<a href="https://wa.me/2290159609581">WhatsApp</a>\n\`\`\``},
+      {title:'Formulaires HTML complets',img:'https://images.unsplash.com/photo-1555421689-3f034debb7a6?w=800&q=80',content:`Les formulaires HTML permettent de collecter des données utilisateur.\n\n**Formulaire de contact complet :**\n\`\`\`html\n<form action="/contact" method="POST" novalidate>\n  \n  <!-- Champ texte -->\n  <div class="form-group">\n    <label for="nom">Nom complet *</label>\n    <input type="text" id="nom" name="nom"\n           required placeholder="Jean Dupont"\n           autocomplete="name"/>\n  </div>\n\n  <!-- Champ email -->\n  <div class="form-group">\n    <label for="email">Email *</label>\n    <input type="email" id="email" name="email"\n           required placeholder="jean@example.com"\n           autocomplete="email"/>\n  </div>\n\n  <!-- Champ téléphone -->\n  <div class="form-group">\n    <label for="tel">Téléphone</label>\n    <input type="tel" id="tel" name="tel"\n           placeholder="+229 01 XX XX XX"/>\n  </div>\n\n  <!-- Liste déroulante -->\n  <div class="form-group">\n    <label for="sujet">Sujet</label>\n    <select id="sujet" name="sujet">\n      <option value="">Choisir...</option>\n      <option value="info">Information</option>\n      <option value="devis">Devis</option>\n    </select>\n  </div>\n\n  <!-- Zone de texte -->\n  <div class="form-group">\n    <label for="message">Message *</label>\n    <textarea id="message" name="message"\n              rows="5" required\n              placeholder="Votre message..."></textarea>\n  </div>\n\n  <!-- Checkbox -->\n  <div class="form-group">\n    <label>\n      <input type="checkbox" name="rgpd" required/>\n      J'accepte la politique de confidentialité\n    </label>\n  </div>\n\n  <button type="submit">Envoyer le message</button>\n</form>\n\`\`\``}
+    ]},
+    {title:'CSS3 — Design & Style',lessons:[
+      {title:'Sélecteurs et box model',img:'https://images.unsplash.com/photo-1523437113738-bbd3cc89fb19?w=800&q=80',content:`CSS (Cascading Style Sheets) contrôle l'apparence visuelle de chaque élément HTML.\n\n**Les sélecteurs CSS essentiels :**\n\`\`\`css\n/* Sélecteur d'élément */\np { color: #333; font-size: 16px; }\n\n/* Sélecteur de classe (réutilisable) */\n.carte { background: white; border-radius: 12px; }\n\n/* Sélecteur d'ID (unique) */\n#header { height: 80px; background: #00B4D8; }\n\n/* Pseudo-classe */\na:hover { color: #00B4D8; text-decoration: underline; }\nbutton:active { transform: scale(0.98); }\n.inp:focus { border-color: #00B4D8; }\n\n/* Sélecteur combiné */\n.nav .nav-link:hover { background: rgba(0,0,0,.1); }\n\`\`\`\n\n**Le Box Model — fondamental CSS :**\n\`\`\`css\n.element {\n  /* Le contenu */\n  width: 300px;\n  height: 200px;\n  \n  /* Espace intérieur */\n  padding: 20px;\n  padding: 10px 20px; /* haut/bas gauche/droite */\n  \n  /* Bordure */\n  border: 2px solid #00B4D8;\n  border-radius: 12px;\n  \n  /* Espace extérieur */\n  margin: 16px;\n  margin: 0 auto; /* centrer horizontalement */\n  \n  /* IMPORTANT : inclure padding dans width */\n  box-sizing: border-box;\n}\n\`\`\``},
+      {title:'Flexbox — mise en page moderne',img:'https://images.unsplash.com/photo-1507721999472-8ed4421c4af2?w=800&q=80',content:`Flexbox est la méthode moderne de mise en page CSS. Elle résout 90% des problèmes.\n\n**Activer Flexbox :**\n\`\`\`css\n.container {\n  display: flex;\n  \n  /* Direction principale */\n  flex-direction: row;    /* → horizontal (défaut) */\n  flex-direction: column; /* ↓ vertical */\n  \n  /* Alignement sur l'axe principal */\n  justify-content: flex-start;   /* début */\n  justify-content: center;       /* centre */\n  justify-content: flex-end;     /* fin */\n  justify-content: space-between;/* espacement */\n  justify-content: space-around; /* espacement égal */\n  \n  /* Alignement sur l'axe secondaire */\n  align-items: stretch; /* défaut — étire */\n  align-items: center;  /* centre */\n  align-items: flex-start;\n  align-items: flex-end;\n  \n  /* Espace entre les éléments */\n  gap: 16px;\n  \n  /* Retour à la ligne */\n  flex-wrap: wrap;\n}\n\`\`\`\n\n**Cas d'usage courants :**\n\`\`\`css\n/* Centrage parfait (vertical + horizontal) */\n.centre {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  min-height: 100vh;\n}\n\n/* Navbar responsive */\nnav {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  padding: 0 24px;\n  height: 70px;\n}\n\n/* Grille de cartes */\n.cartes {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 20px;\n}\n.carte { flex: 1; min-width: 280px; }\n\`\`\``}
+    ]}
+  ]},
+  'excel-debutant':{chapters:[
+    {title:'Découverte d\'Excel',lessons:[
+      {title:'L\'interface Excel',img:'https://images.unsplash.com/photo-1587620962725-abab7fe55159?w=800&q=80',content:`Microsoft Excel est le tableur de référence pour la gestion et l'analyse de données.\n\n**L'interface Excel :**\n• Le Ruban : onglets Accueil, Insertion, Mise en page, Formules, Données, Révision\n• La barre de formule : affiche le contenu de la cellule active\n• La zone de nom : affiche la référence de la cellule (ex: A1)\n• Les onglets de feuilles : en bas du classeur\n\n**Vocabulaire essentiel :**\n• Cellule : intersection d'une colonne (A,B,C...) et d'une ligne (1,2,3...)\n• Plage : groupe de cellules (ex: A1:D10)\n• Feuille : onglet dans le classeur\n• Classeur : fichier Excel (.xlsx)\n\n**Navigation rapide :**\n• Ctrl+Fin → Dernière cellule utilisée\n• Ctrl+Home → Cellule A1\n• Ctrl+→ → Fin de la ligne de données\n• Ctrl+A → Tout sélectionner\n• F2 → Modifier la cellule active\n\n**Formats de cellule essentiels :**\n• Nombre : 1 234,56\n• Monétaire : 10 000 FCFA\n• Date : 26/04/2025\n• Pourcentage : 85%\n• Texte : pour les codes, numéros de tél...`},
+      {title:'Formules essentielles',img:'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',content:`Les formules sont le cœur d'Excel. Elles commencent toujours par le signe **=**\n\n**Les fonctions incontournables :**\n\`\`\`\n=SOMME(A1:A10)\n→ Additionne toutes les valeurs de A1 à A10\n\n=MOYENNE(B2:B20)\n→ Calcule la moyenne de la plage\n\n=MAX(C:C)\n→ Valeur maximale de toute la colonne C\n\n=MIN(C:C)\n→ Valeur minimale\n\n=NB(D1:D50)\n→ Compte les cellules contenant des nombres\n\n=NBVAL(E1:E100)\n→ Compte toutes les cellules non vides\n\n=SI(A1>100, "Objectif atteint", "À améliorer")\n→ Condition : si A1>100, affiche "Objectif atteint"\n\n=CONCATENER(A1, " ", B1)\n→ Fusionne le texte de A1 et B1 (ou =A1&" "&B1)\n\n=ARRONDI(A1/3, 2)\n→ Divise A1 par 3 et arrondit à 2 décimales\n\`\`\`\n\n**Erreurs courantes :**\n• #DIV/0! → Division par zéro\n• #REF! → Référence invalide (cellule supprimée)\n• #N/A → Valeur non trouvée\n• ##### → Colonne trop étroite (élargir la colonne)`}
+    ]}
+  ]}
+};
+
+// Generate generic content for courses without specific content
+function getGenericContent(courseId,chapterTitle,lessonTitle,chIdx,lIdx){
+  const imgs=['https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800&q=80','https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80','https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80','https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&q=80'];
+  return {
+    title:lessonTitle,
+    img:imgs[(chIdx+lIdx)%imgs.length],
+    content:`Cette leçon porte sur **${lessonTitle}**, dans le cadre du chapitre **${chapterTitle}**.\n\n**Objectifs d'apprentissage :**\n• Comprendre les concepts fondamentaux de ${lessonTitle}\n• Appliquer les notions dans des situations réelles\n• Développer des compétences pratiques immédiatement utilisables\n\n**Contenu principal :**\n\nCette leçon vous guide pas à pas à travers les concepts essentiels de ${lessonTitle}. Chaque notion est illustrée par des exemples concrets tirés du contexte africain et adapté aux réalités du marché béninois et ouest-africain.\n\n**Points clés :**\n• Maîtrisez les fondamentaux avant de passer à la suite\n• Pratiquez régulièrement — la répétition consolide l'apprentissage\n• Utilisez l'assistant IA pour obtenir des explications supplémentaires\n• Posez des questions via WhatsApp si vous avez besoin d'accompagnement\n\n**Application pratique :**\nAprès cette leçon, mettez immédiatement en pratique ce que vous avez appris. L'action concrète est la clé de la réussite dans votre formation Luckily Academy.\n\n**Pour aller plus loin :**\nN'hésitez pas à utiliser l'assistant IA ci-dessous pour obtenir des explications supplémentaires, des exemples pratiques ou un quiz pour tester votre compréhension.`
+  };
+}
+
+// All courses chapters structure
+const ALL_COURSES={
+  'web-marketing':{title:'Web Marketing',chapters:[
+    {title:'Introduction au Marketing Digital',lessons:['Qu\'est-ce que le Marketing Digital ?','L\'écosystème digital africain','Définir ses objectifs SMART','Les canaux de marketing digital']},
+    {title:'SEO — Référencement Naturel',lessons:['Les bases du SEO','Recherche de mots-clés','Optimisation on-page','Netlinking et SEO off-page','Google Search Console']},
+    {title:'Réseaux Sociaux',lessons:['Stratégie Facebook & Instagram','Créer du contenu viral','TikTok pour les entreprises','Gérer sa communauté','Publicité sur les réseaux']},
+    {title:'Publicité Payante',lessons:['Google Ads pour débutants','Facebook Ads — ciblage avancé','Budget et ROI','Optimisation des campagnes']},
+    {title:'Email Marketing',lessons:['Construire une liste email','Rédiger des emails efficaces','Séquences d\'automation','Mesurer ses performances']},
+    {title:'Analytics & Stratégie',lessons:['Google Analytics 4','Tableaux de bord','Audit de présence digitale','Plan marketing annuel']}
+  ]},
+  'negociation':{title:'Négociation Commerciale',chapters:[
+    {title:'Psychologie & Fondamentaux',lessons:['Psychologie de la négociation','Les biais cognitifs en vente','Styles de négociateurs','Méthode BATNA']},
+    {title:'Techniques de Persuasion',lessons:['Les 6 principes de Cialdini','L\'ancrage et la réciprocité','L\'art de l\'écoute active','Communication non-verbale']},
+    {title:'Gérer les Objections',lessons:['Les 5 objections principales','La méthode ACRE','"C\'est trop cher" — réponses','Transformer le refus en opportunité']},
+    {title:'Closing & Fidélisation',lessons:['Techniques de closing','Signaux d\'achat','Suivre et fidéliser ses clients','Construire une relation long terme']}
+  ]},
+  'charge-clientele':{title:'Chargé Clientèle',chapters:[
+    {title:'Excellence dans l\'Accueil',lessons:['Les 7 secondes — première impression','Le SBAM en pratique','Accueil physique vs téléphonique','Posture et langage professionnel']},
+    {title:'Communication Empathique',lessons:['L\'écoute active en 5 étapes','Reformulation et validation','Mots à éviter, mots à utiliser','Gérer les clients difficiles']},
+    {title:'Gestion des Réclamations',lessons:['La méthode HEARD','Transformer mécontentement en fidélité','Procédures de traitement','Suivi et feedback']},
+    {title:'Fidélisation & CRM',lessons:['Les KPIs de satisfaction','Net Promoter Score (NPS)','Utiliser un CRM','Programme de fidélité']}
+  ]},
+  'dev-frontend':{title:'Développement Web Frontend',chapters:[
+    {title:'HTML5 — Fondamentaux',lessons:['Structure d\'une page web HTML5','Les balises sémantiques','Formulaires HTML complets','Images, liens et médias','SEO on-page basique']},
+    {title:'CSS3 — Design & Style',lessons:['Sélecteurs et box model','Flexbox — mise en page moderne','CSS Grid — layouts avancés','Animations et transitions CSS','Variables CSS et thèmes','Responsive Design']},
+    {title:'JavaScript ES6+ Moderne',lessons:['Variables, fonctions et tableaux','Arrow functions et destructuring','DOM manipulation','Événements et listeners','Promises et async/await','Fetch API et JSON','LocalStorage']},
+    {title:'React.js',lessons:['Introduction à React','Composants fonctionnels','Props et state','Hooks useState et useEffect','React Router','Projet React complet']},
+    {title:'Projets & Déploiement',lessons:['Site portfolio complet','E-commerce simple','Déploiement sur Vercel','GitHub','Optimisation performances']}
+  ]},
+  'dev-backend':{title:'Développement Web Backend',chapters:[
+    {title:'Fondamentaux Backend',lessons:['Client-serveur et HTTP','Environnements de développement','Introduction à Node.js','npm et packages']},
+    {title:'Node.js & Express.js',lessons:['Créer un serveur Express','Routes et middlewares','Gestion des erreurs','Variables d\'environnement','API RESTful complète']},
+    {title:'Bases de Données SQL',lessons:['Introduction à MySQL','Créer et gérer des tables','Requêtes SELECT INSERT UPDATE','Jointures et sous-requêtes','Node.js + MySQL']},
+    {title:'MongoDB & NoSQL',lessons:['Introduction à MongoDB','Mongoose et schémas','Opérations CRUD','Agrégations','Indexation et performances']},
+    {title:'Authentification & Sécurité',lessons:['JWT — JSON Web Tokens','Hachage bcrypt','Sessions et cookies','Protéger les routes','Validation des données','CORS et sécurité']},
+    {title:'PHP & Laravel',lessons:['Bases de PHP moderne','Laravel — installation','Routes et contrôleurs','Eloquent ORM','Blade templates']},
+    {title:'Déploiement',lessons:['Hébergement VPS','Configuration Nginx','CI/CD basique','Variables production','Monitoring et logs']}
+  ]},
+  'analyse-donnees':{title:'Analyse des Données',chapters:[
+    {title:'Excel pour l\'Analyse',lessons:['Tableaux croisés dynamiques','VLOOKUP, INDEX-MATCH','SUMIFS, COUNTIFS avancés','Mise en forme conditionnelle','Graphiques professionnels','Power Query']},
+    {title:'Python pour la Data',lessons:['Introduction à Python','NumPy — tableaux numériques','Pandas — DataFrames','Chargement et nettoyage','Analyse exploratoire','Groupby et agrégations']},
+    {title:'Visualisation des Données',lessons:['Matplotlib — graphiques de base','Seaborn — avancé','Choisir le bon graphique','Storytelling avec données','Export et présentation']},
+    {title:'Power BI & Dashboards',lessons:['Introduction à Power BI','Connexion aux sources','DAX — mesures et colonnes','Création de tableaux de bord','Publication et partage']},
+    {title:'SQL pour Analystes',lessons:['Requêtes SELECT avancées','Jointures multiples','Fonctions de fenêtre','Sous-requêtes et CTEs','Analyse avec SQL']},
+    {title:'Projets Réels',lessons:['Analyse des ventes','Dashboard commercial','Rapport d\'analyse présenté']}
+  ]},
+  'word-debutant':{title:'Microsoft Word — Débutant',chapters:[
+    {title:'Découverte de Word',lessons:['L\'interface Microsoft Word','Le ruban et les onglets','Créer et enregistrer un document','Navigation dans le texte','Raccourcis essentiels']},
+    {title:'Mise en Forme du Texte',lessons:['Police, taille et couleur','Gras, italique, souligné','Alignement des paragraphes','Interligne et espacement','Listes à puces et numérotées']},
+    {title:'Tableaux et Images',lessons:['Créer et formater un tableau','Insérer et redimensionner des images','Habillage du texte','En-têtes et pieds de page','Numéros de page']},
+    {title:'Mise en Page & Impression',lessons:['Marges et orientation','Taille du papier','Aperçu avant impression','Imprimer un document','Exporter en PDF']}
+  ]},
+  'word-intermediaire':{title:'Microsoft Word — Intermédiaire',chapters:[
+    {title:'Styles et Documents Longs',lessons:['Styles Word — créer et modifier','Titres hiérarchiques','Table des matières automatique','Numérotation avancée','Sections et sauts']},
+    {title:'Outils Avancés',lessons:['Publipostage (mail merge)','Lettres type personnalisées','Commentaires et révisions','Suivi des modifications','Protection et mots de passe','Modèles de documents']}
+  ]},
+  'word-avance':{title:'Microsoft Word — Avancé',chapters:[
+    {title:'Macros et Automatisation',lessons:['Enregistrer une macro','L\'éditeur VBA','Écrire sa première macro','Automatiser les rapports','Boutons et formulaires']},
+    {title:'Fonctionnalités Avancées',lessons:['Documents maîtres','Publipostage conditionnel','Formulaires interactifs','Protection et droits','Intégration avec Excel','Automatisation VBA avancée']}
+  ]},
+  'excel-debutant':{title:'Microsoft Excel — Débutant',chapters:[
+    {title:'Découverte d\'Excel',lessons:['L\'interface Excel','Cellules, lignes et colonnes','Saisir et modifier des données','Formats de cellule','Navigation rapide']},
+    {title:'Formules Essentielles',lessons:['SOMME, MOYENNE, MAX, MIN','NB, NBVAL','SI — condition simple','CONCATENER','Références relatives et absolues']},
+    {title:'Mise en Forme et Graphiques',lessons:['Mettre en forme les cellules','Tri et filtrage','Créer un graphique simple','Types de graphiques','Impression de feuilles']}
+  ]},
+  'excel-intermediaire':{title:'Microsoft Excel — Intermédiaire',chapters:[
+    {title:'Formules de Recherche',lessons:['VLOOKUP — recherche verticale','HLOOKUP','INDEX + MATCH','IFERROR — gérer les erreurs']},
+    {title:'Analyse Avancée',lessons:['SUMIF et SUMIFS','COUNTIF et COUNTIFS','Mise en forme conditionnelle','Validation des données','Tableaux structurés Excel']},
+    {title:'Visualisation Avancée',lessons:['Graphiques combinés','Graphiques dynamiques','Sparklines','Protection des feuilles','Partage et collaboration']}
+  ]},
+  'excel-avance':{title:'Microsoft Excel — Avancé',chapters:[
+    {title:'Power Query & Données',lessons:['Introduction à Power Query','Importer et nettoyer des données','Transformer et fusionner','Actualisation automatique']},
+    {title:'TCD et Dashboards',lessons:['TCD avancés','Segments et filtres','Graphiques croisés dynamiques','Construire un dashboard complet']},
+    {title:'Macros VBA',lessons:['Enregistrer une macro Excel','L\'éditeur VBA','Variables et boucles','Automatiser des rapports','Formulaires VBA']}
+  ]},
+  'outils':{title:'Outils Bureautique & Compatibilité',chapters:[
+    {title:'PDF et Outils de Compatibilité',lessons:['Créer un PDF depuis Word/Excel','Éditer un PDF gratuitement','Compresser et sécuriser un PDF','Convertir PDF en Word','Fusionner et diviser des PDFs']},
+    {title:'Google Workspace',lessons:['Google Docs','Google Sheets','Google Slides','Google Drive','Collaboration en temps réel','Google Forms']},
+    {title:'LibreOffice & Autres',lessons:['LibreOffice Writer','LibreOffice Calc','Compatibilité Microsoft Office','OneDrive et synchronisation','Signatures électroniques']}
+  ]}
+};
+
+function getLessonContent(cid,chIdx,lIdx){
+  // Try specific content first
+  const specific=LESSONS_CONTENT[cid]?.chapters?.[chIdx]?.lessons?.[lIdx];
+  if(specific)return specific;
+  // Fall back to generic
+  const course=ALL_COURSES[cid];
+  if(!course)return null;
+  const chapter=course.chapters[chIdx];
+  if(!chapter)return null;
+  const lessonTitle=chapter.lessons[lIdx];
+  if(!lessonTitle)return null;
+  return getGenericContent(cid,chapter.title,lessonTitle,chIdx,lIdx);
+}
+
+function renderSidebar(cid,curCh,curLes,uid){
+  const course=ALL_COURSES[cid];if(!course)return;
+  const prog=getLessonProg(uid,cid);
+  let html='<div class="ls-title">Contenu du cours</div><div class="ls-list">';
+  course.chapters.forEach((ch,ci)=>{
+    html+=`<div class="ls-ch">Ch.${ci+1} — ${ch.title}</div>`;
+    ch.lessons.forEach((l,li)=>{
+      const active=ci===curCh&&li===curLes;
+      const done=prog.includes(ci+'_'+li);
+      html+=`<div class="ls-item ${active?'active':''} ${done?'done':''}" onclick="window.location.href='lesson.html?course=${cid}&chapter=${ci}&lesson=${li}'" style="${active?'background:var(--primary-l);color:var(--primary);font-weight:700;':''}">
+        <span>${done?'✓':active?'▶':'○'}</span>
+        <span style="flex:1;font-size:.8rem">${l}</span>
+      </div>`;
+    });
+  });
+  html+='</div>';
+  document.getElementById('lsSidebar').innerHTML=html;
+}
+
+function renderLesson(){
+  const p=new URLSearchParams(window.location.search);
+  const cid=p.get('course');
+  const chIdx=parseInt(p.get('chapter')||'0',10);
+  const lIdx=parseInt(p.get('lesson')||'0',10);
+  const sess=getSess();
+  if(!sess){window.location.href='auth.html?redirect='+encodeURIComponent(window.location.href);return;}
+  if(!isEnrolled(sess.userId,cid)){window.location.href='course-detail.html?id='+cid;return;}
+  const course=ALL_COURSES[cid];if(!course){window.location.href='courses.html';return;}
+  const chapter=course.chapters[chIdx];if(!chapter){window.location.href='course-detail.html?id='+cid;return;}
+  const lessonData=getLessonContent(cid,chIdx,lIdx);if(!lessonData){window.location.href='course-detail.html?id='+cid;return;}
+
+  document.title=lessonData.title+' — Luckily Academy';
+  curLessonTitle=lessonData.title;
+
+  // Breadcrumb
+  const bc=document.getElementById('lessonBC');
+  if(bc)bc.innerHTML=`<a href="courses.html">Formations</a> › <a href="course-detail.html?id=${cid}">${course.title}</a> › <span>${lessonData.title}</span>`;
+
+  // Title
+  const lt=document.getElementById('lessonTitle');if(lt)lt.textContent=lessonData.title;
+
+  // Image
+  const img=document.getElementById('lessonImg');
+  if(img&&lessonData.img){img.src=lessonData.img;img.alt=lessonData.title;}
+
+  // Content — convert markdown-like to HTML
+  const bodyEl=document.getElementById('lessonBody');
+  if(bodyEl){
+    let html=lessonData.content||'';
+    html=html.replace(/```(\w*)\n?([\s\S]*?)```/g,(_,lang,code)=>`<pre><code>${code.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</code></pre>`);
+    html=html.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>');
+    html=html.replace(/^• (.+)$/gm,'<li>$1</li>');
+    html=html.replace(/(<li>.*<\/li>\n?)+/g,m=>`<ul>${m}</ul>`);
+    html=html.replace(/^(\d+)\. (.+)$/gm,'<li>$2</li>');
+    html=html.replace(/\n\n/g,'</p><p>');
+    html='<p>'+html+'</p>';
+    html=html.replace(/<p><pre>/g,'<pre>').replace(/<\/pre><\/p>/g,'</pre>');
+    html=html.replace(/<p><ul>/g,'<ul>').replace(/<\/ul><\/p>/g,'</ul>');
+    html=html.replace(/<p><\/p>/g,'');
+    bodyEl.innerHTML=html;
+  }
+
+  // Mark complete state
+  const prog=getLessonProg(sess.userId,cid);
+  const lessonKey=chIdx+'_'+lIdx;
+  const markBtn=document.getElementById('markBtn');
+  const isDone=prog.includes(lessonKey);
+  if(markBtn){
+    markBtn.textContent=isDone?'✓ Leçon complétée':'✓ Marquer comme complétée';
+    markBtn.style.background=isDone?'linear-gradient(135deg,#06D6A0,#0096B5)':'';
+    markBtn.onclick=()=>{
+      markDone(sess.userId,cid,lessonKey);
+      markBtn.textContent='✓ Leçon complétée';
+      markBtn.style.background='linear-gradient(135deg,#06D6A0,#0096B5)';
+      renderSidebar(cid,chIdx,lIdx,sess.userId);
+      updateProgress(cid,sess.userId,course);
+      toast('✓ Leçon complétée !','success');
+    };
+  }
+
+  // Navigation
+  let allL=[];
+  course.chapters.forEach((ch,ci)=>ch.lessons.forEach((_,li)=>allL.push({ch:ci,les:li})));
+  const curIdx=allL.findIndex(x=>x.ch===chIdx&&x.les===lIdx);
+  const prevBtn=document.getElementById('prevBtn');
+  const nextBtn=document.getElementById('nextBtn');
+  if(prevBtn){
+    if(curIdx>0){prevBtn.onclick=()=>{window.location.href=`lesson.html?course=${cid}&chapter=${allL[curIdx-1].ch}&lesson=${allL[curIdx-1].les}`;};prevBtn.style.opacity='1';prevBtn.disabled=false;}
+    else{prevBtn.style.opacity='.4';prevBtn.disabled=true;}
+  }
+  if(nextBtn){
+    if(curIdx<allL.length-1){
+      nextBtn.textContent='Leçon suivante →';
+      nextBtn.style.background='';
+      nextBtn.onclick=()=>{markDone(sess.userId,cid,lessonKey);window.location.href=`lesson.html?course=${cid}&chapter=${allL[curIdx+1].ch}&lesson=${allL[curIdx+1].les}`;};
+    }else{
+      nextBtn.textContent='🏆 Formation terminée !';
+      nextBtn.style.background='linear-gradient(135deg,#06D6A0,#0096B5)';
+      nextBtn.onclick=()=>{markDone(sess.userId,cid,lessonKey);window.location.href='course-detail.html?id='+cid;};
+    }
+  }
+
+  // Progress bar
+  updateProgress(cid,sess.userId,course);
+  document.getElementById('topTitle').textContent=course.title;
+  renderSidebar(cid,chIdx,lIdx,sess.userId);
+}
+
+function updateProgress(cid,uid,course){
+  const total=course.chapters.reduce((s,ch)=>s+(ch.lessons?.length||0),0);
+  const done=getLessonProg(uid,cid).length;
+  const pct=total?Math.round((done/total)*100):0;
+  const fill=document.getElementById('progFill');
+  const txt=document.getElementById('progTxt');
+  if(fill)fill.style.width=pct+'%';
+  if(txt)txt.textContent=pct+'% complété';
+}
+
+window.addEventListener('load',()=>setTimeout(()=>document.getElementById('loader')?.classList.add('hidden'),900));
+const rs=document.createElement('style');rs.textContent='.la-toast{opacity:0;transform:translateX(-50%) translateY(14px);transition:all .3s cubic-bezier(.34,1.56,.64,1);}';document.head.appendChild(rs);
+
+document.addEventListener('DOMContentLoaded',()=>{
+  renderLesson();
+});
+</script>
+</body>
+</html>

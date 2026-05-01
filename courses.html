@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Formations — Luckily Academy</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>"/>
+<link rel="stylesheet" href="style.css"/>
+<style>
+.filter-btn{padding:8px 18px;border-radius:var(--r-full);border:1.5px solid var(--border);color:var(--text-m);font-size:.84rem;font-weight:500;cursor:pointer;transition:var(--tr);background:transparent;font-family:var(--ff-b);}
+.filter-btn:hover,.filter-btn.active{border-color:var(--primary);color:var(--primary);background:var(--primary-l);}
+.filter-btn.active{background:linear-gradient(135deg,var(--primary),var(--primary-d));color:#fff!important;border-color:transparent;}
+.filters-wrap{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px;}
+</style>
+</head>
+<body>
+<div id="loader"><div class="ld-ring"></div><div class="ld-text">Luckily Academy</div></div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="nav-wrap">
+    <a href="index.html" class="nav-logo"><span class="nav-logo-icon">🎓</span><span class="nav-logo-text">Luckily <em>Academy</em></span></a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html" class="nav-link">Accueil</a>
+      <a href="courses.html" class="nav-link active">Formations</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <button class="btn-icon" id="themeBtn"><span id="themeIcon">🌙</span></button>
+      <div class="lang-wrap">
+        <button class="lang-btn" id="langBtn"><span id="curLang">FR</span> ▾</button>
+        <div class="lang-drop" id="langDrop">
+          <button class="lang-opt" onclick="setLang('fr')">🇫🇷 Français</button>
+          <button class="lang-opt" onclick="setLang('en')">🇬🇧 English</button>
+          <button class="lang-opt" onclick="setLang('es')">🇪🇸 Español</button>
+          <button class="lang-opt" onclick="setLang('pt')">🇵🇹 Português</button>
+        </div>
+      </div>
+      <a href="auth.html" class="btn-login" id="authBtn">Se connecter</a>
+      <a href="dashboard.html" class="btn-avatar hidden" id="dashBtn"><span id="navAv">U</span></a>
+    </div>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div style="padding-top:var(--nav-h)">
+  <!-- Page Hero -->
+  <div class="page-hero-wrap">
+    <div class="wrap">
+      <div class="sec-tag" style="margin-bottom:10px">Catalogue</div>
+      <h1 style="font-family:var(--ff-d);font-size:clamp(2rem,5vw,3rem);font-weight:700;margin-bottom:10px">Toutes nos <em style="font-style:italic;color:var(--primary)">Formations</em></h1>
+      <p style="color:var(--text-m);font-size:.95rem">Des formations conçues par des experts pour votre succès professionnel.</p>
+      <div class="filters-wrap" id="filtersWrap">
+        <button class="filter-btn active" data-cat="all">✦ Tout voir</button>
+        <button class="filter-btn" data-cat="Marketing">📢 Marketing</button>
+        <button class="filter-btn" data-cat="Dev">💻 Développement</button>
+        <button class="filter-btn" data-cat="Data">📊 Data</button>
+        <button class="filter-btn" data-cat="Business">🤝 Business</button>
+        <button class="filter-btn" data-cat="Service">🎯 Service Client</button>
+        <button class="filter-btn" data-cat="Bureautique">🖥️ Bureautique</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Courses Grid -->
+  <div class="wrap" style="padding-top:48px;padding-bottom:64px">
+    <div class="courses-grid" id="coursesGrid"></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div><div class="footer-logo">🎓 Luckily <em>Academy</em></div><p class="footer-brand">Votre succès commence ici.</p><a href="https://wa.me/2290159609581" target="_blank" class="footer-wa">📱 +229 01 59 60 95 81</a></div>
+    <div class="footer-col"><h4>Formations</h4><a href="courses.html?cat=Marketing">Marketing</a><a href="courses.html?cat=Dev">Développement</a><a href="courses.html?cat=Data">Data</a><a href="courses.html?cat=Bureautique">Bureautique</a></div>
+    <div class="footer-col"><h4>Plateforme</h4><a href="index.html">Accueil</a><a href="auth.html">Connexion</a><a href="contact.html">Contact</a></div>
+    <div class="footer-col"><h4>Légal</h4><a href="legal-terms.html">Conditions</a><a href="legal-privacy.html">Confidentialité</a><a href="legal-refund.html">Remboursement</a></div>
+  </div>
+  <div class="footer-bottom">© 2025 Luckily Academy. Tous droits réservés. Fondée par Luc DEGUENON.</div>
+</footer>
+
+<button class="ai-fab" onclick="openAI()">🤖 <span>IA</span></button>
+<a href="https://wa.me/2290159609581" target="_blank" class="wa-fab">💬</a>
+<div class="modal-ov" id="aiModal">
+  <div class="modal-box">
+    <div class="modal-head"><div class="modal-title"><span>🤖</span><span>Luckily IA</span></div><button class="modal-close" onclick="closeAI()">✕</button></div>
+    <div class="modal-msgs" id="aiMsgs"><div class="ai-msg bot"><div class="msg-bbl">Bonjour ! Je peux vous aider à choisir la bonne formation. 😊</div></div></div>
+    <div class="modal-inp-row"><input class="modal-inp" id="aiInp" placeholder="Votre question..." onkeypress="if(event.key==='Enter')sendAI()"/><button class="modal-send" onclick="sendAI()">➤</button></div>
+  </div>
+</div>
+
+<script>
+const K={USERS:'la_u',SESS:'la_s',ENROLL:'la_e',PROG:'la_p',THEME:'la_t',LANG:'la_l'};
+const WA='2290159609581';
+function sg(k){try{return JSON.parse(localStorage.getItem(k)||'null');}catch{return null;}}
+function ss(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch{}}
+function getUsers(){return sg(K.USERS)||[];}
+function saveUsers(u){ss(K.USERS,u);}
+function getSess(){return sg(K.SESS);}
+function setSess(u){ss(K.SESS,{userId:u.id,email:u.email,fullname:u.fullname});}
+function isLoggedIn(){return !!getSess();}
+function getCurUser(){const s=getSess();if(!s)return null;return getUsers().find(u=>u.id===s.userId)||null;}
+function getEnrolls(){return sg(K.ENROLL)||{};}
+function isEnrolled(uid,cid){const e=getEnrolls();return !!(e[uid]&&e[uid].includes(cid));}
+function enrollUser(uid,cid){const e=getEnrolls();if(!e[uid])e[uid]=[];if(!e[uid].includes(cid))e[uid].push(cid);ss(K.ENROLL,e);}
+const CODES={'web-marketing':'luckily2002','negociation':'luckily2003','charge-clientele':'luckily2004','dev-frontend':'luckily2005','dev-backend':'luckily2006','analyse-donnees':'luckily2007','word-debutant':'luckily2008','word-intermediaire':'luckily2009','word-avance':'luckily2010','excel-debutant':'luckily2011','excel-intermediaire':'luckily2012','excel-avance':'luckily2013','outils':'luckily2014'};
+function verifyCode(cid,input){const exp=CODES[cid];if(!exp)return false;return input.trim().toLowerCase()===exp.toLowerCase();}
+function fmtP(p){return Number(p).toLocaleString('fr-FR')+' FCFA';}
+function toast(msg,type='info'){document.querySelector('.la-toast')?.remove();const c={success:'#06D6A0',error:'#EF233C',info:'#00B4D8',warning:'#F77F00'};const t=document.createElement('div');t.className='la-toast';t.textContent=msg;t.style.background=c[type]||c.info;document.body.appendChild(t);requestAnimationFrame(()=>{t.style.opacity='1';t.style.transform='translateX(-50%) translateY(0)';});setTimeout(()=>{t.style.opacity='0';t.style.transform='translateX(-50%) translateY(14px)';setTimeout(()=>t.remove(),350);},3200);}
+
+// Theme
+(function(){const t=localStorage.getItem(K.THEME)||'light';document.documentElement.setAttribute('data-theme',t);const i=document.getElementById('themeIcon');if(i)i.textContent=t==='dark'?'☀️':'🌙';})();
+function toggleTheme(){const cur=document.documentElement.getAttribute('data-theme')||'light';const nxt=cur==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',nxt);localStorage.setItem(K.THEME,nxt);const i=document.getElementById('themeIcon');if(i)i.textContent=nxt==='dark'?'☀️':'🌙';}
+
+let curLang=localStorage.getItem(K.LANG)||'fr';
+function setLang(l){curLang=l;localStorage.setItem(K.LANG,l);const el=document.getElementById('curLang');if(el)el.textContent=l.toUpperCase();document.getElementById('langDrop')?.classList.remove('open');renderGrid(curCat);}
+
+// Navbar
+function initNav(){
+  const nav=document.getElementById('navbar');
+  const hbg=document.getElementById('hamburger');
+  const nls=document.getElementById('navLinks');
+  const lbtn=document.getElementById('langBtn');
+  const ldrop=document.getElementById('langDrop');
+  if(nav)window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>40),{passive:true});
+  if(hbg&&nls){hbg.addEventListener('click',e=>{e.stopPropagation();const o=nls.classList.toggle('open');hbg.classList.toggle('open',o);});nls.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nls.classList.remove('open');hbg.classList.remove('open');}));document.addEventListener('click',e=>{if(nav&&!nav.contains(e.target)){nls.classList.remove('open');hbg.classList.remove('open');}});}
+  document.getElementById('themeBtn')?.addEventListener('click',toggleTheme);
+  if(lbtn&&ldrop){lbtn.addEventListener('click',e=>{e.stopPropagation();ldrop.classList.toggle('open');});document.addEventListener('click',()=>ldrop.classList.remove('open'));}
+  const sess=getSess();const ab=document.getElementById('authBtn');const db=document.getElementById('dashBtn');const av=document.getElementById('navAv');
+  if(sess){ab?.classList.add('hidden');db?.classList.remove('hidden');if(av)av.textContent=(sess.fullname||'U').charAt(0).toUpperCase();}else{ab?.classList.remove('hidden');db?.classList.add('hidden');}
+}
+
+// Anims
+function initAnims(){const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target);}});},{threshold:.08,rootMargin:'0px 0px -40px 0px'});const w=()=>document.querySelectorAll('.anim:not(.vis)').forEach(el=>io.observe(el));w();new MutationObserver(w).observe(document.body,{childList:true,subtree:true});}
+
+// AI
+function openAI(){document.getElementById('aiModal')?.classList.add('open');setTimeout(()=>document.getElementById('aiInp')?.focus(),300);}
+function closeAI(){document.getElementById('aiModal')?.classList.remove('open');}
+document.addEventListener('click',e=>{const m=document.getElementById('aiModal');if(m&&e.target===m)closeAI();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeAI();});
+const aiH=[];let aiB=false;
+async function sendAI(){const i=document.getElementById('aiInp');if(!i||!i.value.trim()||aiB)return;const m=i.value.trim();i.value='';addMsg(m,'user','aiMsgs');if(aiB)return;aiB=true;const box=document.getElementById('aiMsgs');const ty=document.createElement('div');ty.className='ai-msg bot';ty.innerHTML='<div class="msg-bbl ai-typing"><span></span><span></span><span></span></div>';box?.appendChild(ty);if(box)box.scrollTop=box.scrollHeight;aiH.push({role:'user',content:m});const lbl={fr:'Français',en:'English',es:'Español',pt:'Português'}[curLang]||'Français';try{const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:600,system:`Tu es Luckily IA. Aide les utilisateurs à choisir leurs formations. Prix: Web Marketing 10000F, Négociation 10000F, Chargé Clientèle 10000F, Dev Frontend 20000F, Dev Backend 25000F, Analyse Données 15000F, Word/Excel chaque niveau 5000F, Outils 5000F. Contact: +229 01 59 60 95 81. Réponds en ${lbl}, concisément.`,messages:aiH})});const d=await res.json();const r=d.content?.[0]?.text||'Je suis là pour vous aider !';aiH.push({role:'assistant',content:r});ty.parentNode?.removeChild(ty);addMsg(r,'bot','aiMsgs');}catch{ty.parentNode?.removeChild(ty);addMsg('Connexion temporairement indisponible.','bot','aiMsgs');}finally{aiB=false;}}
+function addMsg(txt,type,id){const c=document.getElementById(id);if(!c)return;const d=document.createElement('div');d.className='ai-msg '+type;d.innerHTML='<div class="msg-bbl">'+txt.replace(/\n/g,'<br>')+'</div>';c.appendChild(d);c.scrollTop=c.scrollHeight;}
+
+// Courses data
+const IMG={'web-marketing':'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80','negociation':'https://images.unsplash.com/photo-1521791136064-7986c2920216?w=600&q=80','charge-clientele':'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&q=80','dev-frontend':'https://images.unsplash.com/photo-1547658719-da2b51169166?w=600&q=80','dev-backend':'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&q=80','analyse-donnees':'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80','word-debutant':'https://images.unsplash.com/photo-1618044619888-009e412ff12a?w=600&q=80','word-intermediaire':'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=600&q=80','word-avance':'https://images.unsplash.com/photo-1456324504439-367cee3b3c32?w=600&q=80','excel-debutant':'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600&q=80','excel-intermediaire':'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80','excel-avance':'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80','outils':'https://images.unsplash.com/photo-1573804633927-bfcbcd909acd?w=600&q=80'};
+const COURSES=[
+  {id:'web-marketing',title:'Web Marketing',price:10000,category:'Marketing',level:'Débutant → Pro',duration:'8 semaines',icon:'📢',desc:'Maîtrisez les stratégies digitales : SEO, réseaux sociaux, publicité en ligne, email marketing et analytics pour développer votre activité.'},
+  {id:'negociation',title:'Négociation Commerciale',price:10000,category:'Business',level:'Débutant → Avancé',duration:'6 semaines',icon:'🤝',desc:'Techniques de persuasion avancées, gestion des objections, closing et fidélisation client. Devenez un négociateur d\'élite.'},
+  {id:'charge-clientele',title:'Chargé Clientèle',price:10000,category:'Service',level:'Débutant → Pro',duration:'6 semaines',icon:'🎯',desc:'Excellence dans la relation client : accueil, gestion des réclamations, fidélisation et service après-vente de qualité.'},
+  {id:'dev-frontend',title:'Développement Web Frontend',price:20000,category:'Dev',level:'Débutant → Pro',duration:'12 semaines',icon:'💻',desc:'HTML5, CSS3, JavaScript ES6+, React.js. De la page blanche au site professionnel — maîtrisez le développement frontend.'},
+  {id:'dev-backend',title:'Développement Web Backend',price:25000,category:'Dev',level:'Intermédiaire → Pro',duration:'14 semaines',icon:'⚙️',desc:'Node.js, PHP, MySQL, MongoDB, APIs REST, authentification JWT. Maîtrisez le développement côté serveur.'},
+  {id:'analyse-donnees',title:'Analyse des Données',price:15000,category:'Data',level:'Débutant → Pro',duration:'10 semaines',icon:'📊',desc:'Excel avancé, Python (Pandas, NumPy), visualisation avec Matplotlib, Power BI. Transformez les données en insights.'},
+  {id:'word-debutant',title:'Microsoft Word — Débutant',price:5000,category:'Bureautique',level:'Débutant',duration:'2 semaines',icon:'📝',desc:'Découverte de Word : créer, formater, mettre en page et imprimer des documents professionnels avec aisance.'},
+  {id:'word-intermediaire',title:'Microsoft Word — Intermédiaire',price:5000,category:'Bureautique',level:'Intermédiaire',duration:'2 semaines',icon:'📄',desc:'Styles, tables des matières automatiques, publipostage, en-têtes et pieds de page avancés.'},
+  {id:'word-avance',title:'Microsoft Word — Avancé',price:5000,category:'Bureautique',level:'Avancé',duration:'3 semaines',icon:'📋',desc:'Macros VBA, formulaires interactifs, publipostage avancé et automatisation complète de Word.'},
+  {id:'excel-debutant',title:'Microsoft Excel — Débutant',price:5000,category:'Bureautique',level:'Débutant',duration:'2 semaines',icon:'📊',desc:'Feuilles de calcul, formules de base (SOMME, MOYENNE, MAX, MIN), graphiques simples et mise en forme.'},
+  {id:'excel-intermediaire',title:'Microsoft Excel — Intermédiaire',price:5000,category:'Bureautique',level:'Intermédiaire',duration:'3 semaines',icon:'📈',desc:'VLOOKUP, INDEX-MATCH, tableaux structurés, graphiques avancés, mise en forme conditionnelle.'},
+  {id:'excel-avance',title:'Microsoft Excel — Avancé',price:5000,category:'Bureautique',level:'Avancé',duration:'3 semaines',icon:'📉',desc:'Power Query, VBA, macros, tableaux croisés dynamiques avancés et dashboards professionnels.'},
+  {id:'outils',title:'Outils Bureautique & Compatibilité',price:5000,category:'Bureautique',level:'Tous niveaux',duration:'2 semaines',icon:'🔧',desc:'PDF, Google Workspace (Docs, Sheets, Drive), LibreOffice, conversion de formats et collaboration en ligne.'}
+];
+
+function showAccess(cid){
+  const sess=getSess();
+  if(!sess){window.location.href='auth.html?redirect='+encodeURIComponent('course-detail.html?id='+cid);return;}
+  const c=COURSES.find(x=>x.id===cid);if(!c)return;
+  document.getElementById('accessModal')?.remove();
+  const m=document.createElement('div');m.id='accessModal';m.className='modal-ov open';
+  m.innerHTML=`<div class="access-box"><div style="background:linear-gradient(135deg,var(--primary),var(--accent));padding:20px 22px;text-align:center"><div style="font-size:2.4rem;margin-bottom:8px">${c.icon}</div><div style="font-family:var(--ff-d);font-size:1.3rem;font-weight:700;color:#fff;margin-bottom:2px">${c.title}</div><div style="font-size:.8rem;color:rgba(255,255,255,.8)">Entrez votre code d'accès</div></div><div style="padding:24px"><p style="font-size:.84rem;color:var(--text-m);margin-bottom:14px;line-height:1.6">Ce code vous a été envoyé par WhatsApp après confirmation de votre paiement.</p><input type="text" id="cInp" class="access-code-inp" placeholder="Ex : luckily2005" onkeypress="if(event.key==='Enter')subCode('${cid}')"/><div id="cErr" style="color:#EF233C;font-size:.82rem;margin-top:8px;text-align:center;display:none">Code incorrect. Vérifiez ou contactez-nous.</div><button onclick="subCode('${cid}')" class="btn-access" style="margin-top:12px">🔓 Accéder à la formation</button><div style="text-align:center;margin-top:14px"><a href="https://wa.me/${WA}?text=${encodeURIComponent('Bonjour, je souhaite m\'inscrire à : '+c.title+' — '+fmtP(c.price))}" target="_blank" style="display:inline-block;padding:8px 18px;border-radius:50px;background:#25D366;color:#fff;font-size:.8rem;font-weight:700;text-decoration:none;margin-bottom:8px">💬 Payer et obtenir mon code</a><br><button onclick="document.getElementById('accessModal').remove();document.body.style.overflow=''" style="font-size:.8rem;color:var(--text-m);cursor:pointer;background:transparent;border:none;margin-top:4px">Annuler</button></div></div></div>`;
+  document.body.appendChild(m);document.body.style.overflow='hidden';
+  m.addEventListener('click',e=>{if(e.target===m){m.remove();document.body.style.overflow='';}});
+  setTimeout(()=>document.getElementById('cInp')?.focus(),300);
+}
+function subCode(cid){
+  const inp=document.getElementById('cInp');const errEl=document.getElementById('cErr');if(!inp)return;
+  const code=inp.value.trim();if(!code){inp.style.borderColor='#EF233C';return;}
+  const sess=getSess();if(!sess){window.location.href='auth.html';return;}
+  if(verifyCode(cid,code)){
+    enrollUser(sess.userId,cid);document.getElementById('accessModal')?.remove();document.body.style.overflow='';
+    toast('✓ Accès accordé ! Bienvenue dans la formation.','success');
+    setTimeout(()=>{window.location.href='course-detail.html?id='+cid;},1200);
+  }else{if(errEl)errEl.style.display='block';inp.style.borderColor='#EF233C';}
+}
+
+let curCat='all';
+function renderGrid(cat){
+  curCat=cat;
+  const el=document.getElementById('coursesGrid');if(!el)return;
+  const list=cat==='all'?COURSES:COURSES.filter(c=>c.category===cat);
+  if(!list.length){el.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:60px;color:var(--text-m)"><div style="font-size:2.5rem;margin-bottom:12px">🔍</div><p>Aucune formation dans cette catégorie.</p><a href="courses.html" style="color:var(--primary);font-weight:600;display:inline-block;margin-top:12px">Voir toutes les formations</a></div>';return;}
+  el.innerHTML=list.map(c=>{
+    const img=IMG[c.id]||'https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=600&q=80';
+    const sess=getSess();const enrolled=sess?isEnrolled(sess.userId,c.id):false;
+    return `<div class="course-card anim" onclick="window.location.href='course-detail.html?id=${c.id}'" style="cursor:pointer">
+      <div class="cc-img">
+        <img src="${img}" alt="${c.title}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=600&q=80'"/>
+        <div class="cc-overlay"></div>
+        <div class="cc-badge">${c.level}</div>
+        <div class="cc-icon">${c.icon}</div>
+        <div class="cc-lock">${enrolled?'✓ Inscrit':'🔒 Code requis'}</div>
+      </div>
+      <div class="cc-body">
+        <div class="cc-cat">${c.category}</div>
+        <h3 class="cc-title">${c.title}</h3>
+        <div class="cc-meta"><span>⏱ ${c.duration}</span></div>
+        <p class="cc-desc">${c.desc}</p>
+        <div class="cc-foot">
+          <div class="cc-price">${fmtP(c.price)} <small>/ formation</small></div>
+          <div class="cc-btn">Voir →</div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+  document.querySelectorAll('.filter-btn').forEach(btn=>btn.classList.toggle('active',btn.dataset.cat===cat));
+}
+
+window.addEventListener('load',()=>setTimeout(()=>document.getElementById('loader')?.classList.add('hidden'),1000));
+const rs=document.createElement('style');rs.textContent='.la-toast{opacity:0;transform:translateX(-50%) translateY(14px);transition:all .3s cubic-bezier(.34,1.56,.64,1);}';document.head.appendChild(rs);
+
+document.addEventListener('DOMContentLoaded',()=>{
+  initNav();initAnims();
+  const cat=new URLSearchParams(window.location.search).get('cat')||'all';
+  renderGrid(cat);
+  document.querySelectorAll('.filter-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>renderGrid(btn.dataset.cat));
+  });
+});
+</script>
+</body>
+</html>

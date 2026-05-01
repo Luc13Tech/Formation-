@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Formation — Luckily Academy</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>"/>
+<link rel="stylesheet" href="style.css"/>
+<style>
+.course-hero-bg{background:linear-gradient(135deg,#0a1520,#1A1A2E,#0a0f1a);padding:60px 0;position:relative;overflow:hidden;}
+.course-hero-bg::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 80% at 70% 50%,rgba(0,180,216,.1),transparent);}
+.hero-grid-2{display:grid;grid-template-columns:1fr 360px;gap:40px;align-items:start;position:relative;z-index:1;}
+.purchase-card{background:var(--bg-card);border-radius:24px;padding:24px;box-shadow:var(--sh-xl);}
+.purchase-card img{width:100%;height:150px;object-fit:cover;border-radius:14px;margin-bottom:16px;}
+.include-item{display:flex;align-items:center;gap:8px;font-size:.83rem;color:var(--text-m);margin-bottom:7px;}
+.sum-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.sum-item{display:flex;align-items:flex-start;gap:9px;padding:10px;border-radius:10px;border:1px solid var(--border);background:var(--bg-alt);}
+.sum-num{width:22px;height:22px;border-radius:50%;background:var(--primary);color:#fff;font-size:.7rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.ch-item{border:1px solid var(--border);border-radius:var(--r);margin-bottom:10px;overflow:hidden;}
+.ch-hd{padding:15px 18px;display:flex;align-items:center;justify-content:space-between;background:var(--bg-alt);cursor:pointer;transition:var(--tr);}
+.ch-hd:hover{background:var(--bg-card);}
+.ch-arrow{transition:transform .3s;}
+.ch-item.open .ch-arrow{transform:rotate(180deg);}
+.ch-lessons{display:none;}
+.ch-item.open .ch-lessons{display:block;}
+.lesson-row{display:flex;align-items:center;gap:10px;padding:10px 18px;font-size:.86rem;color:var(--text-m);border-bottom:1px solid var(--border);cursor:pointer;transition:background .18s;}
+.lesson-row:last-child{border-bottom:none;}
+.lesson-row:hover{background:var(--bg-alt);}
+@media(max-width:900px){.hero-grid-2{grid-template-columns:1fr;}.sum-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div id="loader"><div class="ld-ring"></div><div class="ld-text">Luckily Academy</div></div>
+
+<nav id="navbar">
+  <div class="nav-wrap">
+    <a href="index.html" class="nav-logo"><span class="nav-logo-icon">🎓</span><span class="nav-logo-text">Luckily <em>Academy</em></span></a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html" class="nav-link">Accueil</a>
+      <a href="courses.html" class="nav-link active">Formations</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <button class="btn-icon" id="themeBtn"><span id="themeIcon">🌙</span></button>
+      <a href="auth.html" class="btn-login" id="authBtn">Se connecter</a>
+      <a href="dashboard.html" class="btn-avatar hidden" id="dashBtn"><span id="navAv">U</span></a>
+    </div>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div style="padding-top:var(--nav-h)" id="pageBody">
+  <div style="text-align:center;padding:80px 20px;color:var(--text-m)"><div class="ld-ring" style="margin:0 auto 16px"></div>Chargement...</div>
+</div>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div><div class="footer-logo">🎓 Luckily <em>Academy</em></div><p class="footer-brand">Votre succès commence ici.</p><a href="https://wa.me/2290159609581" target="_blank" class="footer-wa">📱 +229 01 59 60 95 81</a></div>
+    <div class="footer-col"><h4>Formations</h4><a href="courses.html">Catalogue</a></div>
+    <div class="footer-col"><h4>Plateforme</h4><a href="index.html">Accueil</a><a href="auth.html">Connexion</a><a href="contact.html">Contact</a></div>
+    <div class="footer-col"><h4>Légal</h4><a href="legal-terms.html">Conditions</a><a href="legal-privacy.html">Confidentialité</a></div>
+  </div>
+  <div class="footer-bottom">© 2025 Luckily Academy. Tous droits réservés. Fondée par Luc DEGUENON.</div>
+</footer>
+
+<button class="ai-fab" onclick="openAI()">🤖 <span>IA</span></button>
+<a href="https://wa.me/2290159609581" target="_blank" class="wa-fab">💬</a>
+<div class="modal-ov" id="aiModal">
+  <div class="modal-box">
+    <div class="modal-head"><div class="modal-title"><span>🤖</span><span>Luckily IA</span></div><button class="modal-close" onclick="closeAI()">✕</button></div>
+    <div class="modal-msgs" id="aiMsgs"><div class="ai-msg bot"><div class="msg-bbl">Bonjour ! Des questions sur cette formation ? Je suis là ! 🎓</div></div></div>
+    <div class="modal-inp-row"><input class="modal-inp" id="aiInp" placeholder="Votre question..." onkeypress="if(event.key==='Enter')sendAI()"/><button class="modal-send" onclick="sendAI()">➤</button></div>
+  </div>
+</div>
+
+<script>
+const K={USERS:'la_u',SESS:'la_s',ENROLL:'la_e',PROG:'la_p',THEME:'la_t',LANG:'la_l'};
+const WA='2290159609581';
+function sg(k){try{return JSON.parse(localStorage.getItem(k)||'null');}catch{return null;}}
+function ss(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch{}}
+function getUsers(){return sg(K.USERS)||[];}
+function getSess(){return sg(K.SESS);}
+function isLoggedIn(){return !!getSess();}
+function getCurUser(){const s=getSess();if(!s)return null;return getUsers().find(u=>u.id===s.userId)||null;}
+function getEnrolls(){return sg(K.ENROLL)||{};}
+function isEnrolled(uid,cid){const e=getEnrolls();return !!(e[uid]&&e[uid].includes(cid));}
+function enrollUser(uid,cid){const e=getEnrolls();if(!e[uid])e[uid]=[];if(!e[uid].includes(cid))e[uid].push(cid);ss(K.ENROLL,e);}
+const CODES={'web-marketing':'luckily2002','negociation':'luckily2003','charge-clientele':'luckily2004','dev-frontend':'luckily2005','dev-backend':'luckily2006','analyse-donnees':'luckily2007','word-debutant':'luckily2008','word-intermediaire':'luckily2009','word-avance':'luckily2010','excel-debutant':'luckily2011','excel-intermediaire':'luckily2012','excel-avance':'luckily2013','outils':'luckily2014'};
+function verifyCode(cid,input){const exp=CODES[cid];if(!exp)return false;return input.trim().toLowerCase()===exp.toLowerCase();}
+function fmtP(p){return Number(p).toLocaleString('fr-FR')+' FCFA';}
+function toast(msg,type='info'){document.querySelector('.la-toast')?.remove();const c={success:'#06D6A0',error:'#EF233C',info:'#00B4D8',warning:'#F77F00'};const t=document.createElement('div');t.className='la-toast';t.textContent=msg;t.style.background=c[type]||c.info;document.body.appendChild(t);requestAnimationFrame(()=>{t.style.opacity='1';t.style.transform='translateX(-50%) translateY(0)';});setTimeout(()=>{t.style.opacity='0';t.style.transform='translateX(-50%) translateY(14px)';setTimeout(()=>t.remove(),350);},3200);}
+
+(function(){const t=localStorage.getItem(K.THEME)||'light';document.documentElement.setAttribute('data-theme',t);const i=document.getElementById('themeIcon');if(i)i.textContent=t==='dark'?'☀️':'🌙';})();
+function toggleTheme(){const cur=document.documentElement.getAttribute('data-theme')||'light';const nxt=cur==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',nxt);localStorage.setItem(K.THEME,nxt);const i=document.getElementById('themeIcon');if(i)i.textContent=nxt==='dark'?'☀️':'🌙';}
+
+function initNav(){
+  const nav=document.getElementById('navbar');const hbg=document.getElementById('hamburger');const nls=document.getElementById('navLinks');
+  if(nav)window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>40),{passive:true});
+  if(hbg&&nls){hbg.addEventListener('click',e=>{e.stopPropagation();const o=nls.classList.toggle('open');hbg.classList.toggle('open',o);});document.addEventListener('click',e=>{if(nav&&!nav.contains(e.target)){nls.classList.remove('open');hbg.classList.remove('open');}});}
+  document.getElementById('themeBtn')?.addEventListener('click',toggleTheme);
+  const sess=getSess();const ab=document.getElementById('authBtn');const db=document.getElementById('dashBtn');const av=document.getElementById('navAv');
+  if(sess){ab?.classList.add('hidden');db?.classList.remove('hidden');if(av)av.textContent=(sess.fullname||'U').charAt(0).toUpperCase();}else{ab?.classList.remove('hidden');db?.classList.add('hidden');}
+}
+
+function openAI(){document.getElementById('aiModal')?.classList.add('open');setTimeout(()=>document.getElementById('aiInp')?.focus(),300);}
+function closeAI(){document.getElementById('aiModal')?.classList.remove('open');}
+document.addEventListener('click',e=>{const m=document.getElementById('aiModal');if(m&&e.target===m)closeAI();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeAI();});
+const aiH=[];let aiB=false;
+async function sendAI(){const i=document.getElementById('aiInp');if(!i||!i.value.trim()||aiB)return;const m=i.value.trim();i.value='';addMsg(m,'user','aiMsgs');aiB=true;const box=document.getElementById('aiMsgs');const ty=document.createElement('div');ty.className='ai-msg bot';ty.innerHTML='<div class="msg-bbl ai-typing"><span></span><span></span><span></span></div>';box?.appendChild(ty);if(box)box.scrollTop=box.scrollHeight;aiH.push({role:'user',content:m});try{const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:600,system:'Tu es Luckily IA, assistant de Luckily Academy. Aide les apprenants sur leurs formations. Contact: +229 01 59 60 95 81. Réponds en Français, concisément.',messages:aiH})});const d=await res.json();const r=d.content?.[0]?.text||'Je suis là pour vous aider !';aiH.push({role:'assistant',content:r});ty.parentNode?.removeChild(ty);addMsg(r,'bot','aiMsgs');}catch{ty.parentNode?.removeChild(ty);addMsg('Connexion temporairement indisponible.','bot','aiMsgs');}finally{aiB=false;}}
+function addMsg(txt,type,id){const c=document.getElementById(id);if(!c)return;const d=document.createElement('div');d.className='ai-msg '+type;d.innerHTML='<div class="msg-bbl">'+txt.replace(/\n/g,'<br>')+'</div>';c.appendChild(d);c.scrollTop=c.scrollHeight;}
+
+// COURSES DATA WITH FULL CONTENT
+const IMG={'web-marketing':'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=700&q=80','negociation':'https://images.unsplash.com/photo-1521791136064-7986c2920216?w=700&q=80','charge-clientele':'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=700&q=80','dev-frontend':'https://images.unsplash.com/photo-1547658719-da2b51169166?w=700&q=80','dev-backend':'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=700&q=80','analyse-donnees':'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=700&q=80','word-debutant':'https://images.unsplash.com/photo-1618044619888-009e412ff12a?w=700&q=80','word-intermediaire':'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=700&q=80','word-avance':'https://images.unsplash.com/photo-1456324504439-367cee3b3c32?w=700&q=80','excel-debutant':'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=700&q=80','excel-intermediaire':'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=700&q=80','excel-avance':'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=700&q=80','outils':'https://images.unsplash.com/photo-1573804633927-bfcbcd909acd?w=700&q=80'};
+
+const COURSES={
+  'web-marketing':{id:'web-marketing',title:'Web Marketing',price:10000,category:'Marketing',level:'Débutant → Pro',duration:'8 semaines',icon:'📢',desc:'Maîtrisez les stratégies digitales : SEO, réseaux sociaux, publicité en ligne, email marketing et analytics pour développer votre activité.',
+    summary:['Introduction au marketing digital','Stratégie de contenu et branding','SEO et référencement naturel','Réseaux sociaux & community management','Google Ads et Facebook Ads','Email marketing et automation','Analytics et mesure des performances','Plan marketing complet'],
+    chapters:[
+      {title:'Introduction au Marketing Digital',lessons:['Qu\'est-ce que le Marketing Digital ?','L\'écosystème digital africain','Définir ses objectifs SMART','Les canaux de marketing digital']},
+      {title:'SEO — Référencement Naturel',lessons:['Les bases du SEO','Recherche de mots-clés','Optimisation on-page','Netlinking et SEO off-page','Google Search Console']},
+      {title:'Réseaux Sociaux',lessons:['Stratégie Facebook & Instagram','Créer du contenu viral','TikTok pour les entreprises','Gérer sa communauté','Publicité sur les réseaux']},
+      {title:'Publicité Payante (Ads)',lessons:['Google Ads pour débutants','Facebook Ads — ciblage avancé','Budget et ROI publicitaire','Optimisation des campagnes']},
+      {title:'Email Marketing',lessons:['Construire une liste email','Rédiger des emails efficaces','Séquences d\'automation','Mesurer ses performances email']},
+      {title:'Analytics & Stratégie',lessons:['Google Analytics 4','Tableaux de bord marketing','Audit de présence digitale','Créer son plan marketing annuel']}
+    ]},
+  'negociation':{id:'negociation',title:'Négociation Commerciale',price:10000,category:'Business',level:'Débutant → Avancé',duration:'6 semaines',icon:'🤝',desc:'Techniques de persuasion avancées, gestion des objections, closing et fidélisation client.',
+    summary:['Psychologie de la négociation','Préparation et stratégie','Les 6 principes de Cialdini','Gestion des objections','Techniques de closing','Négociation interculturelle','Fidélisation et suivi client','Jeux de rôle pratiques'],
+    chapters:[
+      {title:'Psychologie & Fondamentaux',lessons:['Psychologie de la négociation','Les biais cognitifs en vente','Styles de négociateurs','Préparer sa négociation — méthode BATNA']},
+      {title:'Techniques de Persuasion',lessons:['Les 6 principes de Cialdini','L\'ancrage et la réciprocité','L\'art de l\'écoute active','Communication non-verbale']},
+      {title:'Gérer les Objections',lessons:['Les 5 objections principales','La méthode ACRE','"C\'est trop cher" — réponses efficaces','Transformer le refus en opportunité']},
+      {title:'Closing & Fidélisation',lessons:['Techniques de closing éprouvées','Signaux d\'achat à repérer','Suivre et fidéliser ses clients','Construire une relation long terme']}
+    ]},
+  'charge-clientele':{id:'charge-clientele',title:'Chargé Clientèle',price:10000,category:'Service',level:'Débutant → Pro',duration:'6 semaines',icon:'🎯',desc:'Excellence dans la relation client : accueil, gestion des réclamations, fidélisation et service après-vente.',
+    summary:['Excellence dans l\'accueil','Communication empathique','Gestion des réclamations','Fidélisation client','Outils CRM','Gestion du stress','Service multicanal','KPIs satisfaction'],
+    chapters:[
+      {title:'Excellence dans l\'Accueil',lessons:['Les 7 secondes et la première impression','Le SBAM en pratique','Accueil physique vs téléphonique','Posture et langage professionnel']},
+      {title:'Communication Empathique',lessons:['L\'écoute active en 5 étapes','Reformulation et validation','Mots à éviter, mots à utiliser','Gérer les clients difficiles']},
+      {title:'Gestion des Réclamations',lessons:['La méthode HEARD','Transformer un mécontentement en fidélité','Procédures de traitement','Suivi et feedback']},
+      {title:'Fidélisation & CRM',lessons:['Les KPIs de satisfaction client','Net Promoter Score (NPS)','Utiliser un CRM','Programme de fidélité']}
+    ]},
+  'dev-frontend':{id:'dev-frontend',title:'Développement Web Frontend',price:20000,category:'Dev',level:'Débutant → Pro',duration:'12 semaines',icon:'💻',desc:'HTML5, CSS3, JavaScript ES6+, React.js. De la page blanche au site professionnel.',
+    summary:['HTML5 sémantique','CSS3 et animations','Flexbox et CSS Grid','JavaScript ES6+ moderne','DOM et événements','Fetch API et JSON','React.js — Composants & Hooks','Projet final complet','Déploiement Vercel/Netlify','Portfolio professionnel'],
+    chapters:[
+      {title:'HTML5 — Fondamentaux',lessons:['Structure d\'une page web HTML5','Les balises sémantiques','Formulaires HTML complets','Images, liens et médias','SEO on-page basique']},
+      {title:'CSS3 — Design & Style',lessons:['Sélecteurs et box model','Flexbox — mise en page moderne','CSS Grid — layouts avancés','Animations et transitions CSS','Variables CSS et thèmes','Responsive Design et media queries']},
+      {title:'JavaScript ES6+ Moderne',lessons:['Variables, fonctions et tableaux','Arrow functions et destructuring','DOM manipulation','Événements et listeners','Promises et async/await','Fetch API et JSON','LocalStorage et SessionStorage']},
+      {title:'React.js',lessons:['Introduction à React','Composants fonctionnels','Props et state','Hooks (useState, useEffect)','Routing avec React Router','Projet React complet']},
+      {title:'Projets & Déploiement',lessons:['Site portfolio complet','E-commerce simple','Déploiement sur Vercel','GitHub — gestion de code','Optimisation des performances']}
+    ]},
+  'dev-backend':{id:'dev-backend',title:'Développement Web Backend',price:25000,category:'Dev',level:'Intermédiaire → Pro',duration:'14 semaines',icon:'⚙️',desc:'Node.js, PHP, MySQL, MongoDB, APIs REST — maîtrisez le développement côté serveur.',
+    summary:['Fondamentaux serveur & HTTP','Node.js & Express.js','SQL avec MySQL','MongoDB & Mongoose','APIs REST complètes','Authentification JWT','PHP & Laravel','Déploiement & DevOps','Sécurité web','2 projets API complets'],
+    chapters:[
+      {title:'Fondamentaux Backend',lessons:['Client-serveur et HTTP','Environnements de développement','Introduction à Node.js','npm et gestion des packages']},
+      {title:'Node.js & Express.js',lessons:['Créer un serveur Express','Routes et middlewares','Gestion des erreurs','Variables d\'environnement (.env)','API RESTful complète']},
+      {title:'Bases de Données SQL',lessons:['Introduction à MySQL','Créer et gérer des tables','Requêtes SELECT, INSERT, UPDATE','Jointures et sous-requêtes','Connexion Node.js + MySQL']},
+      {title:'MongoDB & NoSQL',lessons:['Introduction à MongoDB','Mongoose et schémas','Opérations CRUD','Agrégations','Indexation et performances']},
+      {title:'Authentification & Sécurité',lessons:['JWT — JSON Web Tokens','Hachage des mots de passe (bcrypt)','Sessions et cookies','Protéger les routes','Validation des données','CORS et sécurité API']},
+      {title:'PHP & Laravel',lessons:['Bases de PHP moderne','Laravel — installation','Routes et contrôleurs','Eloquent ORM','Blade templates']},
+      {title:'Déploiement',lessons:['Hébergement VPS','Configuration Nginx','CI/CD basique','Variables d\'environnement en production','Monitoring et logs']}
+    ]},
+  'analyse-donnees':{id:'analyse-donnees',title:'Analyse des Données',price:15000,category:'Data',level:'Débutant → Pro',duration:'10 semaines',icon:'📊',desc:'Excel avancé, Python (Pandas), Power BI — transformez les données en insights.',
+    summary:['Introduction à la Data Analyse','Excel avancé — TCD','Power Query et Power Pivot','Python — Pandas & NumPy','Visualisation Matplotlib','Power BI Dashboards','SQL pour analystes','Statistiques descriptives','Rapport d\'analyse','2 projets réels'],
+    chapters:[
+      {title:'Excel pour l\'Analyse',lessons:['Tableaux croisés dynamiques','VLOOKUP, INDEX-MATCH','SUMIFS, COUNTIFS avancés','Mise en forme conditionnelle','Graphiques professionnels','Power Query — nettoyage']},
+      {title:'Python pour la Data',lessons:['Introduction à Python','NumPy — tableaux numériques','Pandas — DataFrames','Chargement et nettoyage de données','Analyse exploratoire','Groupby et agrégations']},
+      {title:'Visualisation des Données',lessons:['Matplotlib — graphiques de base','Seaborn — visualisations avancées','Choisir le bon graphique','Storytelling avec les données','Export et présentation']},
+      {title:'Power BI & Dashboards',lessons:['Introduction à Power BI','Connexion aux sources de données','DAX — mesures et colonnes','Création de tableaux de bord','Publication et partage']},
+      {title:'SQL pour Analystes',lessons:['Requêtes SELECT avancées','Jointures multiples','Fonctions de fenêtre','Sous-requêtes et CTEs','Analyse avec SQL']},
+      {title:'Projets Réels',lessons:['Analyse des ventes d\'une boutique','Dashboard commercial complet','Rapport d\'analyse présenté']}
+    ]},
+  'word-debutant':{id:'word-debutant',title:'Microsoft Word — Débutant',price:5000,category:'Bureautique',level:'Débutant',duration:'2 semaines',icon:'📝',desc:'Découverte de Word : créer, formater, mettre en page et imprimer des documents professionnels.',
+    summary:['Interface et navigation Word','Saisie et correction du texte','Mise en forme des caractères','Paragraphes et alignements','Listes à puces et numérotées','Insertion d\'images et tableaux','Mise en page et marges','Enregistrement et partage'],
+    chapters:[
+      {title:'Découverte de Word',lessons:['L\'interface Microsoft Word','Le ruban et les onglets','Créer et enregistrer un document','Navigation dans le texte','Les raccourcis essentiels']},
+      {title:'Mise en Forme du Texte',lessons:['Police, taille et couleur','Gras, italique, souligné','Alignement des paragraphes','Interligne et espacement','Listes à puces et numérotées']},
+      {title:'Tableaux et Images',lessons:['Créer et formater un tableau','Insérer et redimensionner des images','Habillage du texte','En-têtes et pieds de page','Numéros de page']},
+      {title:'Mise en Page & Impression',lessons:['Marges et orientation','Taille du papier','Aperçu avant impression','Imprimer un document','Exporter en PDF']}
+    ]},
+  'word-intermediaire':{id:'word-intermediaire',title:'Microsoft Word — Intermédiaire',price:5000,category:'Bureautique',level:'Intermédiaire',duration:'2 semaines',icon:'📄',desc:'Styles, tables des matières automatiques, publipostage, en-têtes avancés.',
+    summary:['Styles et thèmes Word','Table des matières automatique','En-têtes et pieds de page avancés','Publipostage','Protection de documents','Suivi des modifications','Modèles personnalisés','Champs automatiques'],
+    chapters:[
+      {title:'Styles et Documents Longs',lessons:['Styles Word — créer et modifier','Titres hiérarchiques','Table des matières automatique','Numérotation des pages avancée','Sections et sauts']},
+      {title:'Outils Avancés',lessons:['Publipostage (mail merge)','Lettres type personnalisées','Commentaires et révisions','Suivi des modifications','Protection et mots de passe','Modèles de documents']}
+    ]},
+  'word-avance':{id:'word-avance',title:'Microsoft Word — Avancé',price:5000,category:'Bureautique',level:'Avancé',duration:'3 semaines',icon:'📋',desc:'Macros VBA, formulaires interactifs, publipostage avancé et automatisation complète.',
+    summary:['Macros Word — enregistrement','VBA pour automatiser','Formulaires interactifs','Publipostage avancé avec conditions','Documents maîtres','Révision et co-édition','Scripts d\'automatisation','Intégration Office'],
+    chapters:[
+      {title:'Macros et Automatisation',lessons:['Enregistrer une macro','L\'éditeur VBA — introduction','Écrire sa première macro','Automatiser les rapports','Boutons et formulaires']},
+      {title:'Fonctionnalités Avancées',lessons:['Documents maîtres et sous-documents','Publipostage conditionnel','Formulaires interactifs','Protection et droits','Intégration avec Excel','Automatisation avancée VBA']}
+    ]},
+  'excel-debutant':{id:'excel-debutant',title:'Microsoft Excel — Débutant',price:5000,category:'Bureautique',level:'Débutant',duration:'2 semaines',icon:'📊',desc:'Feuilles de calcul, formules de base, graphiques simples et mise en forme.',
+    summary:['Interface et navigation Excel','Saisie et modification des données','Formules de base','Mise en forme des cellules','Tri et filtrage','Graphiques simples','Impression et mise en page','Gestion des classeurs'],
+    chapters:[
+      {title:'Découverte d\'Excel',lessons:['L\'interface Excel','Cellules, lignes et colonnes','Saisir et modifier des données','Formats de cellule','Navigation rapide']},
+      {title:'Formules Essentielles',lessons:['=SOMME(), =MOYENNE()','=MAX(), =MIN(), =NB()','=SI() — condition simple','=CONCATENER()','Références relatives et absolues']},
+      {title:'Mise en Forme et Graphiques',lessons:['Mettre en forme les cellules','Tri et filtrage','Créer un graphique simple','Types de graphiques','Impression de feuilles']}
+    ]},
+  'excel-intermediaire':{id:'excel-intermediaire',title:'Microsoft Excel — Intermédiaire',price:5000,category:'Bureautique',level:'Intermédiaire',duration:'3 semaines',icon:'📈',desc:'VLOOKUP, INDEX-MATCH, tableaux structurés, graphiques avancés, mise en forme conditionnelle.',
+    summary:['VLOOKUP et HLOOKUP','INDEX et MATCH','Fonctions conditionnelles avancées','Mise en forme conditionnelle','Tableaux structurés','Graphiques avancés','Validation des données','Protection des feuilles'],
+    chapters:[
+      {title:'Formules de Recherche',lessons:['VLOOKUP — recherche verticale','HLOOKUP — recherche horizontale','INDEX + MATCH — plus puissant','IFERROR — gérer les erreurs']},
+      {title:'Analyse Avancée',lessons:['SUMIF et SUMIFS','COUNTIF et COUNTIFS','Mise en forme conditionnelle','Validation des données','Tableaux structurés Excel']},
+      {title:'Visualisation Avancée',lessons:['Graphiques combinés','Graphiques dynamiques','Sparklines','Protection des feuilles','Partage et collaboration']}
+    ]},
+  'excel-avance':{id:'excel-avance',title:'Microsoft Excel — Avancé',price:5000,category:'Bureautique',level:'Avancé',duration:'3 semaines',icon:'📉',desc:'Power Query, VBA, macros, TCD avancés et dashboards professionnels.',
+    summary:['Power Query — transformation','TCD avancés et segments','Macros et VBA Excel','Fonctions matricielles','Tableaux de bord','Analyse de simulation','Résolution et solveur','Connexions externes'],
+    chapters:[
+      {title:'Power Query & Données',lessons:['Introduction à Power Query','Importer et nettoyer des données','Transformer et fusionner','Actualisation automatique']},
+      {title:'TCD et Dashboards',lessons:['Tableaux croisés dynamiques avancés','Segments et filtres','Graphiques croisés dynamiques','Construire un dashboard complet']},
+      {title:'Macros VBA',lessons:['Enregistrer une macro Excel','L\'éditeur VBA','Variables et boucles','Automatiser des rapports','Formulaires VBA']}
+    ]},
+  'outils':{id:'outils',title:'Outils Bureautique & Compatibilité',price:5000,category:'Bureautique',level:'Tous niveaux',duration:'2 semaines',icon:'🔧',desc:'PDF, Google Workspace, LibreOffice et conversion de formats.',
+    summary:['Créer et éditer des PDF','Adobe Reader et outils PDF','Google Docs, Sheets, Slides','LibreOffice — alternative gratuite','Conversion entre formats','Google Drive et OneDrive','Outils de collaboration','Signatures électroniques'],
+    chapters:[
+      {title:'PDF et Outils de Compatibilité',lessons:['Créer un PDF depuis Word/Excel','Éditer un PDF gratuitement','Compresser et sécuriser un PDF','Convertir PDF en Word','Fusionner et diviser des PDFs']},
+      {title:'Google Workspace',lessons:['Google Docs — traitement de texte','Google Sheets — tableur en ligne','Google Slides — présentations','Google Drive — stockage et partage','Collaboration en temps réel','Google Forms — formulaires']},
+      {title:'LibreOffice & Autres',lessons:['LibreOffice Writer','LibreOffice Calc','Compatibilité avec Microsoft Office','OneDrive et synchronisation','Signatures électroniques']}
+    ]}
+};
+
+function showPayModal(cid){
+  const c=COURSES[cid];if(!c)return;const sess=getSess();
+  document.getElementById('payModal')?.remove();
+  const m=document.createElement('div');m.id='payModal';m.className='modal-ov open';
+  m.innerHTML=`<div class="pay-box" id="payBox"><div class="modal-head"><div class="modal-title"><span>💳</span><span>S'inscrire</span></div><button class="modal-close" onclick="document.getElementById('payModal').remove();document.body.style.overflow=''">✕</button></div>
+  <div style="padding:20px 20px 0"><div style="background:var(--bg-alt);border-radius:14px;padding:14px;display:flex;align-items:center;gap:12px;margin-bottom:18px;border:1px solid var(--border)"><span style="font-size:2rem;flex-shrink:0">${c.icon}</span><div style="flex:1;min-width:0"><div style="font-family:var(--ff-d);font-weight:700;font-size:1rem;margin-bottom:2px">${c.title}</div><div style="font-size:.74rem;color:var(--text-m)">${c.category} · ${c.duration}</div></div><div style="text-align:right;flex-shrink:0"><div style="font-family:var(--ff-d);font-size:1.3rem;font-weight:800;color:var(--primary)">${fmtP(c.price)}</div><div style="font-size:.68rem;color:var(--text-m)">Accès à vie</div></div></div>
+  <div style="margin-bottom:16px"><div style="font-size:.73rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-m);margin-bottom:10px">Mode de paiement</div><div style="display:flex;flex-direction:column;gap:7px"><label class="pay-method active" id="pm_mtn"><input type="radio" name="pm" value="mtn" checked onchange="hlPay()" style="accent-color:var(--primary);margin-right:8px"/> 📱 <span style="font-weight:600;font-size:.86rem">MTN Mobile Money</span></label><label class="pay-method" id="pm_moov"><input type="radio" name="pm" value="moov" onchange="hlPay()" style="accent-color:var(--primary);margin-right:8px"/> 🔵 <span style="font-weight:600;font-size:.86rem">Moov Money</span></label><label class="pay-method" id="pm_wave"><input type="radio" name="pm" value="wave" onchange="hlPay()" style="accent-color:var(--primary);margin-right:8px"/> 🌊 <span style="font-weight:600;font-size:.86rem">Wave</span></label><label class="pay-method" id="pm_carte"><input type="radio" name="pm" value="carte" onchange="hlPay()" style="accent-color:var(--primary);margin-right:8px"/> 💳 <span style="font-weight:600;font-size:.86rem">Carte Visa / Mastercard</span></label></div></div>
+  <div style="margin-bottom:14px"><div style="font-size:.73rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-m);margin-bottom:7px">Téléphone <span style="color:#EF233C">*</span></div><input type="tel" id="payPhone" class="pay-inp" placeholder="+229 01 XX XX XX XX" value="${getCurUser()?.phone||''}"/></div>
+  ${!sess?`<div style="margin-bottom:14px"><div style="font-size:.73rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-m);margin-bottom:7px">Nom complet <span style="color:#EF233C">*</span></div><input type="text" id="payName" class="pay-inp" placeholder="Prénom Nom"/></div>`:''}
+  </div><div style="padding:14px 20px 20px"><button class="btn-wa" onclick="goWA('${cid}')"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Continuer vers WhatsApp</button><p style="text-align:center;font-size:.71rem;color:var(--text-m);margin-top:10px;line-height:1.5">🔒 Paiement confirmé par notre équipe. Accès dans les <strong>5 minutes</strong>.</p></div></div>`;
+  document.body.appendChild(m);document.body.style.overflow='hidden';
+  m.addEventListener('click',e=>{if(e.target===m){m.remove();document.body.style.overflow='';}});
+}
+function hlPay(){const sel=document.querySelector('input[name="pm"]:checked')?.value;['mtn','moov','wave','carte'].forEach(k=>{const l=document.getElementById('pm_'+k);if(l)l.classList.toggle('active',k===sel);});}
+function goWA(cid){
+  const c=COURSES[cid];if(!c)return;const sess=getSess();const user=getCurUser();
+  const method=document.querySelector('input[name="pm"]:checked')?.value||'mtn';
+  const phone=document.getElementById('payPhone')?.value?.trim()||'';
+  const nameI=document.getElementById('payName');const nom=nameI?nameI.value.trim():(user?.fullname||sess?.fullname||'');
+  if(!phone){const pi=document.getElementById('payPhone');if(pi){pi.style.borderColor='#EF233C';pi.focus();}toast('⚠ Renseignez votre téléphone.','error');return;}
+  if(!sess&&!nom){const ni=document.getElementById('payName');if(ni){ni.style.borderColor='#EF233C';ni.focus();}toast('⚠ Renseignez votre nom.','error');return;}
+  const ml={mtn:'MTN Mobile Money',moov:'Moov Money',wave:'Wave',carte:'Carte Visa/Mastercard'};
+  const ref='LA-'+Date.now().toString(36).toUpperCase();
+  const msg=`🎓 *LUCKILY ACADEMY — Demande de paiement*\n\nBonjour, je souhaite m'inscrire à :\n\n📚 *Formation :* ${c.title}\n⏱ *Durée :* ${c.duration}\n💰 *Montant :* ${fmtP(c.price)}\n\n────────────────\n👤 *Infos :*\n• Nom : ${nom||'Non renseigné'}\n• Tél : ${phone}\n\n💳 *Mode :* ${ml[method]||method}\n🔖 *Réf :* ${ref}\n────────────────\n\nMerci de confirmer ! 🙏`;
+  window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(msg),'_blank','noopener');
+  const box=document.getElementById('payBox');
+  if(box)box.innerHTML=`<div style="padding:40px 24px;text-align:center"><div style="font-size:3.5rem;margin-bottom:14px;animation:successBounce .5s ease both">✅</div><h2 style="font-family:var(--ff-d);font-size:1.5rem;font-weight:700;margin-bottom:10px;color:var(--text)">WhatsApp ouvert !</h2><p style="color:var(--text-m);font-size:.88rem;margin-bottom:8px">Votre demande a été préparée.</p><div style="background:var(--bg-alt);border-radius:10px;padding:10px 16px;margin:12px auto;display:inline-block"><div style="font-size:.7rem;color:var(--text-m)">Référence</div><div style="font-family:var(--ff-d);font-size:1.2rem;font-weight:800;color:var(--primary)">${ref}</div></div><p style="color:var(--text-m);font-size:.83rem;margin-bottom:22px">Notre équipe active votre accès dans les <strong>5 minutes</strong>.</p><button onclick="document.getElementById('payModal').remove();document.body.style.overflow=''" style="padding:10px 24px;border-radius:50px;border:1.5px solid var(--border);color:var(--text-m);font-size:.83rem;cursor:pointer;background:transparent">Fermer</button></div>`;
+}
+
+function showAccessModal(cid){
+  const sess=getSess();
+  if(!sess){window.location.href='auth.html?redirect='+encodeURIComponent('course-detail.html?id='+cid);return;}
+  const c=COURSES[cid];if(!c)return;
+  document.getElementById('accessModal')?.remove();
+  const m=document.createElement('div');m.id='accessModal';m.className='modal-ov open';
+  m.innerHTML=`<div class="access-box"><div style="background:linear-gradient(135deg,var(--primary),var(--accent));padding:20px 22px;text-align:center"><div style="font-size:2.4rem;margin-bottom:8px">${c.icon}</div><div style="font-family:var(--ff-d);font-size:1.3rem;font-weight:700;color:#fff;margin-bottom:2px">${c.title}</div><div style="font-size:.8rem;color:rgba(255,255,255,.8)">Entrez votre code d'accès</div></div><div style="padding:24px"><p style="font-size:.84rem;color:var(--text-m);margin-bottom:14px;line-height:1.6">Ce code vous a été envoyé par WhatsApp après confirmation de votre paiement.</p><input type="text" id="codeInp" class="access-code-inp" placeholder="Ex : luckily2005" onkeypress="if(event.key==='Enter')subCode('${cid}')"/><div id="codeErr" style="color:#EF233C;font-size:.82rem;margin-top:8px;text-align:center;display:none">Code incorrect. Vérifiez ou contactez-nous.</div><button onclick="subCode('${cid}')" class="btn-access" style="margin-top:12px">🔓 Accéder à la formation</button><div style="text-align:center;margin-top:14px"><a href="https://wa.me/${WA}?text=${encodeURIComponent('Bonjour, je souhaite m\'inscrire à : '+c.title+' — '+fmtP(c.price))}" target="_blank" style="display:inline-block;padding:8px 18px;border-radius:50px;background:#25D366;color:#fff;font-size:.8rem;font-weight:700;text-decoration:none;margin-bottom:8px">💬 Payer et obtenir mon code</a><br><button onclick="document.getElementById('accessModal').remove();document.body.style.overflow=''" style="font-size:.8rem;color:var(--text-m);cursor:pointer;background:transparent;border:none;margin-top:4px">Annuler</button></div></div></div>`;
+  document.body.appendChild(m);document.body.style.overflow='hidden';
+  m.addEventListener('click',e=>{if(e.target===m){m.remove();document.body.style.overflow='';}});
+  setTimeout(()=>document.getElementById('codeInp')?.focus(),300);
+}
+function subCode(cid){
+  const inp=document.getElementById('codeInp');const errEl=document.getElementById('codeErr');if(!inp)return;
+  const code=inp.value.trim();if(!code){inp.style.borderColor='#EF233C';return;}
+  const sess=getSess();if(!sess){window.location.href='auth.html';return;}
+  if(verifyCode(cid,code)){
+    enrollUser(sess.userId,cid);document.getElementById('accessModal')?.remove();document.body.style.overflow='';
+    toast('✓ Accès accordé ! Bienvenue dans la formation.','success');
+    setTimeout(()=>{window.location.href='lesson.html?course='+cid+'&chapter=0&lesson=0';},1200);
+  }else{if(errEl)errEl.style.display='block';inp.style.borderColor='#EF233C';}
+}
+
+function toggleChapter(idx){
+  const item=document.getElementById('ch-'+idx);if(!item)return;
+  item.classList.toggle('open');
+}
+
+function renderPage(){
+  const cid=new URLSearchParams(window.location.search).get('id');
+  if(!cid||!COURSES[cid]){window.location.href='courses.html';return;}
+  const c=COURSES[cid];
+  document.title=c.title+' — Luckily Academy';
+  const img=IMG[cid]||'https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=700&q=80';
+  const sess=getSess();const enrolled=sess?isEnrolled(sess.userId,cid):false;
+  const totalLessons=c.chapters.reduce((s,ch)=>s+(ch.lessons?.length||0),0);
+
+  let enrollBtns='';
+  if(enrolled){
+    enrollBtns=`<button onclick="window.location.href='lesson.html?course=${cid}&chapter=0&lesson=0'" style="width:100%;padding:13px;border-radius:50px;background:linear-gradient(135deg,#06D6A0,#0096B5);color:#fff;font-weight:700;font-size:.95rem;cursor:pointer;border:none;margin-bottom:10px">✓ Accéder au cours →</button>`;
+  }else if(sess){
+    enrollBtns=`<button onclick="showAccessModal('${cid}')" style="width:100%;padding:13px;border-radius:50px;background:linear-gradient(135deg,var(--primary),var(--primary-d));color:#fff;font-weight:700;font-size:.95rem;cursor:pointer;border:none;margin-bottom:10px">🔓 J'ai déjà payé — Entrer mon code</button>
+    <button onclick="showPayModal('${cid}')" style="width:100%;padding:11px;border-radius:50px;border:1.5px solid var(--primary);color:var(--primary);font-weight:600;font-size:.9rem;cursor:pointer;background:transparent">💳 S'inscrire via WhatsApp</button>`;
+  }else{
+    enrollBtns=`<button onclick="window.location.href='auth.html?redirect=course-detail.html%3Fid%3D${cid}'" style="width:100%;padding:13px;border-radius:50px;background:linear-gradient(135deg,var(--primary),var(--primary-d));color:#fff;font-weight:700;font-size:.95rem;cursor:pointer;border:none">🔒 Se connecter pour s'inscrire</button>`;
+  }
+
+  const summaryHTML=c.summary?`<div style="margin-bottom:36px"><h2 style="font-family:var(--ff-d);font-size:1.5rem;font-weight:700;margin-bottom:16px">📋 Sommaire de la formation</h2><div class="sum-grid">${c.summary.map((s,i)=>`<div class="sum-item"><div class="sum-num">${i+1}</div><span style="font-size:.84rem;color:var(--text-m);line-height:1.4">${s}</span></div>`).join('')}</div></div>`:'';
+
+  const chapHTML=c.chapters.map((ch,ci)=>`<div class="ch-item" id="ch-${ci}"><div class="ch-hd" onclick="toggleChapter(${ci})"><div><div style="font-weight:700;font-size:.92rem">Ch.${ci+1} — ${ch.title}</div><div style="font-size:.75rem;color:var(--text-m)">${ch.lessons?.length||0} leçon${(ch.lessons?.length||0)>1?'s':''}</div></div><span class="ch-arrow">▾</span></div><div class="ch-lessons">${(ch.lessons||[]).map((l,li)=>`<div class="lesson-row" onclick="${enrolled?`window.location.href='lesson.html?course=${cid}&chapter=${ci}&lesson=${li}'`:`showAccessModal('${cid}')`}"><span>${enrolled?'▶':'🔒'}</span><span style="flex:1">${l}</span>${!enrolled?'<span style="font-size:.7rem;color:var(--text-m)">Code requis</span>':''}</div>`).join('')}</div></div>`).join('');
+
+  document.getElementById('pageBody').innerHTML=`
+    <div class="course-hero-bg">
+      <div class="wrap"><div class="hero-grid-2">
+        <div>
+          <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(0,180,216,.15);border:1px solid rgba(0,180,216,.3);color:var(--primary);padding:4px 12px;border-radius:99px;font-size:.74rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px">${c.category} · ${c.level}</div>
+          <h1 style="font-family:var(--ff-d);font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;color:#fff;margin-bottom:14px;line-height:1.2">${c.icon} ${c.title}</h1>
+          <p style="color:rgba(255,255,255,.72);font-size:.95rem;line-height:1.8;margin-bottom:22px">${c.desc}</p>
+          <div style="display:flex;gap:20px;flex-wrap:wrap">
+            <span style="color:rgba(255,255,255,.6);font-size:.85rem">⏱ ${c.duration}</span>
+            <span style="color:rgba(255,255,255,.6);font-size:.85rem">📚 ${totalLessons} leçons</span>
+            <span style="color:rgba(255,255,255,.6);font-size:.85rem">📋 ${c.chapters.length} chapitres</span>
+          </div>
+        </div>
+        <div class="purchase-card">
+          <img src="${img}" alt="${c.title}" onerror="this.style.display='none'"/>
+          <div style="font-family:var(--ff-d);font-size:2.2rem;font-weight:800;color:var(--text);margin-bottom:3px">${fmtP(c.price)}</div>
+          <div style="font-size:.78rem;color:var(--text-m);margin-bottom:20px">Accès à vie · Paiement unique</div>
+          ${enrollBtns}
+          <div style="margin-top:18px;padding-top:18px;border-top:1px solid var(--border)">
+            <div class="include-item">✓ Accès à vie au contenu</div>
+            <div class="include-item">✓ ${totalLessons} leçons illustrées</div>
+            <div class="include-item">✓ PDF téléchargeables</div>
+            <div class="include-item">✓ Assistant IA 24h/24</div>
+            <div class="include-item">✓ Certificat de complétion</div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+    <div class="wrap" style="padding-top:48px;padding-bottom:64px">
+      <div style="display:grid;grid-template-columns:1fr 360px;gap:40px;" id="contentGrid">
+        <div>
+          ${summaryHTML}
+          <div><h2 style="font-family:var(--ff-d);font-size:1.5rem;font-weight:700;margin-bottom:8px">Programme détaillé</h2>
+          <p style="color:var(--text-m);margin-bottom:24px">${c.chapters.length} chapitres · ${totalLessons} leçons</p>
+          ${chapHTML}</div>
+        </div>
+        <div>
+          <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:22px;margin-bottom:16px">
+            <h3 style="font-family:var(--ff-d);font-size:1.1rem;font-weight:700;margin-bottom:10px">📄 Ressources PDF</h3>
+            <p style="font-size:.82rem;color:var(--text-m);margin-bottom:14px">Téléchargez le support de cours avec filigrane officiel Luckily Academy.</p>
+            <button id="pdfBtn" onclick="${enrolled?`toast('PDF en cours de génération...','info')`:`showAccessModal('${cid}')`}" style="width:100%;padding:11px;border-radius:50px;background:linear-gradient(135deg,var(--accent),#CC6600);color:#fff;font-weight:700;font-size:.85rem;cursor:pointer;border:none;${!enrolled?'opacity:.7':''}">
+              ${enrolled?'⬇ Télécharger le PDF':'🔒 Réservé aux inscrits'}
+            </button>
+          </div>
+          <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:22px">
+            <h3 style="font-family:var(--ff-d);font-size:1.1rem;font-weight:700;margin-bottom:14px">🔗 Partager</h3>
+            <div style="display:flex;gap:8px">
+              <button onclick="window.open('https://wa.me/?text='+encodeURIComponent('Découvrez cette formation sur Luckily Academy : '+window.location.href),'_blank')" style="flex:1;padding:9px;border-radius:50px;background:#25D366;color:#fff;font-size:.8rem;font-weight:700;cursor:pointer;border:none">WhatsApp</button>
+              <button onclick="navigator.clipboard.writeText(window.location.href).then(()=>toast('Lien copié !','success'))" style="flex:1;padding:9px;border-radius:50px;border:1px solid var(--border);color:var(--text);font-size:.8rem;font-weight:600;cursor:pointer;background:transparent">Copier</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>`;
+
+  // Responsive content grid
+  function adjGrid(){const g=document.getElementById('contentGrid');if(g)g.style.gridTemplateColumns=window.innerWidth<900?'1fr':'1fr 360px';}
+  adjGrid();window.addEventListener('resize',adjGrid);
+}
+
+window.addEventListener('load',()=>setTimeout(()=>document.getElementById('loader')?.classList.add('hidden'),1000));
+const rs=document.createElement('style');rs.textContent='@keyframes successBounce{0%{transform:scale(0) rotate(-10deg)}60%{transform:scale(1.2) rotate(3deg)}100%{transform:scale(1) rotate(0)}}.la-toast{opacity:0;transform:translateX(-50%) translateY(14px);transition:all .3s cubic-bezier(.34,1.56,.64,1);}';document.head.appendChild(rs);
+
+document.addEventListener('DOMContentLoaded',()=>{
+  initNav();
+  renderPage();
+});
+</script>
+</body>
+</html>

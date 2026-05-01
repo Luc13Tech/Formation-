@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Dashboard — Luckily Academy</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>"/>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<div id="loader"><div class="ld-ring"></div><div class="ld-text">Luckily Academy</div></div>
+
+<nav id="navbar">
+  <div class="nav-wrap">
+    <a href="index.html" class="nav-logo"><span class="nav-logo-icon">🎓</span><span class="nav-logo-text">Luckily <em>Academy</em></span></a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html" class="nav-link">Accueil</a>
+      <a href="courses.html" class="nav-link">Formations</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <button class="btn-icon" id="themeBtn"><span id="themeIcon">🌙</span></button>
+      <div class="lang-wrap">
+        <button class="lang-btn" id="langBtn"><span id="curLang">FR</span> ▾</button>
+        <div class="lang-drop" id="langDrop">
+          <button class="lang-opt" onclick="setLang('fr')">🇫🇷 Français</button>
+          <button class="lang-opt" onclick="setLang('en')">🇬🇧 English</button>
+          <button class="lang-opt" onclick="setLang('es')">🇪🇸 Español</button>
+          <button class="lang-opt" onclick="setLang('pt')">🇵🇹 Português</button>
+        </div>
+      </div>
+      <a href="dashboard.html" class="btn-avatar" id="dashBtn"><span id="navAv">U</span></a>
+    </div>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="dash-layout">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sb-user">
+      <div class="sb-av" id="sbAv">U</div>
+      <div class="sb-name" id="sbName">Étudiant</div>
+      <div class="sb-email" id="sbEmail">email@example.com</div>
+    </div>
+    <nav class="sb-nav">
+      <a href="dashboard.html" class="sb-link active"><span>🏠</span> Dashboard</a>
+      <a href="courses.html" class="sb-link"><span>📚</span> Formations</a>
+      <a href="profile.html" class="sb-link"><span>⚙️</span> Paramètres</a>
+      <a href="contact.html" class="sb-link"><span>💬</span> Contact</a>
+      <hr style="border:none;border-top:1px solid var(--border);margin:8px 0"/>
+      <button class="sb-link" onclick="doLogout()" style="color:#EF233C"><span>🚪</span> Déconnexion</button>
+    </nav>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="dash-main">
+    <div>
+      <h1 class="dash-welcome" id="dashWelcome">Bonjour 👋</h1>
+      <div class="dash-date" id="dashDate"></div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-grid">
+      <div class="stat-card" style="border-top:3px solid var(--primary)">
+        <div class="stat-icon">📚</div>
+        <div class="stat-num" id="stCourses">0</div>
+        <div class="stat-lbl">Formations inscrites</div>
+      </div>
+      <div class="stat-card" style="border-top:3px solid #06D6A0">
+        <div class="stat-icon">📈</div>
+        <div class="stat-num" id="stProg">0%</div>
+        <div class="stat-lbl">Progression moyenne</div>
+      </div>
+      <div class="stat-card" style="border-top:3px solid var(--accent)">
+        <div class="stat-icon">🏆</div>
+        <div class="stat-num" id="stCerts">0</div>
+        <div class="stat-lbl">Certificats obtenus</div>
+      </div>
+      <div class="stat-card" style="border-top:3px solid #7209B7">
+        <div class="stat-icon">⏱</div>
+        <div class="stat-num" id="stTime">0h</div>
+        <div class="stat-lbl">Temps d'apprentissage</div>
+      </div>
+    </div>
+
+    <!-- Courses -->
+    <div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px">
+        <h2 style="font-family:var(--ff-d);font-size:1.4rem;font-weight:700">Mes formations</h2>
+        <a href="courses.html" class="btn-primary" style="padding:9px 20px;font-size:.83rem">+ Ajouter une formation</a>
+      </div>
+      <div class="enrolled-grid" id="enrolledGrid"></div>
+    </div>
+
+    <!-- AI widget -->
+    <div style="margin-top:36px;border-radius:20px;padding:24px;border:1px solid rgba(0,180,216,.15);background:linear-gradient(135deg,rgba(0,180,216,.07),rgba(247,127,0,.04))">
+      <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+        <div style="font-size:2rem">🤖</div>
+        <div style="flex:1">
+          <h3 style="font-family:var(--ff-d);font-size:1.1rem;font-weight:700;margin-bottom:4px">Votre assistant IA est disponible</h3>
+          <p style="font-size:.83rem;color:var(--text-m)">Posez vos questions sur n'importe quelle formation, obtenez des explications personnalisées.</p>
+        </div>
+        <button onclick="openAI()" class="btn-primary" style="flex-shrink:0;padding:10px 22px">Ouvrir l'IA →</button>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- AI Modal -->
+<div class="modal-ov" id="aiModal">
+  <div class="modal-box">
+    <div class="modal-head"><div class="modal-title"><span>🤖</span><span>Luckily IA</span></div><button class="modal-close" onclick="closeAI()">✕</button></div>
+    <div class="modal-msgs" id="aiMsgs"><div class="ai-msg bot"><div class="msg-bbl">Bonjour ! Comment puis-je vous aider aujourd'hui ? 😊</div></div></div>
+    <div class="modal-inp-row"><input class="modal-inp" id="aiInp" placeholder="Votre question..." onkeypress="if(event.key==='Enter')sendAI()"/><button class="modal-send" onclick="sendAI()">➤</button></div>
+  </div>
+</div>
+<a href="https://wa.me/2290159609581" target="_blank" class="wa-fab">💬</a>
+
+<script>
+const K={USERS:'la_u',SESS:'la_s',ENROLL:'la_e',PROG:'la_p',THEME:'la_t',LANG:'la_l'};
+function sg(k){try{return JSON.parse(localStorage.getItem(k)||'null');}catch{return null;}}
+function ss(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch{}}
+function getUsers(){return sg(K.USERS)||[];}
+function getSess(){return sg(K.SESS);}
+function clearSess(){localStorage.removeItem(K.SESS);}
+function isLoggedIn(){return !!getSess();}
+function getCurUser(){const s=getSess();if(!s)return null;return getUsers().find(u=>u.id===s.userId)||null;}
+function getEnrolls(){return sg(K.ENROLL)||{};}
+function isEnrolled(uid,cid){const e=getEnrolls();return !!(e[uid]&&e[uid].includes(cid));}
+function getUserCourses(uid){return(getEnrolls()[uid]||[]);}
+function getProgress(){return sg(K.PROG)||{};}
+function getLessonProg(uid,cid){return(getProgress()[uid+'_'+cid]||[]);}
+function getProgPct(uid,cid,total){if(!total)return 0;return Math.round((getLessonProg(uid,cid).length/total)*100);}
+function doLogout(){clearSess();window.location.href='index.html';}
+function toast(msg,type='info'){document.querySelector('.la-toast')?.remove();const c={success:'#06D6A0',error:'#EF233C',info:'#00B4D8',warning:'#F77F00'};const t=document.createElement('div');t.className='la-toast';t.textContent=msg;t.style.background=c[type]||c.info;document.body.appendChild(t);requestAnimationFrame(()=>{t.style.opacity='1';t.style.transform='translateX(-50%) translateY(0)';});setTimeout(()=>{t.style.opacity='0';t.style.transform='translateX(-50%) translateY(14px)';setTimeout(()=>t.remove(),350);},3200);}
+
+// Theme
+(function(){const t=localStorage.getItem(K.THEME)||'light';document.documentElement.setAttribute('data-theme',t);const i=document.getElementById('themeIcon');if(i)i.textContent=t==='dark'?'☀️':'🌙';})();
+function toggleTheme(){const cur=document.documentElement.getAttribute('data-theme')||'light';const nxt=cur==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',nxt);localStorage.setItem(K.THEME,nxt);const i=document.getElementById('themeIcon');if(i)i.textContent=nxt==='dark'?'☀️':'🌙';}
+
+let curLang=localStorage.getItem(K.LANG)||'fr';
+function setLang(l){curLang=l;localStorage.setItem(K.LANG,l);const el=document.getElementById('curLang');if(el)el.textContent=l.toUpperCase();document.getElementById('langDrop')?.classList.remove('open');}
+
+function initNav(){
+  const nav=document.getElementById('navbar');const hbg=document.getElementById('hamburger');const nls=document.getElementById('navLinks');
+  const lbtn=document.getElementById('langBtn');const ldrop=document.getElementById('langDrop');
+  if(nav)window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>40),{passive:true});
+  if(hbg&&nls){hbg.addEventListener('click',e=>{e.stopPropagation();const o=nls.classList.toggle('open');hbg.classList.toggle('open',o);});document.addEventListener('click',e=>{if(nav&&!nav.contains(e.target)){nls.classList.remove('open');hbg.classList.remove('open');}});}
+  document.getElementById('themeBtn')?.addEventListener('click',toggleTheme);
+  if(lbtn&&ldrop){lbtn.addEventListener('click',e=>{e.stopPropagation();ldrop.classList.toggle('open');});document.addEventListener('click',()=>ldrop.classList.remove('open'));}
+}
+
+function openAI(){document.getElementById('aiModal')?.classList.add('open');setTimeout(()=>document.getElementById('aiInp')?.focus(),300);}
+function closeAI(){document.getElementById('aiModal')?.classList.remove('open');}
+document.addEventListener('click',e=>{const m=document.getElementById('aiModal');if(m&&e.target===m)closeAI();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeAI();});
+const aiH=[];let aiB=false;
+async function sendAI(){const i=document.getElementById('aiInp');if(!i||!i.value.trim()||aiB)return;const m=i.value.trim();i.value='';addMsg(m,'user','aiMsgs');aiB=true;const box=document.getElementById('aiMsgs');const ty=document.createElement('div');ty.className='ai-msg bot';ty.innerHTML='<div class="msg-bbl ai-typing"><span></span><span></span><span></span></div>';box?.appendChild(ty);if(box)box.scrollTop=box.scrollHeight;aiH.push({role:'user',content:m});const lbl={fr:'Français',en:'English',es:'Español',pt:'Português'}[curLang]||'Français';try{const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:600,system:`Tu es Luckily IA, assistant de Luckily Academy. Aide les apprenants. Prix des formations: Web Marketing 10000F, Négociation 10000F, Chargé Clientèle 10000F, Dev Frontend 20000F, Dev Backend 25000F, Analyse Données 15000F, Word/Excel chaque niveau 5000F, Outils 5000F. Contact WhatsApp: +229 01 59 60 95 81. Réponds en ${lbl}.`,messages:aiH})});const d=await res.json();const r=d.content?.[0]?.text||'Je suis là pour vous aider !';aiH.push({role:'assistant',content:r});ty.parentNode?.removeChild(ty);addMsg(r,'bot','aiMsgs');}catch{ty.parentNode?.removeChild(ty);addMsg('Connexion temporairement indisponible.','bot','aiMsgs');}finally{aiB=false;}}
+function addMsg(txt,type,id){const c=document.getElementById(id);if(!c)return;const d=document.createElement('div');d.className='ai-msg '+type;d.innerHTML='<div class="msg-bbl">'+txt.replace(/\n/g,'<br>')+'</div>';c.appendChild(d);c.scrollTop=c.scrollHeight;}
+
+const ALL_COURSES={
+  'web-marketing':{title:'Web Marketing',icon:'📢',category:'Marketing',level:'Débutant → Pro',chapters:[{lessons:['','','','']},{lessons:['','','','','']},{lessons:['','','','','']},{lessons:['','','','']},{lessons:['','','','']},{lessons:['','','','']}]},
+  'negociation':{title:'Négociation Commerciale',icon:'🤝',category:'Business',level:'Débutant → Avancé',chapters:[{lessons:['','','','']},{lessons:['','','','']},{lessons:['','','','']},{lessons:['','','','']}]},
+  'charge-clientele':{title:'Chargé Clientèle',icon:'🎯',category:'Service',level:'Débutant → Pro',chapters:[{lessons:['','','','']},{lessons:['','','','']},{lessons:['','','','']},{lessons:['','','','']}]},
+  'dev-frontend':{title:'Dev Web Frontend',icon:'💻',category:'Dev',level:'Débutant → Pro',chapters:[{lessons:['','','','','']},{lessons:['','','','','','']},{lessons:['','','','','','','']},{lessons:['','','','','','']},{lessons:['','','','','']}]},
+  'dev-backend':{title:'Dev Web Backend',icon:'⚙️',category:'Dev',level:'Intermédiaire → Pro',chapters:[{lessons:['','','','']},{lessons:['','','','','']},{lessons:['','','','','']},{lessons:['','','','','']},{lessons:['','','','','','']},{lessons:['','','','','']},{lessons:['','','','','']}]},
+  'analyse-donnees':{title:'Analyse des Données',icon:'📊',category:'Data',level:'Débutant → Pro',chapters:[{lessons:['','','','','','']},{lessons:['','','','','','']},{lessons:['','','','','']},{lessons:['','','','','']},{lessons:['','','','','']},{lessons:['','','']}]},
+  'word-debutant':{title:'Word — Débutant',icon:'📝',category:'Bureautique',level:'Débutant',chapters:[{lessons:['','','','','']},{lessons:['','','','','']},{lessons:['','','','','']},{lessons:['','','','','']}]},
+  'word-intermediaire':{title:'Word — Intermédiaire',icon:'📄',category:'Bureautique',level:'Intermédiaire',chapters:[{lessons:['','','','','']},{lessons:['','','','','','']}]},
+  'word-avance':{title:'Word — Avancé',icon:'📋',category:'Bureautique',level:'Avancé',chapters:[{lessons:['','','','','']},{lessons:['','','','','','']}]},
+  'excel-debutant':{title:'Excel — Débutant',icon:'📊',category:'Bureautique',level:'Débutant',chapters:[{lessons:['','','','','']},{lessons:['','','','','']},{lessons:['','','','','']}]},
+  'excel-intermediaire':{title:'Excel — Intermédiaire',icon:'📈',category:'Bureautique',level:'Intermédiaire',chapters:[{lessons:['','','','']},{lessons:['','','','','']},{lessons:['','','','','']}]},
+  'excel-avance':{title:'Excel — Avancé',icon:'📉',category:'Bureautique',level:'Avancé',chapters:[{lessons:['','','','']},{lessons:['','','','']},{lessons:['','','','','']}]},
+  'outils':{title:'Outils Bureautique',icon:'🔧',category:'Bureautique',level:'Tous niveaux',chapters:[{lessons:['','','','','']},{lessons:['','','','','','']},{lessons:['','','','','']}]}
+};
+
+function getTotalLessons(cid){const c=ALL_COURSES[cid];if(!c)return 0;return c.chapters.reduce((s,ch)=>s+(ch.lessons?.length||0),0);}
+
+function renderDashboard(){
+  const sess=getSess();
+  if(!sess){window.location.href='auth.html';return;}
+  const user=getCurUser();
+  const fname=(user?.fullname||'Étudiant').split(' ')[0];
+  document.getElementById('dashWelcome').textContent=`Bonjour, ${fname} 👋`;
+  const dateEl=document.getElementById('dashDate');
+  if(dateEl)dateEl.textContent=new Date().toLocaleDateString('fr-FR',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+
+  // Nav avatar
+  const sA=document.getElementById('sbAv');const sN=document.getElementById('sbName');const sE=document.getElementById('sbEmail');
+  const nA=document.getElementById('navAv');const dA=document.getElementById('dashBtn');
+  if(user){
+    if(sA)sA.textContent=user.fullname.charAt(0).toUpperCase();
+    if(sN)sN.textContent=user.fullname;
+    if(sE)sE.textContent=user.email;
+    if(nA)nA.textContent=user.fullname.charAt(0).toUpperCase();
+  }
+
+  const ids=getUserCourses(sess.userId);
+  const enrolled=Object.keys(ALL_COURSES).filter(cid=>ids.includes(cid));
+
+  // Stats
+  document.getElementById('stCourses').textContent=enrolled.length;
+  let totalPct=0,certs=0,totalDone=0;
+  enrolled.forEach(cid=>{
+    const total=getTotalLessons(cid);
+    const done=getLessonProg(sess.userId,cid).length;
+    const pct=total?Math.round((done/total)*100):0;
+    totalPct+=pct;totalDone+=done;
+    if(pct===100)certs++;
+  });
+  const avg=enrolled.length?Math.round(totalPct/enrolled.length):0;
+  document.getElementById('stProg').textContent=avg+'%';
+  document.getElementById('stCerts').textContent=certs;
+  document.getElementById('stTime').textContent=Math.round(totalDone*0.5)+'h';
+
+  // Grid
+  const grid=document.getElementById('enrolledGrid');
+  if(!grid)return;
+  if(!enrolled.length){
+    grid.innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--text-m)"><div style="font-size:2.5rem;margin-bottom:14px">📚</div><p style="margin-bottom:20px">Vous n'êtes inscrit(e) à aucune formation pour l'instant.</p><a href="courses.html" class="btn-primary" style="display:inline-flex">Explorer les formations →</a></div>`;
+    return;
+  }
+  grid.innerHTML=enrolled.map(cid=>{
+    const c=ALL_COURSES[cid];if(!c)return '';
+    const total=getTotalLessons(cid);
+    const done=getLessonProg(sess.userId,cid).length;
+    const pct=total?Math.round((done/total)*100):0;
+    return `<div class="en-card" onclick="window.location.href='course-detail.html?id=${cid}'">
+      <div class="en-icon">${c.icon}</div>
+      <div class="en-title">${c.title}</div>
+      <div class="en-sub">${c.category} · ${c.level}</div>
+      <div class="prog-bar"><div class="prog-fill" style="width:${pct}%"></div></div>
+      <div class="prog-txt">${done}/${total} leçons · ${pct}%</div>
+      <button class="btn-cont" onclick="event.stopPropagation();window.location.href='lesson.html?course=${cid}&chapter=0&lesson=0'">${pct>0?'▶ Continuer':'🚀 Commencer'}</button>
+    </div>`;
+  }).join('');
+}
+
+window.addEventListener('load',()=>setTimeout(()=>document.getElementById('loader')?.classList.add('hidden'),1000));
+const rs=document.createElement('style');rs.textContent='.la-toast{opacity:0;transform:translateX(-50%) translateY(14px);transition:all .3s cubic-bezier(.34,1.56,.64,1);}';document.head.appendChild(rs);
+document.addEventListener('DOMContentLoaded',()=>{initNav();renderDashboard();});
+</script>
+</body>
+</html>
