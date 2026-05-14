@@ -1,0 +1,33 @@
+{
+  "version": 2,
+  "name": "luckily-academy",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "env": {
+    "VITE_API_URL": "https://back-end-formation-luckily-academy-1.onrender.com"
+  },
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Access-Control-Allow-Origin", "value": "*" }
+      ]
+    },
+    { "source": "/style.css", "headers": [{ "key": "Cache-Control", "value": "public, max-age=86400" }] },
+    { "source": "/api.js", "headers": [{ "key": "Cache-Control", "value": "public, max-age=3600" }] }
+  ],
+  "rewrites": [
+    { "source": "/courses", "destination": "/courses.html" },
+    { "source": "/auth", "destination": "/auth.html" },
+    { "source": "/dashboard", "destination": "/dashboard.html" },
+    { "source": "/profile", "destination": "/profile.html" },
+    { "source": "/contact", "destination": "/contact.html" },
+    { "source": "/lesson", "destination": "/lesson.html" },
+    { "source": "/legal/terms", "destination": "/legal-terms.html" },
+    { "source": "/legal/privacy", "destination": "/legal-privacy.html" },
+    { "source": "/legal/refund", "destination": "/legal-refund.html" }
+  ]
+}

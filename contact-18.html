@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Contact — Luckily Academy</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>"/>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<div id="loader"><div class="ld-ring"></div><div class="ld-text">Luckily Academy</div></div>
+
+<nav id="navbar">
+  <div class="nav-wrap">
+    <a href="index.html" class="nav-logo"><span class="nav-logo-icon">🎓</span><span class="nav-logo-text">Luckily <em>Academy</em></span></a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html" class="nav-link">Accueil</a>
+      <a href="courses.html" class="nav-link">Formations</a>
+      <a href="contact.html" class="nav-link active">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <button class="btn-icon" id="themeBtn"><span id="themeIcon">🌙</span></button>
+      <div class="lang-wrap">
+        <button class="lang-btn" id="langBtn"><span id="curLang">FR</span> ▾</button>
+        <div class="lang-drop" id="langDrop">
+          <button class="lang-opt" onclick="setLang('fr')">🇫🇷 Français</button>
+          <button class="lang-opt" onclick="setLang('en')">🇬🇧 English</button>
+          <button class="lang-opt" onclick="setLang('es')">🇪🇸 Español</button>
+          <button class="lang-opt" onclick="setLang('pt')">🇵🇹 Português</button>
+        </div>
+      </div>
+      <a href="auth.html" class="btn-login" id="authBtn">Se connecter</a>
+      <a href="dashboard.html" class="btn-avatar hidden" id="dashBtn"><span id="navAv">U</span></a>
+    </div>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div style="padding-top:var(--nav-h)">
+  <!-- Hero -->
+  <div class="page-hero-wrap">
+    <div class="wrap" style="text-align:center">
+      <div class="sec-tag" style="margin-bottom:10px">Contact</div>
+      <h1 style="font-family:var(--ff-d);font-size:clamp(2rem,5vw,3rem);font-weight:700;margin-bottom:10px">Contactez-<em style="font-style:italic;color:var(--primary)">nous</em></h1>
+      <p style="color:var(--text-m);font-size:.95rem">Notre équipe est disponible pour répondre à toutes vos questions.</p>
+    </div>
+  </div>
+
+  <!-- Contact -->
+  <div class="wrap" style="padding-top:64px;padding-bottom:64px">
+    <div class="contact-grid">
+      <!-- Info -->
+      <div>
+        <h2 style="font-family:var(--ff-d);font-size:1.7rem;font-weight:700;margin-bottom:14px">Restons en <em style="font-style:italic;color:var(--primary)">contact</em></h2>
+        <p style="color:var(--text-m);line-height:1.8;margin-bottom:28px">Vous avez des questions sur nos formations ? Besoin d'aide pour choisir la formation qui vous correspond ? Nous sommes là pour vous accompagner.</p>
+        <div class="ci-item"><div class="ci-icon">📱</div><div><div class="ci-h4">WhatsApp</div><a href="https://wa.me/2290159609581" target="_blank" style="color:var(--primary);font-size:.85rem">+229 01 59 60 95 81</a></div></div>
+        <div class="ci-item"><div class="ci-icon">📧</div><div><div class="ci-h4">Email</div><a href="mailto:cultech49@gmail.com" style="color:var(--primary);font-size:.85rem">cultech49@gmail.com</a></div></div>
+        <div class="ci-item"><div class="ci-icon">🌍</div><div><div class="ci-h4">Localisation</div><div class="ci-p">Cotonou, Bénin — Afrique de l'Ouest</div></div></div>
+        <div class="ci-item"><div class="ci-icon">⏰</div><div><div class="ci-h4">Disponibilité</div><div class="ci-p">Lun. — Sam. · 8h00 — 20h00 (GMT+1)</div></div></div>
+
+        <!-- Founder card -->
+        <div style="margin-top:28px;padding:20px;border-radius:20px;background:linear-gradient(135deg,rgba(0,180,216,.07),rgba(247,127,0,.04));border:1px solid rgba(0,180,216,.15)">
+          <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px">
+            <div style="font-size:2.5rem">👨‍💼</div>
+            <div>
+              <div style="font-family:var(--ff-d);font-size:1.1rem;font-weight:700">Luc DEGUENON</div>
+              <div style="font-size:.78rem;color:var(--primary);font-weight:600">Fondateur & Directeur</div>
+              <div style="font-size:.76rem;color:var(--text-m)">Spécialiste en Technologie Moderne</div>
+            </div>
+          </div>
+          <a href="https://wa.me/2290159609581?text=Bonjour%20Luc%2C%20je%20viens%20de%20Luckily%20Academy%20et%20j'aimerais%20en%20savoir%20plus%20sur%20vos%20formations." target="_blank" class="btn-primary" style="display:inline-flex;align-items:center;gap:7px;font-size:.83rem;padding:9px 18px">💬 Contacter directement</a>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div class="contact-form-box">
+        <h2>Envoyer un message</h2>
+        <div id="contactOk" class="form-ok" style="margin-bottom:16px"></div>
+        <div id="contactErr" class="form-err" style="margin-bottom:16px"></div>
+        <div class="form-grp">
+          <label class="form-lbl">Votre nom *</label>
+          <input type="text" id="cName" class="form-inp" placeholder="Jean Dupont"/>
+        </div>
+        <div class="form-grp">
+          <label class="form-lbl">Email *</label>
+          <input type="email" id="cEmail" class="form-inp" placeholder="votre@email.com"/>
+        </div>
+        <div class="form-grp">
+          <label class="form-lbl">Sujet *</label>
+          <select id="cSubject" class="form-inp" style="cursor:pointer">
+            <option value="">Choisir un sujet...</option>
+            <option>📚 Demande d'information sur les formations</option>
+            <option>🔧 Problème technique sur la plateforme</option>
+            <option>💳 Question sur le paiement</option>
+            <option>🤝 Partenariat ou collaboration</option>
+            <option>🏆 Demande de certificat</option>
+            <option>💬 Autre demande</option>
+          </select>
+        </div>
+        <div class="form-grp">
+          <label class="form-lbl">Message *</label>
+          <textarea id="cMsg" class="form-inp" rows="5" placeholder="Décrivez votre demande en détail..." style="resize:vertical;min-height:120px"></textarea>
+        </div>
+        <div class="form-grp">
+          <label class="form-lbl">Téléphone (optionnel)</label>
+          <input type="tel" id="cPhone" class="form-inp" placeholder="+229 01 XX XX XX"/>
+        </div>
+        <button class="btn-submit" onclick="sendContact()">📨 Envoyer le message</button>
+        <p style="text-align:center;font-size:.73rem;color:var(--text-m);margin-top:10px">Votre message sera transmis à cultech49@gmail.com</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="section-alt" style="padding:64px 0">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-tag">FAQ</div>
+        <h2 class="sec-title">Questions <em>fréquentes</em></h2>
+      </div>
+      <div style="max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:10px">
+
+        <div class="faq-item" onclick="toggleFAQ(this)">
+          <div class="faq-q">Comment accéder à une formation après paiement ?<span class="faq-ic">▾</span></div>
+          <div class="faq-a">Après confirmation de votre paiement via WhatsApp, notre équipe vous envoie un code d'accès unique. Connectez-vous à votre compte Luckily Academy, allez sur la page de la formation, cliquez sur "J'ai déjà payé — Entrer mon code" et saisissez votre code. L'accès est immédiat et à vie.</div>
+        </div>
+
+        <div class="faq-item" onclick="toggleFAQ(this)">
+          <div class="faq-q">Quels modes de paiement acceptez-vous ?<span class="faq-ic">▾</span></div>
+          <div class="faq-a">Nous acceptons MTN Mobile Money, Moov Money (Flooz), Wave, et les cartes bancaires Visa/Mastercard. Pour tout autre mode de paiement, contactez-nous directement via WhatsApp au +229 01 59 60 95 81.</div>
+        </div>
+
+        <div class="faq-item" onclick="toggleFAQ(this)">
+          <div class="faq-q">Les formations sont-elles accessibles depuis mobile ?<span class="faq-ic">▾</span></div>
+          <div class="faq-a">Absolument ! La plateforme Luckily Academy est 100% responsive et optimisée pour tous les appareils : smartphones, tablettes et ordinateurs. Vous pouvez apprendre depuis n'importe quel endroit avec une connexion internet.</div>
+        </div>
+
+        <div class="faq-item" onclick="toggleFAQ(this)">
+          <div class="faq-q">Comment fonctionne le code d'accès aux formations ?<span class="faq-ic">▾</span></div>
+          <div class="faq-a">Chaque formation a un code d'accès unique. Après votre paiement confirmé par notre équipe, vous recevez votre code personnel via WhatsApp. Ce code vous permet d'accéder uniquement à la formation payée. Il est strictement personnel et ne doit pas être partagé.</div>
+        </div>
+
+        <div class="faq-item" onclick="toggleFAQ(this)">
+          <div class="faq-q">L'accès aux formations expire-t-il ?<span class="faq-ic">▾</span></div>
+          <div class="faq-a">Non ! Une fois inscrit(e), vous avez accès à votre formation à vie. Vous pouvez la suivre à votre rythme, la reprendre autant de fois que vous le souhaitez, et télécharger les supports PDF sans aucune limite de temps.</div>
+        </div>
+
+        <div class="faq-item" onclick="toggleFAQ(this)">
+          <div class="faq-q">Y a-t-il un certificat à la fin des formations ?<span class="faq-ic">▾</span></div>
+          <div class="faq-a">Oui ! À la fin de chaque formation, vous recevez un certificat officiel Luckily Academy. Ce certificat peut être partagé sur LinkedIn ou présenté lors de vos candidatures professionnelles.</div>
+        </div>
+
+        <div class="faq-item" onclick="toggleFAQ(this)">
+          <div class="faq-q">Puis-je avoir un remboursement si je ne suis pas satisfait(e) ?<span class="faq-ic">▾</span></div>
+          <div class="faq-a">Oui, nous offrons une garantie de satisfaction de 7 jours. Si vous estimez que le contenu ne correspond pas à la description et que vous avez consulté moins de 30% du cours, contactez-nous via WhatsApp. Consultez notre <a href="legal-refund.html" style="color:var(--primary)">politique de remboursement</a> pour plus de détails.</div>
+        </div>
+
+        <div class="faq-item" onclick="toggleFAQ(this)">
+          <div class="faq-q">Dans quelles langues les formations sont-elles disponibles ?<span class="faq-ic">▾</span></div>
+          <div class="faq-a">La plateforme Luckily Academy est disponible en 4 langues : Français, Anglais, Espagnol et Portugais. Vous pouvez changer la langue de l'interface depuis les paramètres ou depuis le sélecteur de langue dans la barre de navigation.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div><div class="footer-logo">🎓 Luckily <em>Academy</em></div><p class="footer-brand">Votre succès commence ici.</p><a href="https://wa.me/2290159609581" target="_blank" class="footer-wa">📱 +229 01 59 60 95 81</a></div>
+    <div class="footer-col"><h4>Formations</h4><a href="courses.html">Catalogue</a><a href="courses.html?cat=Dev">Développement</a><a href="courses.html?cat=Data">Data</a><a href="courses.html?cat=Bureautique">Bureautique</a></div>
+    <div class="footer-col"><h4>Plateforme</h4><a href="index.html">Accueil</a><a href="auth.html">Connexion</a><a href="contact.html">Contact</a></div>
+    <div class="footer-col"><h4>Légal</h4><a href="legal-terms.html">Conditions</a><a href="legal-privacy.html">Confidentialité</a><a href="legal-refund.html">Remboursement</a></div>
+  </div>
+  <div class="footer-bottom">© 2025 Luckily Academy. Tous droits réservés. Fondée par Luc DEGUENON.</div>
+</footer>
+
+<button class="ai-fab" onclick="openAI()">🤖 <span>IA</span></button>
+<a href="https://wa.me/2290159609581" target="_blank" class="wa-fab">💬</a>
+<div class="modal-ov" id="aiModal">
+  <div class="modal-box">
+    <div class="modal-head"><div class="modal-title"><span>🤖</span><span>Luckily IA</span></div><button class="modal-close" onclick="closeAI()">✕</button></div>
+    <div class="modal-msgs" id="aiMsgs"><div class="ai-msg bot"><div class="msg-bbl">Bonjour ! Je peux répondre à toutes vos questions sur Luckily Academy. 😊</div></div></div>
+    <div class="modal-inp-row"><input class="modal-inp" id="aiInp" placeholder="Votre question..." onkeypress="if(event.key==='Enter')sendAI()"/><button class="modal-send" onclick="sendAI()">➤</button></div>
+  </div>
+</div>
+
+<script>
+const K={USERS:'la_u',SESS:'la_s',THEME:'la_t',LANG:'la_l'};
+function sg(k){try{return JSON.parse(localStorage.getItem(k)||'null');}catch{return null;}}
+function getSess(){return sg(K.SESS);}
+function isLoggedIn(){return !!getSess();}
+function toast(msg,type='info'){document.querySelector('.la-toast')?.remove();const c={success:'#06D6A0',error:'#EF233C',info:'#00B4D8',warning:'#F77F00'};const t=document.createElement('div');t.className='la-toast';t.textContent=msg;t.style.background=c[type]||c.info;document.body.appendChild(t);requestAnimationFrame(()=>{t.style.opacity='1';t.style.transform='translateX(-50%) translateY(0)';});setTimeout(()=>{t.style.opacity='0';t.style.transform='translateX(-50%) translateY(14px)';setTimeout(()=>t.remove(),350);},3200);}
+
+(function(){const t=localStorage.getItem(K.THEME)||'light';document.documentElement.setAttribute('data-theme',t);const i=document.getElementById('themeIcon');if(i)i.textContent=t==='dark'?'☀️':'🌙';})();
+function toggleTheme(){const cur=document.documentElement.getAttribute('data-theme')||'light';const nxt=cur==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',nxt);localStorage.setItem(K.THEME,nxt);const i=document.getElementById('themeIcon');if(i)i.textContent=nxt==='dark'?'☀️':'🌙';}
+let curLang=localStorage.getItem(K.LANG)||'fr';
+function setLang(l){curLang=l;localStorage.setItem(K.LANG,l);const el=document.getElementById('curLang');if(el)el.textContent=l.toUpperCase();document.getElementById('langDrop')?.classList.remove('open');}
+
+function initNav(){
+  const nav=document.getElementById('navbar');const hbg=document.getElementById('hamburger');const nls=document.getElementById('navLinks');
+  const lbtn=document.getElementById('langBtn');const ldrop=document.getElementById('langDrop');
+  if(nav)window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>40),{passive:true});
+  if(hbg&&nls){hbg.addEventListener('click',e=>{e.stopPropagation();const o=nls.classList.toggle('open');hbg.classList.toggle('open',o);});document.addEventListener('click',e=>{if(nav&&!nav.contains(e.target)){nls.classList.remove('open');hbg.classList.remove('open');}});}
+  document.getElementById('themeBtn')?.addEventListener('click',toggleTheme);
+  if(lbtn&&ldrop){lbtn.addEventListener('click',e=>{e.stopPropagation();ldrop.classList.toggle('open');});document.addEventListener('click',()=>ldrop.classList.remove('open'));}
+  const sess=getSess();const ab=document.getElementById('authBtn');const db=document.getElementById('dashBtn');const av=document.getElementById('navAv');
+  if(sess){ab?.classList.add('hidden');db?.classList.remove('hidden');if(av)av.textContent=(sess.fullname||'U').charAt(0).toUpperCase();}else{ab?.classList.remove('hidden');db?.classList.add('hidden');}
+}
+
+function openAI(){document.getElementById('aiModal')?.classList.add('open');setTimeout(()=>document.getElementById('aiInp')?.focus(),300);}
+function closeAI(){document.getElementById('aiModal')?.classList.remove('open');}
+document.addEventListener('click',e=>{const m=document.getElementById('aiModal');if(m&&e.target===m)closeAI();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeAI();});
+const aiH=[];let aiB=false;
+async function sendAI(){const i=document.getElementById('aiInp');if(!i||!i.value.trim()||aiB)return;const m=i.value.trim();i.value='';addMsg(m,'user','aiMsgs');aiB=true;const box=document.getElementById('aiMsgs');const ty=document.createElement('div');ty.className='ai-msg bot';ty.innerHTML='<div class="msg-bbl ai-typing"><span></span><span></span><span></span></div>';box?.appendChild(ty);if(box)box.scrollTop=box.scrollHeight;aiH.push({role:'user',content:m});const lbl={fr:'Français',en:'English',es:'Español',pt:'Português'}[curLang]||'Français';try{const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:600,system:`Tu es Luckily IA, assistant de Luckily Academy, plateforme de formation en ligne fondée par Luc DEGUENON à Cotonou, Bénin. Prix: Web Marketing 10000F, Négociation 10000F, Chargé Clientèle 10000F, Dev Frontend 20000F, Dev Backend 25000F, Analyse Données 15000F, Word/Excel par niveau 5000F, Outils 5000F. Contact: +229 01 59 60 95 81, cultech49@gmail.com. Réponds en ${lbl}, chaleureusement et concisément.`,messages:aiH})});const d=await res.json();const r=d.content?.[0]?.text||'Je suis là pour vous aider !';aiH.push({role:'assistant',content:r});ty.parentNode?.removeChild(ty);addMsg(r,'bot','aiMsgs');}catch{ty.parentNode?.removeChild(ty);addMsg('Connexion temporairement indisponible.','bot','aiMsgs');}finally{aiB=false;}}
+function addMsg(txt,type,id){const c=document.getElementById(id);if(!c)return;const d=document.createElement('div');d.className='ai-msg '+type;d.innerHTML='<div class="msg-bbl">'+txt.replace(/\n/g,'<br>')+'</div>';c.appendChild(d);c.scrollTop=c.scrollHeight;}
+
+function toggleFAQ(item){
+  const a=item.querySelector('.faq-a');
+  const ic=item.querySelector('.faq-ic');
+  const open=a.style.display==='block';
+  a.style.display=open?'none':'block';
+  if(ic)ic.style.transform=open?'':'rotate(180deg)';
+}
+
+function sendContact(){
+  const name=document.getElementById('cName')?.value.trim()||'';
+  const email=document.getElementById('cEmail')?.value.trim()||'';
+  const subj=document.getElementById('cSubject')?.value||'';
+  const msg=document.getElementById('cMsg')?.value.trim()||'';
+  const phone=document.getElementById('cPhone')?.value.trim()||'';
+  const errEl=document.getElementById('contactErr');
+  const okEl=document.getElementById('contactOk');
+  if(errEl)errEl.style.display='none';
+  if(okEl)okEl.style.display='none';
+  if(!name){if(errEl){errEl.style.display='block';errEl.textContent='Veuillez entrer votre nom.';}return;}
+  if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){if(errEl){errEl.style.display='block';errEl.textContent='Email invalide.';}return;}
+  if(!subj){if(errEl){errEl.style.display='block';errEl.textContent='Veuillez choisir un sujet.';}return;}
+  if(!msg){if(errEl){errEl.style.display='block';errEl.textContent='Veuillez entrer votre message.';}return;}
+  const body=`Bonjour,\n\nNouvel message depuis Luckily Academy.\n\n━━━━━━━━━━━━━━━━━━━━\n👤 NOM : ${name}\n📧 EMAIL : ${email}\n📱 TÉLÉPHONE : ${phone||'Non renseigné'}\n📌 SUJET : ${subj}\n━━━━━━━━━━━━━━━━━━━━\n\nMESSAGE :\n${msg}\n\n━━━━━━━━━━━━━━━━━━━━\nEnvoyé depuis Luckily Academy\nDate : ${new Date().toLocaleString('fr-FR')}`;
+  window.location.href='mailto:cultech49@gmail.com?subject='+encodeURIComponent('[Luckily Academy] '+subj)+'&body='+encodeURIComponent(body);
+  setTimeout(()=>{
+    if(okEl){okEl.style.display='block';okEl.textContent='✓ Votre message a été préparé ! Vérifiez votre application email.';}
+    document.getElementById('cName').value='';document.getElementById('cEmail').value='';document.getElementById('cSubject').value='';document.getElementById('cMsg').value='';document.getElementById('cPhone').value='';
+    toast('Message prêt à envoyer dans votre email !','success');
+  },600);
+}
+
+function initAnims(){
+  const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target);}});},{threshold:.08});
+  document.querySelectorAll('.anim').forEach(el=>io.observe(el));
+}
+
+window.addEventListener('load',()=>setTimeout(()=>document.getElementById('loader')?.classList.add('hidden'),1000));
+const rs=document.createElement('style');rs.textContent='.la-toast{opacity:0;transform:translateX(-50%) translateY(14px);transition:all .3s cubic-bezier(.34,1.56,.64,1);}';document.head.appendChild(rs);
+document.addEventListener('DOMContentLoaded',()=>{initNav();initAnims();});
+</script>
+</body>
+</html>
